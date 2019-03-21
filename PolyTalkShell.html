@@ -1,0 +1,54 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/PolyTalk.css">
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="shortcut icon" type="image/png" href="images/favicon.ico"/>
+	<script type="text/javascript" src="scripts/PoliTalk.js"></script>
+	<title>PolyTalk</title>
+</head>
+<body>
+	<header>
+		<div><img src="images/squawkcropped.jpg"> PolyTalk </div>
+	</header>
+	
+	<script>
+		// Get the element with id="defaultOpen" and click on it
+		document.getElementById("defaultOpen").click();
+	</script>
+	
+	<div>
+	<section id="userMenu">
+		<h1> Welcome User</h1>
+		<img src="images/Obama.jpg" id="profile"></img>
+	</section>
+	
+	<section id="onlineUsers">
+		online users area
+	</section>
+	
+	<section id="middleStuff" content="width=device-width, initial-scale=.99">
+		<div class="tab">
+			<button class="tablinks" onclick="openTab(event, 'Articles')">Articles</button>
+			<button class="tablinks" onclick="openTab(event, 'Discussions')">Discussions</button>
+			<button class="tablinks" onclick="openTab(event, 'Trending')" id="defaultOpen">Trending</button>
+		</div>
+
+		<div id="Articles" class="tabcontent">
+			<h3>Articles</h3>
+			<p>This is where articles will load</p>
+		</div>
+
+		<div id="Discussions" class="tabcontent">
+			<h3>Discussions</h3>
+			<p>This is where discussions will load</p> 
+		</div>
+
+		<div id="Trending" class="tabcontent">
+			<h3>Trending</h3>
+			<p>This is where trending articles will load</p>
+		</div>
+	</section>
+	</div>
+</body>
+</html>
