@@ -5,21 +5,16 @@
 	<link rel="stylesheet" href="css/reset.css">
 	<link rel="shortcut icon" type="image/png" href="images/favicon.ico"/>
 	<script type="text/javascript" src="scripts/PoliTalk.js"></script>
-	<title>PolyTalk</title>
+	<title> PoliTalk </title>
 </head>
 <body>
 	<header>
-		<div><img src="images/squawkcropped.jpg"> PolyTalk </div>
+		<div><img src="images/squawkcropped.jpg"> PoliTalk </div>
 	</header>
-	
-	<script>
-		// Get the element with id="defaultOpen" and click on it
-		document.getElementById("defaultOpen").click();
-	</script>
 	
 	<div>
 	<section id="userMenu">
-		<h1> Welcome User</h1>
+		<h1> Welcome User </h1>
 		<img src="images/Obama.jpg" id="profile"></img>
 	</section>
 	
@@ -29,24 +24,33 @@
 	
 	<section id="middleStuff" content="width=device-width, initial-scale=.99">
 		<div class="tab">
-			<button class="tablinks" onclick="openTab(event, 'Articles')">Articles</button>
+			<button class="tablinks" onclick="openTab(event, 'Articles')" id="defaultOpen">Articles</button>
 			<button class="tablinks" onclick="openTab(event, 'Discussions')">Discussions</button>
-			<button class="tablinks" onclick="openTab(event, 'Trending')" id="defaultOpen">Trending</button>
+			<button class="tablinks" onclick="openTab(event, 'Trending')" >Trending</button>
 		</div>
 
 		<div id="Articles" class="tabcontent">
-			<h3>Articles</h3>
-			<p>This is where articles will load</p>
+			<h3> Articles </h3>
+			<button type="button" onclick="newArticle()" id="articleButton">New Article</button>
+		</div>
+		
+		<div id="articleForm" style="display: none;">
+			<h1>New Article</h1> <br/>
+			<form method="POST" action="" id="articleForm">	
+				<input type="text" id="articleTitle" placeholder="Title"> <br/><br/>
+				<textarea id="articleText" placeholder="Article text here" rows="30" cols="40"> </textarea> <br/>
+				<input type="submit" value="Submit Article">
+			</form>
 		</div>
 
 		<div id="Discussions" class="tabcontent">
-			<h3>Discussions</h3>
-			<p>This is where discussions will load</p> 
+			<h3> Discussions </h3>
+			<p> This is where discussions will load </p> 
 		</div>
 
 		<div id="Trending" class="tabcontent">
-			<h3>Trending</h3>
-			<p>This is where trending articles will load</p>
+			<h3> Trending </h3>
+			<p> This is where trending articles will load </p>
 		</div>
 	</section>
 	</div>

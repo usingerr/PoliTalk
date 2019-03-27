@@ -11,3 +11,15 @@ function openTab(evt, tabName) {
   document.getElementById(tabName).style.display = "block";
   evt.currentTarget.className += " active";
 }
+
+function defaultTab() {
+	document.getElementById("defaultOpen").click();
+}
+
+function newArticle() {
+	var articles = document.getElementById("Articles");
+	var articleForm = document.getElementById("articleForm").innerHTML;
+	articles.innerHTML = articleForm;
+}
+
+window.onload=defaultTab;
