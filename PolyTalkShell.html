@@ -1,74 +1,106 @@
 <html>
-<head>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" href="css/PolyTalk.css">
-	<link rel="stylesheet" href="css/reset.css">
-	<link rel="shortcut icon" type="image/png" href="images/favicon.ico"/>
-	<script type="text/javascript" src="scripts/PoliTalk.js"></script>
-	<title> PoliTalk </title>
-</head>
-<body>
-	<header>
-		<div><img src="images/squawkcropped.jpg"> PoliTalk </div>
-	</header>
-	
-	<div>
-	<section id="userMenu">
-		<h1> Welcome User </h1>
-		<img src="images/Obama.jpg" id="profile"></img>
-		<button type="button" onclick="newArticle()" class="userButton">New Article</button>
-		<button type="button" onclick="newDiscussion()" class="userButton">New Discussion</button>
-		<button type="button" onclick="logOut()" class="userButton">Log Out</button>
-	</section>
-	
-	<section id="onlineUsers">
-		online users area
-		<ul id = "userList">
-			<li>Place Holder 01</li>
-			<li>Place Holder 02</li>
-			<li>Place Holder 03</li>
-			<li>Place Holder 04</li>
-			<li>Place Holder 05</li>
-			<li>Place Holder 06</li>
-			<li>Place Holder 07</li>
-			<li>Place Holder 08</li>
-			<li>Place Holder 09</li>
-			<li>Place Holder 10</li>
-		</ul>
-		<input type = "text" id = "userSearch" placeholder = "Search for users here" oninput = "updateText()"></input>
-	</section>
-	
-	<section id="middleStuff" content="width=device-width, initial-scale=.99">
-		<div class="tab">
-			<button class="tablinks" onclick="openTab(event, 'Articles')" id="defaultOpen">Articles</button>
-			<button class="tablinks" onclick="openTab(event, 'Discussions')">Discussions</button>
-			<button class="tablinks" onclick="openTab(event, 'Trending')" >Trending</button>
-		</div>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="css/PolyTalk.css" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="shortcut icon" type="image/png" href="images/favicon.ico" />
+    <script type="text/javascript" src="scripts/PoliTalk.js"></script>
+    <title>PoliTalk</title>
+  </head>
+  <body>
+    <header>
+      <div><img src="images/squawkcropped.jpg" /> PoliTalk</div>
+    </header>
 
-		<div id="Articles" class="tabcontent">
-			<h3> Articles </h3>
-			<button type="button" onclick="newArticle()" id="articleButton">New Article</button>
-		</div>
-		
-		<div id="articleForm" style="display: none;">
-			<h1>New Article</h1> <br/>
-			<form method="POST" action="" id="articleForm">	
-				<input type="text" id="articleTitle" placeholder="Title"> <br/><br/>
-				<textarea id="articleText" placeholder="Article text here" rows="30" cols="40"> </textarea> <br/>
-				<input type="submit" value="Submit Article">
-			</form>
-		</div>
+    <div>
+      <section id="userMenu">
+        <h1>Welcome User</h1>
+        <img src="images/Obama.jpg" id="profile" />
+        <button type="button" onclick="newArticle()" class="userButton">
+          New Article
+        </button>
+        <button type="button" onclick="newDiscussion()" class="userButton">
+          New Discussion
+        </button>
+        <button type="button" onclick="logOut()" class="userButton">
+          Log Out
+        </button>
+      </section>
 
-		<div id="Discussions" class="tabcontent">
-			<h3> Discussions </h3>
-			<p> This is where discussions will load </p> 
-		</div>
+      <section id="onlineUsers">
+        online users area
+        <ul id="userList">
+          <li>Place Holder 01</li>
+          <li>Place Holder 02</li>
+          <li>Place Holder 03</li>
+          <li>Place Holder 04</li>
+          <li>Place Holder 05</li>
+          <li>Place Holder 06</li>
+          <li>Place Holder 07</li>
+          <li>Place Holder 08</li>
+          <li>Place Holder 09</li>
+          <li>Place Holder 10</li>
+        </ul>
+        <input
+          type="text"
+          id="userSearch"
+          placeholder="Search for users here"
+          oninput="updateText()"
+        />
+      </section>
 
-		<div id="Trending" class="tabcontent">
-			<h3> Trending </h3>
-			<p> This is where trending articles will load </p>
-		</div>
-	</section>
-	</div>
-</body>
+      <section id="middleStuff" content="width=device-width, initial-scale=.99">
+        <div class="tab">
+          <button
+            class="tablinks"
+            onclick="openTab(event, 'Articles')"
+            id="defaultOpen"
+          >
+            Articles
+          </button>
+          <button class="tablinks" onclick="openTab(event, 'Discussions')">
+            Discussions
+          </button>
+          <button class="tablinks" onclick="openTab(event, 'Trending')">
+            Trending
+          </button>
+        </div>
+
+        <div id="Articles" class="tabcontent">
+          <h3>Articles</h3>
+          <button type="button" onclick="newArticle()" id="articleButton">
+            New Article
+          </button>
+        </div>
+
+        <div id="articleForm" style="display: none;">
+          <h1>New Article</h1>
+          <br />
+          <form method="POST" action="" id="articleForm">
+            <input type="text" id="articleTitle" placeholder="Title" />
+            <br /><br />
+            <textarea
+              id="articleText"
+              placeholder="Article text here"
+              rows="30"
+              cols="40"
+            >
+            </textarea>
+            <br />
+            <input type="submit" value="Submit Article" />
+          </form>
+        </div>
+
+        <div id="Discussions" class="tabcontent">
+          <h3>Discussions</h3>
+          <p>This is where discussions will load</p>
+        </div>
+
+        <div id="Trending" class="tabcontent">
+          <h3>Trending</h3>
+          <p>This is where trending articles will load</p>
+        </div>
+      </section>
+    </div>
+  </body>
 </html>
