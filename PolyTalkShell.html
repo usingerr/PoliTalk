@@ -15,11 +15,26 @@
 	<div>
 	<section id="userMenu">
 		<h1> Welcome User </h1>
-		<img src="images/Obama.jpg" id="profile"></img>
+		<img src="images/Obama.jpg" id="profile"></img><button type="button" onclick="newArticle()" class="userButton">New Article</button>
+		<button type="button" onclick="newDiscussion()" class="userButton">New Discussion</button>
+		<button type="button" onclick="logOut()" class="userButton">Log Out</button>
 	</section>
 	
 	<section id="onlineUsers">
 		online users area
+		<ul id = "userList">
+			<li>Place Holder 01</li>
+			<li>Place Holder 02</li>
+			<li>Place Holder 03</li>
+			<li>Place Holder 04</li>
+			<li>Place Holder 05</li>
+			<li>Place Holder 06</li>
+			<li>Place Holder 07</li>
+			<li>Place Holder 08</li>
+			<li>Place Holder 09</li>
+			<li>Place Holder 10</li>
+		</ul>
+		<input type = "text" id = "userSearch" placeholder = "Search for users here" oninput = "updateText()"></input>
 	</section>
 	
 	<section id="middleStuff" content="width=device-width, initial-scale=.99">
