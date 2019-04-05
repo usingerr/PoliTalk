@@ -12,11 +12,8 @@ function openTab(evt, tabName) {
   evt.currentTarget.className += " active";
 }
 
-function defaultTab() {
-	document.getElementById("defaultOpen").click();
-}
-
 function newArticle() {
+	openTab(event, 'Articles');
 	var articles = document.getElementById("Articles");
 	var articleForm = document.getElementById("articleForm").innerHTML;
 	articles.innerHTML = articleForm;
@@ -80,16 +77,19 @@ function removeSource(buttonID) {
 	if (childCount == 1) {
 		return false;
 	} else {
-		container.removeChild(container.lastChild);
-		container.removeChild(container.lastChild);
-		container.removeChild(container.lastChild);
+		for (i = 0; i <= 2; i++) {
+			container.removeChild(container.lastChild);
+		}
 		return true;
 	}
 }
 
 function newDiscussion()
 {
-	alert("Discussion button works");
+	openTab(event, 'Discussions');
+	var discussions = document.getElementById("Discussions");
+	var discussionForm = document.getElementById("discussionForm").innerHTML;
+	discussions.innerHTML = discussionForm;
 }
 
 function logOut()
@@ -136,5 +136,3 @@ function  updateText()
 	}
 	update(newList)
 }
-
-window.onload=defaultTab;

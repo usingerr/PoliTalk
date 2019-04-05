@@ -59,7 +59,7 @@ img#profile {
 	text-align: left;
 }
 
-#articleTitle {
+.midInput {
 	text-align: center;
 }
 
@@ -68,12 +68,17 @@ textarea {
 	height: 50%;
 }
 
-#articleForm {
+#Articles {
 	width: 100%;
 	height: 100%;
 }
 
-#Articles {
+#Discussions {
+	width: 100%;
+	height: 100%;
+}
+
+#Trending {
 	width: 100%;
 	height: 100%;
 }

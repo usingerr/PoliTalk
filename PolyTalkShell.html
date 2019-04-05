@@ -39,38 +39,50 @@
 	
 	<section id="middleStuff" content="width=device-width, initial-scale=.99">
 		<div class="tab">
-			<button class="tablinks" onclick="openTab(event, 'Articles')" id="defaultOpen">Articles</button>
+			<button class="tablinks" onclick="openTab(event, 'Articles')" id="articleTab">Articles</button>
 			<button class="tablinks" onclick="openTab(event, 'Discussions')">Discussions</button>
-			<button class="tablinks" onclick="openTab(event, 'Trending')" >Trending</button>
+			<button class="tablinks" onclick="openTab(event, 'Trending')">Trending</button>
 		</div>
 
 		<div id="Articles" class="tabcontent">
 			<h3> Articles </h3>
-			<button type="button" onclick="newArticle()" id="articleButton">New Article</button>
+			<button type="button" onclick="newArticle()" id="articleButton" class="userButton">New Article</button>
 		</div>
 		
 		<div id="articleForm" style="display: none;">
 			<h1>New Article</h1> <br/>
-			<form method="POST" action="" id="articleForm">	
-				<input type="text" id="articleTitle" placeholder="Title"> <br/><br/>
-				<textarea id="articleText" placeholder="Article text here" rows="30" cols="40"> </textarea> <br/>
+			<form method="post" action="scripts/submit_article.php" id="articleForm">	
+				<input type="text" id="articleTitle" class="midInput" name="articleTitle" placeholder="Title"> <br/><br/>
+				<textarea id="articleText" name="articleText" placeholder="Article text here" rows="30" cols="40"> </textarea> <br/>
 				<div id="sourceContainer">
 					Source 1 <input type="text" id="source0" name="source0" value=""><br/>
 				</div>
-				<a href="#" id="addSourceButton" onclick="addSource()">Add source</a>    <a href="#" id="removeLastSourceButton" onclick="removeSource()">Remove Source</a><br/>
+				<a href="#" id="addSourceButton" onclick="addSource()">Add source</a>
+				<a href="#" id="removeLastSourceButton" onclick="removeSource()">Remove Source</a><br/>
 				<input type="submit" value="Submit Article">
 			</form>
 		</div>
 
 		<div id="Discussions" class="tabcontent">
 			<h3> Discussions </h3>
-			<p> This is where discussions will load </p> 
+			<button type="button" onclick="newDiscussion()" id="discussionButton" class="userButton">New Discussion</button>
+		</div>
+		
+		<div id="discussionForm" style="display: none;">
+			<h1>New Discussion</h1> <br/>
+			<form method="post" action="scripts/submit_discussion.php" id="discussionForm">
+				<input type="text" id="discussionTitle" name="discussionTitle" class="midInput" placeholder="Title"> <br/> <br/>
+				<input type="text" id="userFor" name="userFor" class="midInput" placeholder="User For?">	<input type="text" id="userAgainst" name="userAgainst" class="midInput" placeholder="User Against?"> <br/> <br/>
+				<input type="submit" value="Propose Discussion">
+			</form>
 		</div>
 
 		<div id="Trending" class="tabcontent">
 			<h3> Trending </h3>
 			<p> This is where trending articles will load </p>
 		</div>
+		
+		<h1>Welcome to PoliTalk!</h1>
 	</section>
 	</div>
 </body>
