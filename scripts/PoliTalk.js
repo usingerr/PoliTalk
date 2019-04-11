@@ -68,7 +68,7 @@ function append(parent, el) {
   return parent.appendChild(el);
 }
 
-const ul = document.getElementById("userList");
+/*const ul = document.getElementById("userList");
 const url = " "; //insert api url when ready
 fetch(url)
   .then(resp => resp.json())
@@ -77,14 +77,14 @@ fetch(url)
     return users.map(function(user) {
       let li = createNode("li"),
         span = createNode("span");
-      span.innerHTML = `${user.name.first} ${user.name.last}`;
+      span.innerHTML = `${User.name}`;
       append(li, span);
       append(ul, li);
     });
   })
   .catch(function(error) {
     console.log(error);
-  });
+  });*/
 
 function update(userList) {
   for (var y = 0; y < userList.length; y++) {
@@ -104,7 +104,7 @@ function update(userList) {
   }
 }
 
-/*function  updateText()
+function  updateText()
 {
 	var input = document.getElementById("userSearch").value;
 	var newList = [];
@@ -117,9 +117,9 @@ function update(userList) {
 		}
 	}
 	update(newList)
-}*/
+}
 
-function updateText() {
+/*function updateText() {
   var input = document.getElementById("userSearch").value;
   var newList = [];
   for (var x = 0; x < placeHolderQueryResult.length; x++) {
@@ -136,6 +136,7 @@ function updateText() {
     }
   }
   update(newList);
-}
+}*/
 
 window.onload = defaultTab;
+
