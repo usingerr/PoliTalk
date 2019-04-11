@@ -159,7 +159,9 @@ function submitDiscussion() {
 	// discussion title
 	var dTitle = document.getElementById('discussionTitle').value;
 	// user for
-	var userFor = document.getElementById('').value;
+	var userFor = document.getElementById('userFor').value;
+	// user against
+	var userAgainst = document.getElementById('userAgainst').value;
 	//open connection to database
 	var mysql = require('mysql');
 	var connection = getDBConnection();
@@ -168,7 +170,7 @@ function submitDiscussion() {
 	connection.connect(function(err) {
 		if (err) throw err;
 		console.log("Connected!");
-		var sql = "INSERT INTO mydb (shit, fart, poopie, balls) VALUES (69, 420, 911, 80085)"
+		var sql = "INSERT INTO debates (Topic, For, Against) VALUES ('" + dTitle + "', '" + userFor + "', '" + userAgainst + "')"
 		con.query(sql, function (err, result) {
 			if (err) throw err;
 			console.log("1 record inserted");
@@ -181,7 +183,9 @@ function submitDiscussion() {
 
 function logOut()
 {
-	alert("log out button works");
+	//alert("log out button works");
+	document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+	location.reload();
 }
 
 var placeHolderQueryResult = ["Donald Trump", "Donald Glover", "Hillary Clinton", "Michelle Obama", "Kirsten Gillibrand", "Beto O'Rourke", "John Hickenlooper", "Jay Inslee", "Bernie Sanders", "Amy Klobuchar", "Elizabeth Warren", "Cory Booker", "Kamala Harris", "Julian Castro", "Tulsi Gabbard", "John Delaney", "Wayne Messam", "Marianne Williamson", "Andrew Yang", "Pete Buttigieg", "Gonzalo Barrios", "Marco Rubio", "Ted Cruz", "George Bush", "Kanye West", "Dwayne Johnson", "Joanne Rowling"]

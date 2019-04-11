@@ -17,6 +17,7 @@
 		<h1> Welcome User </h1>
 		<img src="images/Obama.jpg" id="profile"></img><button type="button" onclick="newArticle()" class="userButton">New Article</button>
 		<button type="button" onclick="newDiscussion()" class="userButton">New Discussion</button>
+		<br/><br/>
 		<button type="button" onclick="logOut()" class="userButton">Log Out</button>
 	</section>
 	
@@ -72,7 +73,8 @@
 			<h1>New Discussion</h1> <br/>
 			<form method="post" action="#" onsubmit="submitDiscussion()" id="discussionForm">
 				<input type="text" id="discussionTitle" name="discussionTitle" class="midInput" placeholder="Title" required> <br/> <br/>
-				<input type="text" id="userFor" name="userFor" class="midInput" placeholder="User For?" required>	<input type="text" id="userAgainst" name="userAgainst" class="midInput" placeholder="User Against?" required> <br/> <br/>
+				<input type="text" id="userFor" name="userFor" class="midInput" placeholder="User For?" required>	
+				<input type="text" id="userAgainst" name="userAgainst" class="midInput" placeholder="User Against?" required> <br/> <br/>
 				<input type="submit" value="Propose Discussion">
 			</form>
 		</div>
