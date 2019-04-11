@@ -1,6 +1,12 @@
 <html>
   <head>
     <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="css/PolyTalk.css" />
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="shortcut icon" type="image/png" href="images/favicon.ico" />
@@ -89,13 +95,181 @@
           <button type="button" onclick="newArticle()" id="articleButton">
             New Article
           </button>
+          <br />
+          <br />
+
+          <div id="articleList" class="list-group scrollable">
+            <li>
+              <span><strong>Hey Guys, Obama Here</strong></span>
+              <ul>
+                <li>Author: Barack Obama</li>
+                <li>Date: 12/12/2018</li>
+                <li>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Curabitur nec dignissim ante. Nullam cursus turpis vitae
+                    facilisis gravida. Vestibulum felis purus, congue
+                    ullamcorper sodales eget, ullamcorper nec augue. Morbi
+                    finibus sapien vel ligula aliquam tempus. Cras lorem tellus,
+                    congue ac vehicula at, interdum luctus quam. Quisque
+                    lobortis pharetra facilisis. Etiam interdum faucibus nisl
+                    finibus semper. In sollicitudin pharetra felis, eu rhoncus
+                    nunc ultricies id. Proin a mi in erat finibus pellentesque.
+                    Fusce et mi varius nisi imperdiet vehicula. Sed placerat,
+                    velit quis ultricies efficitur, massa libero lacinia orci, a
+                    sollicitudin erat urna quis tortor. Aliquam pulvinar auctor
+                    nisl, non mollis felis fermentum et. In ut massa eu justo
+                    tristique lobortis. Aenean eu leo lobortis, efficitur augue
+                    a, condimentum ex. Curabitur viverra sapien vitae nulla
+                    faucibus viverra. Ut at enim venenatis, imperdiet enim et,
+                    fringilla purus. Duis enim libero, interdum et justo quis,
+                    rutrum egestas enim. Nulla a dolor ac purus lobortis
+                    ullamcorper. Class aptent taciti sociosqu ad litora torquent
+                    per conubia nostra, per inceptos himenaeos. Duis vitae
+                    facilisis eros. Phasellus posuere quam lacus, eu sodales
+                    magna fermentum eget. Aliquam gravida eu elit condimentum
+                    aliquet. Nullam suscipit sapien eu dui rhoncus ultrices.
+                    Mauris vitae dui eu erat sodales eleifend. Mauris imperdiet
+                    sollicitudin fringilla. Sed quis odio in lorem lacinia
+                    fermentum. Curabitur pellentesque consectetur tortor id
+                    faucibus. Integer fringilla ut enim ac aliquam. Morbi
+                    consectetur neque a urna ornare, sit amet maximus nibh
+                    tincidunt. Praesent tellus massa, placerat vitae ullamcorper
+                    sit amet, cursus mattis nisl. Ut iaculis elit sit amet mi
+                    pharetra, a placerat nisl mollis. Suspendisse id eros nec
+                    leo tempor dignissim. Duis euismod erat quis libero congue
+                    sollicitudin. Fusce in eros egestas, sollicitudin nisi sed,
+                    sodales justo. Donec auctor maximus ante sit amet commodo.
+                    Nam at elit erat. Interdum et malesuada fames ac ante ipsum
+                    primis in faucibus. Curabitur eget ornare odio, vitae
+                    pellentesque leo.
+                  </p>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <span><strong>Sad!</strong></span>
+              <ul>
+                <li>Author: Donald Trump</li>
+                <li>Date: 12/13/2018</li>
+                <li>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Curabitur nec dignissim ante. Nullam cursus turpis vitae
+                    facilisis gravida. Vestibulum felis purus, congue
+                    ullamcorper sodales eget, ullamcorper nec augue. Morbi
+                    finibus sapien vel ligula aliquam tempus. Cras lorem tellus,
+                    congue ac vehicula at, interdum luctus quam. Quisque
+                    lobortis pharetra facilisis. Etiam interdum faucibus nisl
+                    finibus semper. In sollicitudin pharetra felis, eu rhoncus
+                    nunc ultricies id. Proin a mi in erat finibus pellentesque.
+                    Fusce et mi varius nisi imperdiet vehicula. Sed placerat,
+                    velit quis ultricies efficitur, massa libero lacinia orci, a
+                    sollicitudin erat urna quis tortor. Aliquam pulvinar auctor
+                    nisl, non mollis felis fermentum et. In ut massa eu justo
+                    tristique lobortis. Aenean eu leo lobortis, efficitur augue
+                    a, condimentum ex. Curabitur viverra sapien vitae nulla
+                    faucibus viverra. Ut at enim venenatis, imperdiet enim et,
+                    fringilla purus. Duis enim libero, interdum et justo quis,
+                    rutrum egestas enim. Nulla a dolor ac purus lobortis
+                    ullamcorper. Class aptent taciti sociosqu ad litora torquent
+                    per conubia nostra, per inceptos himenaeos. Duis vitae
+                    facilisis eros. Phasellus posuere quam lacus, eu sodales
+                    magna fermentum eget. Aliquam gravida eu elit condimentum
+                    aliquet. Nullam suscipit sapien eu dui rhoncus ultrices.
+                    Mauris vitae dui eu erat sodales eleifend. Mauris imperdiet
+                    sollicitudin fringilla. Sed quis odio in lorem lacinia
+                    fermentum. Curabitur pellentesque consectetur tortor id
+                    faucibus. Integer fringilla ut enim ac aliquam. Morbi
+                    consectetur neque a urna ornare, sit amet maximus nibh
+                    tincidunt. Praesent tellus massa, placerat vitae ullamcorper
+                    sit amet, cursus mattis nisl. Ut iaculis elit sit amet mi
+                    pharetra, a placerat nisl mollis. Suspendisse id eros nec
+                    leo tempor dignissim. Duis euismod erat quis libero congue
+                    sollicitudin. Fusce in eros egestas, sollicitudin nisi sed,
+                    sodales justo. Donec auctor maximus ante sit amet commodo.
+                    Nam at elit erat. Interdum et malesuada fames ac ante ipsum
+                    primis in faucibus. Curabitur eget ornare odio, vitae
+                    pellentesque leo.
+                  </p>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <span><strong>Guess Who's Back?</strong></span>
+              <ul>
+                <li>Author: Abraham Lincoln</li>
+                <li>Date: 12/25/2018</li>
+                <li>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Curabitur nec dignissim ante. Nullam cursus turpis vitae
+                    facilisis gravida. Vestibulum felis purus, congue
+                    ullamcorper sodales eget, ullamcorper nec augue. Morbi
+                    finibus sapien vel ligula aliquam tempus. Cras lorem tellus,
+                    congue ac vehicula at, interdum luctus quam. Quisque
+                    lobortis pharetra facilisis. Etiam interdum faucibus nisl
+                    finibus semper. In sollicitudin pharetra felis, eu rhoncus
+                    nunc ultricies id. Proin a mi in erat finibus pellentesque.
+                    Fusce et mi varius nisi imperdiet vehicula. Sed placerat,
+                    velit quis ultricies efficitur, massa libero lacinia orci, a
+                    sollicitudin erat urna quis tortor. Aliquam pulvinar auctor
+                    nisl, non mollis felis fermentum et. In ut massa eu justo
+                    tristique lobortis. Aenean eu leo lobortis, efficitur augue
+                    a, condimentum ex. Curabitur viverra sapien vitae nulla
+                    faucibus viverra. Ut at enim venenatis, imperdiet enim et,
+                    fringilla purus. Duis enim libero, interdum et justo quis,
+                    rutrum egestas enim. Nulla a dolor ac purus lobortis
+                    ullamcorper. Class aptent taciti sociosqu ad litora torquent
+                    per conubia nostra, per inceptos himenaeos. Duis vitae
+                    facilisis eros. Phasellus posuere quam lacus, eu sodales
+                    magna fermentum eget. Aliquam gravida eu elit condimentum
+                    aliquet. Nullam suscipit sapien eu dui rhoncus ultrices.
+                    Mauris vitae dui eu erat sodales eleifend. Mauris imperdiet
+                    sollicitudin fringilla. Sed quis odio in lorem lacinia
+                    fermentum. Curabitur pellentesque consectetur tortor id
+                    faucibus. Integer fringilla ut enim ac aliquam. Morbi
+                    consectetur neque a urna ornare, sit amet maximus nibh
+                    tincidunt. Praesent tellus massa, placerat vitae ullamcorper
+                    sit amet, cursus mattis nisl. Ut iaculis elit sit amet mi
+                    pharetra, a placerat nisl mollis. Suspendisse id eros nec
+                    leo tempor dignissim. Duis euismod erat quis libero congue
+                    sollicitudin. Fusce in eros egestas, sollicitudin nisi sed,
+                    sodales justo. Donec auctor maximus ante sit amet commodo.
+                    Nam at elit erat. Interdum et malesuada fames ac ante ipsum
+                    primis in faucibus. Curabitur eget ornare odio, vitae
+                    pellentesque leo.
+                  </p>
+                </li>
+              </ul>
+            </li>
+          </div>
+
+          <script type="text/javascript">
+            var allSpan = document.getElementsByTagName("span");
+            for (var x = 0; x < allSpan.length; x++) {
+              allSpan[x].onclick = function() {
+                if (this.parentNode) {
+                  var childList = this.parentNode.getElementsByTagName("LI");
+                  for (var y = 0; y < childList.length; y++) {
+                    var currentState = childList[y].style.display;
+                    if (currentState == "none") {
+                      childList[y].style.display = "block";
+                    } else {
+                      childList[y].style.display = "none";
+                    }
+                  }
+                }
+              };
+            }
+          </script>
         </div>
 
         <div id="articleForm" style="display: none;">
           <h1>New Article</h1>
           <br />
           <form method="POST" action="" id="articleForm">
-            <input type="text" id="articleTitle" placeholder="Title" />
+            <input type="text" id="articleTitle" placeholder="Title" maxlength="128"/>
             <br /><br />
             <textarea
               id="articleText"
@@ -111,7 +285,177 @@
 
         <div id="Discussions" class="tabcontent">
           <h3>Discussions</h3>
-          <p>This is where discussions will load</p>
+          <button type="button" onclick="newDiscussion()" id="discussionButton">
+            Start Discussion
+          </button>
+          <div id="discussionList" class="list-group">
+            <li>
+              <span><strong>Chicken or Egg?</strong></span>
+              <ul>
+                <li>Author: Barack Obama</li>
+                <li>Date: 12/12/2018</li>
+                <li>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Curabitur nec dignissim ante. Nullam cursus turpis vitae
+                    facilisis gravida. Vestibulum felis purus, congue
+                    ullamcorper sodales eget, ullamcorper nec augue. Morbi
+                    finibus sapien vel ligula aliquam tempus. Cras lorem tellus,
+                    congue ac vehicula at, interdum luctus quam. Quisque
+                    lobortis pharetra facilisis. Etiam interdum faucibus nisl
+                    finibus semper. In sollicitudin pharetra felis, eu rhoncus
+                    nunc ultricies id. Proin a mi in erat finibus pellentesque.
+                    Fusce et mi varius nisi imperdiet vehicula. Sed placerat,
+                    velit quis ultricies efficitur, massa libero lacinia orci, a
+                    sollicitudin erat urna quis tortor. Aliquam pulvinar auctor
+                    nisl, non mollis felis fermentum et. In ut massa eu justo
+                    tristique lobortis. Aenean eu leo lobortis, efficitur augue
+                    a, condimentum ex. Curabitur viverra sapien vitae nulla
+                    faucibus viverra. Ut at enim venenatis, imperdiet enim et,
+                    fringilla purus. Duis enim libero, interdum et justo quis,
+                    rutrum egestas enim. Nulla a dolor ac purus lobortis
+                    ullamcorper. Class aptent taciti sociosqu ad litora torquent
+                    per conubia nostra, per inceptos himenaeos. Duis vitae
+                    facilisis eros. Phasellus posuere quam lacus, eu sodales
+                    magna fermentum eget. Aliquam gravida eu elit condimentum
+                    aliquet. Nullam suscipit sapien eu dui rhoncus ultrices.
+                    Mauris vitae dui eu erat sodales eleifend. Mauris imperdiet
+                    sollicitudin fringilla. Sed quis odio in lorem lacinia
+                    fermentum. Curabitur pellentesque consectetur tortor id
+                    faucibus. Integer fringilla ut enim ac aliquam. Morbi
+                    consectetur neque a urna ornare, sit amet maximus nibh
+                    tincidunt. Praesent tellus massa, placerat vitae ullamcorper
+                    sit amet, cursus mattis nisl. Ut iaculis elit sit amet mi
+                    pharetra, a placerat nisl mollis. Suspendisse id eros nec
+                    leo tempor dignissim. Duis euismod erat quis libero congue
+                    sollicitudin. Fusce in eros egestas, sollicitudin nisi sed,
+                    sodales justo. Donec auctor maximus ante sit amet commodo.
+                    Nam at elit erat. Interdum et malesuada fames ac ante ipsum
+                    primis in faucibus. Curabitur eget ornare odio, vitae
+                    pellentesque leo.
+                  </p>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <span><strong>Is a Hotdog a sandwich?</strong></span>
+              <ul>
+                <li>Author: Donald Trump</li>
+                <li>Date: 12/13/2018</li>
+                <li>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Curabitur nec dignissim ante. Nullam cursus turpis vitae
+                    facilisis gravida. Vestibulum felis purus, congue
+                    ullamcorper sodales eget, ullamcorper nec augue. Morbi
+                    finibus sapien vel ligula aliquam tempus. Cras lorem tellus,
+                    congue ac vehicula at, interdum luctus quam. Quisque
+                    lobortis pharetra facilisis. Etiam interdum faucibus nisl
+                    finibus semper. In sollicitudin pharetra felis, eu rhoncus
+                    nunc ultricies id. Proin a mi in erat finibus pellentesque.
+                    Fusce et mi varius nisi imperdiet vehicula. Sed placerat,
+                    velit quis ultricies efficitur, massa libero lacinia orci, a
+                    sollicitudin erat urna quis tortor. Aliquam pulvinar auctor
+                    nisl, non mollis felis fermentum et. In ut massa eu justo
+                    tristique lobortis. Aenean eu leo lobortis, efficitur augue
+                    a, condimentum ex. Curabitur viverra sapien vitae nulla
+                    faucibus viverra. Ut at enim venenatis, imperdiet enim et,
+                    fringilla purus. Duis enim libero, interdum et justo quis,
+                    rutrum egestas enim. Nulla a dolor ac purus lobortis
+                    ullamcorper. Class aptent taciti sociosqu ad litora torquent
+                    per conubia nostra, per inceptos himenaeos. Duis vitae
+                    facilisis eros. Phasellus posuere quam lacus, eu sodales
+                    magna fermentum eget. Aliquam gravida eu elit condimentum
+                    aliquet. Nullam suscipit sapien eu dui rhoncus ultrices.
+                    Mauris vitae dui eu erat sodales eleifend. Mauris imperdiet
+                    sollicitudin fringilla. Sed quis odio in lorem lacinia
+                    fermentum. Curabitur pellentesque consectetur tortor id
+                    faucibus. Integer fringilla ut enim ac aliquam. Morbi
+                    consectetur neque a urna ornare, sit amet maximus nibh
+                    tincidunt. Praesent tellus massa, placerat vitae ullamcorper
+                    sit amet, cursus mattis nisl. Ut iaculis elit sit amet mi
+                    pharetra, a placerat nisl mollis. Suspendisse id eros nec
+                    leo tempor dignissim. Duis euismod erat quis libero congue
+                    sollicitudin. Fusce in eros egestas, sollicitudin nisi sed,
+                    sodales justo. Donec auctor maximus ante sit amet commodo.
+                    Nam at elit erat. Interdum et malesuada fames ac ante ipsum
+                    primis in faucibus. Curabitur eget ornare odio, vitae
+                    pellentesque leo.
+                  </p>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <span><strong>Is Cereal a Soup?</strong></span>
+              <ul>
+                <li>Author: Abraham Lincoln</li>
+                <li>Date: 12/25/2018</li>
+                <br/>
+                <li>
+                  <p>
+                    Discuss.
+                  </p>
+                  <br/>
+
+                  <div>
+                    <div class="message1">
+                        <div class="user">Abraham Lincoln</div>
+                        <div style="clear:both;"></div>
+                        <div class="content">I honestly think it is</div>
+                    </div>
+                    <div class="message2">
+                        <div class="user">user2309722</div>
+                        <div style="clear:both;"></div>
+                        <div class="content">ur stupid</div>
+                    </div>
+                    <div class="message1">
+                      <div class="user">Abraham Lincoln</div>
+                      <div style="clear:both;"></div>
+                      <div class="content">D:</div>
+                  </div>
+                </div>
+
+                </li>
+              </ul>
+            </li>
+          </div>
+
+          <script type="text/javascript">
+            var allSpan = document.getElementsByTagName("span");
+            for (var x = 0; x < allSpan.length; x++) {
+              allSpan[x].onclick = function() {
+                if (this.parentNode) {
+                  var childList = this.parentNode.getElementsByTagName("LI");
+                  for (var y = 0; y < childList.length; y++) {
+                    var currentState = childList[y].style.display;
+                    if (currentState == "none") {
+                      childList[y].style.display = "block";
+                    } else {
+                      childList[y].style.display = "none";
+                    }
+                  }
+                }
+              };
+            }
+          </script>
+        </div>
+
+        <div id="discussionForm" style="display: none;">
+          <h1>New Discussion</h1>
+          <br />
+          <form method="POST" action="" id="discussionForm">
+            <input type="text" id="topic" placeholder="Topic of Discussion" maxlength="128" />
+            <br /><br />
+            <textarea
+              id="proposal"
+              placeholder="Proposal here"
+              rows="30"
+              cols="40"
+            >
+            </textarea>
+            <br />
+            <input type="submit" value="Submit Topic" />
+          </form>
         </div>
 
         <div id="Trending" class="tabcontent">

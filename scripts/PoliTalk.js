@@ -13,28 +13,19 @@ function openTab(evt, tabName) {
 }
 
 function defaultTab() {
-	document.getElementById("defaultOpen").click();
+  document.getElementById("defaultOpen").click();
 }
 
 function newArticle() {
-	var articles = document.getElementById("Articles");
-	var articleForm = document.getElementById("articleForm").innerHTML;
-	articles.innerHTML = articleForm;
+  var articles = document.getElementById("Articles");
+  var articleForm = document.getElementById("articleForm").innerHTML;
+  articles.innerHTML = articleForm;
 }
 
-function newDiscussion()
-{
-	alert("Discussion button works");
-}
-
-function newDiscussion(user)
-{
-	//alert("You can start a discussion with " + OnlineUser.name);
-}
-
-function logOut()
-{
-	alert("log out button works");
+function newDiscussion() {
+  var discussions = document.getElementById("Discussions");
+  var discussionForm = document.getElementById("discussionForm").innerHTML;
+  discussions.innerHTML = discussionForm;
 }
 
 function OnlineUser(n)
@@ -104,8 +95,40 @@ function update(userList)
 		);
 		//alert("Event listener added!");
 		physicalList.appendChild(userList[x].node);
-	}
+  }
 }
+
+function logOut() {
+  alert("log out button works");
+}
+
+
+function createNode(element) {
+  return document.createElement(element);
+}
+
+function append(parent, el) {
+  return parent.appendChild(el);
+}
+
+/*const ul = document.getElementById("userList");
+const url = " "; //insert api url when ready
+fetch(url)
+  .then(resp => resp.json())
+  .then(function(data) {
+    let users = data.results;
+    return users.map(function(user) {
+      let li = createNode("li"),
+        span = createNode("span");
+      span.innerHTML = `${User.name}`;
+      append(li, span);
+      append(ul, li);
+    });
+  })
+  .catch(function(error) {
+    console.log(error);
+  });*/
+
 
 function  updateText()
 {
@@ -149,6 +172,24 @@ function test2()
 	alert("Mission Compree!");
 }
 
-window.onload=defaultTab;
-//window.onload=test;
+/*function updateText() {
+  var input = document.getElementById("userSearch").value;
+  var newList = [];
+  for (var x = 0; x < placeHolderQueryResult.length; x++) {
+    var str = placeHolderQueryResult[x].substring(0, input.length);
+    var result = str.search(new RegExp(input));
+    var test = new RegExp(input, "i");
+    console.log(test);
+    //alert("checking querey result " + str + " with " + input);
+    console.log(result);
+    console.log("ya");
+    if (test == str) {
+      console.log("nah");
+      newList.push(placeHolderQueryResult[x]);
+    }
+  }
+  update(newList);
+}*/
+
 window.onload=populateList;
+
