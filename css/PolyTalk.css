@@ -29,6 +29,12 @@ section {
 	float: left;
 }
 
+#otherUserMenu {
+	/* border-right: 2px solid black; */
+	text-align: center;
+	float: right;
+}
+
 #onlineUsers {
 	/* border-left: 2px solid black; */
 	float: right;
@@ -44,14 +50,14 @@ section#middleStuff {
 	overflow-x: hidden;
 	overflow-y: auto;
 }
-#profile {
-	vertical-align: center;
+.profile {
+    vertical-align: center;
     float: left;
     height: 30%;
     width: auto;
 }
 
-img#profile {
+img.profile {
 	margin: auto;
 	display: block;
 }

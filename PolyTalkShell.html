@@ -21,7 +21,7 @@
     <div>
       <section id="userMenu">
         <h1>Welcome User</h1>
-        <img src="images/Obama.jpg" id="profile" /><button
+        <img src="images/Obama.jpg" class="profile" /><button
           type="button"
           onclick="newArticle()"
           class="userButton"
@@ -38,25 +38,43 @@
       </section>
 
       <section id="onlineUsers">
-        online users area
-        <ul id="userList">
-          <li>Place Holder 01</li>
-          <li>Place Holder 02</li>
-          <li>Place Holder 03</li>
-          <li>Place Holder 04</li>
-          <li>Place Holder 05</li>
-          <li>Place Holder 06</li>
-          <li>Place Holder 07</li>
-          <li>Place Holder 08</li>
-          <li>Place Holder 09</li>
-          <li>Place Holder 10</li>
-        </ul>
-        <input
-          type="text"
-          id="userSearch"
-          placeholder="Search for users here"
-          oninput="updateText()"
-        />
+        <div id="searchMenu">
+          online users area
+          <ul id="userList">
+            <li>Place Holder 01</li>
+            <li>Place Holder 02</li>
+            <li>Place Holder 03</li>
+            <li>Place Holder 04</li>
+            <li>Place Holder 05</li>
+            <li>Place Holder 06</li>
+            <li>Place Holder 07</li>
+            <li>Place Holder 08</li>
+            <li>Place Holder 09</li>
+            <li>Place Holder 10</li>
+          </ul>
+          <input
+            type="text"
+            id="userSearch"
+            placeholder="Search for users here"
+            oninput="updateText()"
+          />
+        </div>
+
+        <div id="otherUserMenu" style="display: none;">
+          <h1 id="g">Place Holder User Name</h1>
+          <img src="images/default_image.png" class="profile" id="h" />
+          <p>This is a placeholder for the user's bio</p>
+          <button type="button" class="userButton" id="f">
+            Start Discussion
+          </button>
+          <button
+            type="button"
+            onclick="switchBackToUsers()"
+            class="userButton"
+          >
+            Back to Online Users
+          </button>
+        </div>
       </section>
 
       <section id="middleStuff" content="width=device-width, initial-scale=.99">
