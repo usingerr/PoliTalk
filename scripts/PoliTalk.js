@@ -40,7 +40,7 @@ function logOut()
 function OnlineUser(n)
 {
 	this.name = n;
-	this.picture = "images/defaultImage.png";
+	this.picture = "images/default.png"
 	this.node = document.createElement("li");
 	this.node.appendChild(document.createTextNode(n));
 	//this.node.addEventListener('click', showUser(this), false);
@@ -94,12 +94,15 @@ function update(userList)
 		defaultLength = userList.length;
 	for(var x = 0; x < defaultLength; x++)
 	{
-		
-		userList[x].node.addEventListener('click', function()
-		{
-			showUser(userList[x])
-			}
+		userList[x].node.addEventListener('click', (function(x)
+		{	return function(){
+				showUser(userList[x]);
+			};
+				
+			
+			}(x))
 		);
+		//alert("Event listener added!");
 		physicalList.appendChild(userList[x].node);
 	}
 }
@@ -114,7 +117,7 @@ function  updateText()
 		if(placeHolderQueryResult[x].name.substring(0, input.length) == input){
 			
 			newList.push(placeHolderQueryResult[x]);
-			//alert("added an object to the array");
+			//alert("Added " + placeHolderQueryResult[x].name + " to the list");
 		}
 	}
 	update(newList);
@@ -124,6 +127,7 @@ function  updateText()
 
 function showUser(user)
 {
+	//alert(user.name);
 	var hold = document.getElementById("searchMenu").innerHTML;
 	document.getElementById("searchMenu").innerHTML = document.getElementById("otherUserMenu").innerHTML;
 	document.getElementById("otherUserMenu").innerHTML = hold;
@@ -142,9 +146,9 @@ function switchBackToUsers()
 
 function test2()
 {
-	alert("Mission Compree!")
+	alert("Mission Compree!");
 }
 
 window.onload=defaultTab;
-window.onload=test;
+//window.onload=test;
 window.onload=populateList;
