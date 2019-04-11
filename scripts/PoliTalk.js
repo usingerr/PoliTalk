@@ -23,7 +23,9 @@ function newArticle() {
 }
 
 function newDiscussion() {
-  alert("Discussion button works");
+  var discussions = document.getElementById("Discussions");
+  var discussionForm = document.getElementById("discussionForm").innerHTML;
+  discussions.innerHTML = discussionForm;
 }
 
 function logOut() {
