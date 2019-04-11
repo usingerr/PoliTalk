@@ -21,13 +21,17 @@
     <div>
       <section id="userMenu">
         <h1>Welcome User</h1>
-        <img src="images/Obama.jpg" id="profile" />
-        <button type="button" onclick="newArticle()" class="userButton">
+        <img src="images/Obama.jpg" id="profile" /><button
+          type="button"
+          onclick="newArticle()"
+          class="userButton"
+        >
           New Article
         </button>
         <button type="button" onclick="newDiscussion()" class="userButton">
           New Discussion
         </button>
+        <br /><br />
         <button type="button" onclick="logOut()" class="userButton">
           Log Out
         </button>
@@ -60,7 +64,7 @@
           <button
             class="tablinks"
             onclick="openTab(event, 'Articles')"
-            id="defaultOpen"
+            id="articleTab"
           >
             Articles
           </button>
@@ -74,7 +78,7 @@
 
         <div id="Articles" class="tabcontent">
           <h3>Articles</h3>
-          <button type="button" onclick="newArticle()" id="articleButton">
+          <button type="button" onclick="newArticle()" id="articleButton" class="userButton">
             New Article
           </button>
           <br />
@@ -250,24 +254,48 @@
         <div id="articleForm" style="display: none;">
           <h1>New Article</h1>
           <br />
-          <form method="POST" action="" id="articleForm">
-            <input type="text" id="articleTitle" placeholder="Title" maxlength="128"/>
+          <form
+            method="post"
+            action="#"
+            onsubmit="submitArticle()"
+            id="articleForm"
+          >
+            <input
+              type="text"
+              id="articleTitle"
+              class="midInput"
+              name="articleTitle"
+              placeholder="Title"
+              required
+            />
             <br /><br />
             <textarea
               id="articleText"
+              name="articleText"
               placeholder="Article text here"
               rows="30"
               cols="40"
+              required
             >
             </textarea>
             <br />
+            <div id="sourceContainer">
+              Source 1
+              <input type="text" id="source0" name="source0" value="" /><br />
+            </div>
+            <a href="#" id="addSourceButton" onclick="addSource()"
+              >Add source</a
+            >
+            <a href="#" id="removeLastSourceButton" onclick="removeSource()"
+              >Remove Source</a
+            ><br />
             <input type="submit" value="Submit Article" />
           </form>
         </div>
 
         <div id="Discussions" class="tabcontent">
           <h3>Discussions</h3>
-          <button type="button" onclick="newDiscussion()" id="discussionButton">
+          <button type="button" onclick="newDiscussion()" id="discussionButton" class="userButton">
             Start Discussion
           </button>
           <div id="discussionList" class="list-group">
@@ -425,18 +453,41 @@
         <div id="discussionForm" style="display: none;">
           <h1>New Discussion</h1>
           <br />
-          <form method="POST" action="" id="discussionForm">
-            <input type="text" id="topic" placeholder="Topic of Discussion" maxlength="128" />
-            <br /><br />
-            <textarea
-              id="proposal"
-              placeholder="Proposal here"
-              rows="30"
-              cols="40"
-            >
-            </textarea>
+          <form
+            method="post"
+            action="#"
+            onsubmit="submitDiscussion()"
+            id="discussionForm"
+          >
+            <input
+              type="text"
+              id="discussionTitle"
+              name="discussionTitle"
+              class="midInput"
+              placeholder="Title"
+              required
+            />
             <br />
-            <input type="submit" value="Submit Topic" />
+            <br />
+            <input
+              type="text"
+              id="userFor"
+              name="userFor"
+              class="midInput"
+              placeholder="User For?"
+              required
+            />
+            <input
+              type="text"
+              id="userAgainst"
+              name="userAgainst"
+              class="midInput"
+              placeholder="User Against?"
+              required
+            />
+            <br />
+            <br />
+            <input type="submit" value="Propose Discussion" />
           </form>
         </div>
 
@@ -444,6 +495,8 @@
           <h3>Trending</h3>
           <p>This is where trending articles will load</p>
         </div>
+
+        <h1>Welcome to PoliTalk!</h1>
       </section>
     </div>
   </body>
