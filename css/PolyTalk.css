@@ -41,7 +41,8 @@ section#middleStuff {
 	left: 17%;
 	border-left: 2px solid black;
 	border-right: 2px solid black;
-	overflow: hidden;
+	overflow-x: hidden;
+	overflow-y: auto;
 }
 #profile {
 	vertical-align: center;

@@ -51,9 +51,9 @@
 		
 		<div id="articleForm" style="display: none;">
 			<h1>New Article</h1> <br/>
-			<form method="post" action="scripts/submit_article.php" id="articleForm">	
-				<input type="text" id="articleTitle" class="midInput" name="articleTitle" placeholder="Title"> <br/><br/>
-				<textarea id="articleText" name="articleText" placeholder="Article text here" rows="30" cols="40"> </textarea> <br/>
+			<form method="post" action="#" onsubmit="submitArticle()" id="articleForm">	
+				<input type="text" id="articleTitle" class="midInput" name="articleTitle" placeholder="Title" required> <br/><br/>
+				<textarea id="articleText" name="articleText" placeholder="Article text here" rows="30" cols="40" required> </textarea> <br/>
 				<div id="sourceContainer">
 					Source 1 <input type="text" id="source0" name="source0" value=""><br/>
 				</div>
@@ -70,9 +70,9 @@
 		
 		<div id="discussionForm" style="display: none;">
 			<h1>New Discussion</h1> <br/>
-			<form method="post" action="scripts/submit_discussion.php" id="discussionForm">
-				<input type="text" id="discussionTitle" name="discussionTitle" class="midInput" placeholder="Title"> <br/> <br/>
-				<input type="text" id="userFor" name="userFor" class="midInput" placeholder="User For?">	<input type="text" id="userAgainst" name="userAgainst" class="midInput" placeholder="User Against?"> <br/> <br/>
+			<form method="post" action="#" onsubmit="submitDiscussion()" id="discussionForm">
+				<input type="text" id="discussionTitle" name="discussionTitle" class="midInput" placeholder="Title" required> <br/> <br/>
+				<input type="text" id="userFor" name="userFor" class="midInput" placeholder="User For?" required>	<input type="text" id="userAgainst" name="userAgainst" class="midInput" placeholder="User Against?" required> <br/> <br/>
 				<input type="submit" value="Propose Discussion">
 			</form>
 		</div>

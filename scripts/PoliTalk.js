@@ -1,3 +1,29 @@
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+function getDBConnection() {
+	var con = mysql.createConnection({
+	host: "localhost",
+	user: "root",
+	password: "Bindphprsphpvphpntythrphpphp73",
+	database: "fuck"
+	});
+	return con;
+}
+
 function openTab(evt, tabName) {
   var i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("tabcontent");
@@ -49,21 +75,6 @@ function addSource() {
 		}
 		// append source input box
 		container.appendChild(input);
-		
-		
-		//PROBABLY DELETE THIS SHIT VVVVVVVVVVV
-		/*// create removeSource button
-		var remove = document.createElement("button");
-		remove.type = "button";
-		remove.innerHTML = "<img src='images\\remove.png' id='removeImg' />";
-		remove.onclick = removeSource(this.id);
-		remove.style = "height: 10px; width: 10px;";
-		remove.id = "remove" + i;
-		// append remove button
-		container.appendChild(remove); */
-		//PROBABLY DELETE THIS SHIT ^^^^^^^^^^^^
-		
-		
 		// append line break
 		container.appendChild(document.createElement("br"));
 	}
@@ -84,12 +95,88 @@ function removeSource(buttonID) {
 	}
 }
 
+function submitArticle() {
+	//get username stuff
+	var username = getCookie(username)
+	var userID = "<?php getIdByUsername(" + username + ")?>"
+	//get values from document elements
+	// title
+	var aTitle = document.getElementById('articleTitle').value;
+	// body
+	var body = document.getElementById('articleText').value;
+	// sources
+	var container = document.getElementById('sourceContainer');
+	var numSources = container.childCount/3;
+	var sources = {}
+	for (i = 0; i < numSources; i++) {
+		sources[i] = document.getElementById("source" + i);
+	}
+	//open connection to database
+	var mysql = require('mysql');
+	var connection = getDBConnection();
+	//sanitize?
+	//submit to database
+	connection.connect(function(err) {
+		if (err) throw err;
+		console.log("Connected!");
+		var insertArticleSQL = "INSERT INTO articles (Title, Body, Poster) VALUES ('" + aTitle + "', '" + body + "', " + userID + ")"
+		connection.query(insertArticleSQL, function (err, result) {
+			if (err) throw err;
+		});
+		connection.query(sql, function (err, result) {
+			if (err) throw err;
+			console.log("Result: " + result);
+			var articleID = result;
+		});
+		if (document.getElementById('source0').value != "") {
+			for (i = 0; i < sources.length; i++) {
+				var UvaRL = document.getElementById('source' + i).value;
+				insertSourceSQL = "INSERT INTO source (idArticle, Url) VALUES (" + articleID + ", '" + UvaRL + "')"
+				connection.query(insertArticleSQL, function (err, result) {
+					if (err) throw err;
+				});
+			}
+		}
+	});
+	//close connection
+	connection.end(); //might crash everything
+	//confirmation message?
+}
+
 function newDiscussion()
 {
 	openTab(event, 'Discussions');
 	var discussions = document.getElementById("Discussions");
 	var discussionForm = document.getElementById("discussionForm").innerHTML;
 	discussions.innerHTML = discussionForm;
+}
+
+function submitDiscussion() {
+	//get username stuff
+	var username = getCookie(username)
+	var userID = "<?php getIdByUsername(" + username + ")?>"
+	//get values from document elements
+	// discussion title
+	var dTitle = document.getElementById('discussionTitle').value;
+	// user for
+	var userFor = document.getElementById('').value;
+	//open connection to database
+	var mysql = require('mysql');
+	var connection = getDBConnection();
+	//sanitize?
+	//submit to database
+	connection.connect(function(err) {
+		if (err) throw err;
+		console.log("Connected!");
+		var sql = "INSERT INTO mydb (shit, fart, poopie, balls) VALUES (69, 420, 911, 80085)"
+		con.query(sql, function (err, result) {
+			if (err) throw err;
+			console.log("1 record inserted");
+		});
+	});
+	//close connection
+	connection.end();
+	//confirmation message?
 }
 
 function logOut()
