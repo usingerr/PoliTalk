@@ -73,6 +73,18 @@
 				<input value="Go" type="submit" id="input_go">
 			</fieldset>
 		</form>
+		<p>Get Name</p>
+		<form method="post" action="API\getUsernameById.php" name="login_form" style="display: inline;">
+			<fieldset>
+				<div class="item">
+					<label for="input_username">ID:</label>
+					<input type="text" name="id" id="input_username" value="" size="24" class="textfield">
+				</div>
+			</fieldset>
+			<fieldset class="tblFooters">
+				<input value="Go" type="submit" id="input_go">
+			</fieldset>
+		</form>
 	</body>
 
 </html>
