@@ -229,31 +229,38 @@ function newDiscussion()
 
 function submitDiscussion() {
 	//get username stuff
-	var username = getCookie(username)
-	var userID = "<?php getIdByUsername(" + username + ")?>"
+	var username = getCookie("UserID");
 	//get values from document elements
 	// discussion title
 	var dTitle = document.getElementById('discussionTitle').value;
 	// user for
 	var userFor = document.getElementById('userFor').value;
+	var xhttpFor = new XMLHttpRequest();
+					xhttpFor.open("POST", "/API/getUsernameById.php", false);
+					xhttpFor.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+					xhttpFor.send("username=" + userFor);
+			var userForID = xhttpFor.responseText;
 	// user against
 	var userAgainst = document.getElementById('userAgainst').value;
-	//open connection to database
-	var mysql = require('mysql');
-	var connection = getDBConnection();
+	var xhttpAgainst = new XMLHttpRequest();
+					xhttpAgainst.open("POST", "/API/getUsernameById.php", false);
+					xhttpAgainst.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+					xhttpAgainst.send("username=" + userAgainst);
+			var userAgainstID = xhttpAgainst.responseText;
 	//sanitize?
 	//submit to database
-	connection.connect(function(err) {
-		if (err) throw err;
-		console.log("Connected!");
-		var sql = "INSERT INTO debates (Topic, For, Against) VALUES ('" + dTitle + "', '" + userFor + "', '" + userAgainst + "')"
-		con.query(sql, function (err, result) {
-			if (err) throw err;
-			console.log("1 record inserted");
-		});
-	});
-	//close connection
-	connection.end();
+	var xhttpPost = new XMLHttpRequest();
+					xhttpPost.open("POST", "/API/postDebate.php", false);
+					xhttpPost.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+					xhttpPost.send("Topic=" + dTitle + "&For=" + userForID + "&Against=" + userAgainstID);
+	var didSubmit = xhttpPost.responseText;
+			if (didSubmit == "NOT LOGGED IN") {
+					alert("Must be logged in to submit discussion");
+			} else if (didSubmit == true) {
+					alert("Discussion posted!");
+			} else {
+					alert("pls");
+			}
 	//confirmation message?
 }
 
@@ -283,6 +290,7 @@ fetch(url)
 .then(function(myJson) {
 	console.log(JSON.stringify(myJson));
 });
+
 
 function update(userList) {
   for (var y = 0; y < userList.length; y++) {
