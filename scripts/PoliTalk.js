@@ -135,7 +135,8 @@ var placeHolderQueryResult = [];
 
 function populateList(){
 var test = new OnlineUser("This is a Test");
-placeHolderQueryResult = [test, new OnlineUser("Donald Trump"), new OnlineUser("Donald Glover"), new OnlineUser("Hillary Clinton"), new OnlineUser("Michelle Obama"), new OnlineUser("Kirsten Gillibrand"), new OnlineUser("Beto O'Rourke"), new OnlineUser("John Hickenlooper"), new OnlineUser("Jay Inslee"), new OnlineUser("Bernie Sanders"), new OnlineUser("Amy Klobuchar"), new OnlineUser("Elizabeth Warren"), new OnlineUser("Cory Booker"), new OnlineUser("Kamala Harris"), new OnlineUser("Julian Castro"), new OnlineUser("Tulsi Gabbard"), new OnlineUser("John Delaney"), new OnlineUser("Wayne Messam"), new OnlineUser("Marianne Williamson"), new OnlineUser("Andrew Yang"), new OnlineUser("Pete Buttigieg"), new OnlineUser("Gonzalo Barrios"), new OnlineUser("Marco Rubio"), new OnlineUser("Ted Cruz"), new OnlineUser("George Bush"), new OnlineUser("Kanye West"), new OnlineUser("Dwayne Johnson"), new OnlineUser("Joanne Rowling")];
+placeHolderQueryResult = [new OnlineUser("Donald Glover"), new OnlineUser("Hillary Clinton"), new OnlineUser("Michelle Obama"), new OnlineUser("Kirsten Gillibrand"), new OnlineUser("Beto O'Rourke"), new OnlineUser("John Hickenlooper"), new OnlineUser("Jay Inslee"), new OnlineUser("Bernie Sanders"), new OnlineUser("Amy Klobuchar"), new OnlineUser("Elizabeth Warren"), new OnlineUser("Cory Booker"), new OnlineUser("Kamala Harris"), new OnlineUser("Julian Castro"), new OnlineUser("Tulsi Gabbard"), new OnlineUser("John Delaney"), new OnlineUser("Wayne Messam"), new OnlineUser("Marianne Williamson"), new OnlineUser("Andrew Yang"), new OnlineUser("Pete Buttigieg"), new OnlineUser("Gonzalo Barrios"), new OnlineUser("Marco Rubio"), new OnlineUser("Ted Cruz"), new OnlineUser("George Bush"), new OnlineUser("Kanye West"), new OnlineUser("Dwayne Johnson"), new OnlineUser("Joanne Rowling"), new OnlineUser("Donald Trump")];
+update(placeHolderQueryResult);
 }
 
 function update(userList)
@@ -147,7 +148,7 @@ function update(userList)
 	{
 		physicalList.removeChild(physicalList.childNodes[0]);
 	}
-	var defaultLength = 10;
+	var defaultLength = 20;
 	if(userList.length < defaultLength)
 		defaultLength = userList.length;
 	for(var x = 0; x < defaultLength; x++)
