@@ -5,7 +5,7 @@ header {
   text-align: center;
   font-size: 35px;
   color: black;
-  height: 5%;
+  height: 7%;
   border-bottom: 2px solid black;
 }
 
@@ -18,10 +18,18 @@ img {
 
 section {
 	width: 17%;
-	height: 93%;
+	height: 92%;
 	text-align: center;
 	overflow: hidden;
 }
+
+div #heading img {
+  vertical-align: center;
+  float: left;
+  height: 100%;
+  width: auto;
+}
+
 
 #userMenu {
 	/* border-right: 2px solid black; */

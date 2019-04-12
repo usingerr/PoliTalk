@@ -118,8 +118,6 @@ function newOnlineUser(n,path, id)
 	
 }
 
-
-
 function test(){
 var trump = new OnlineUser("Donald Trump", "images/Trump.png");
 var list = document.getElementById("userList");
@@ -258,6 +256,7 @@ function logOut()
 	location.reload();
 }
 
+var placeHolderQueryResult = [];
 
 function createNode(element) {
   return document.createElement(element);
@@ -285,6 +284,23 @@ fetch(url)
     console.log(error);
   });*/
 
+function update(userList) {
+  for (var y = 0; y < userList.length; y++) {
+    //alert(userList[y]);
+  }
+  var physicalList = document.getElementById("userList");
+  while (physicalList.hasChildNodes()) {
+    physicalList.removeChild(physicalList.childNodes[0]);
+  }
+  var defaultLength = 10;
+  if (userList.length < defaultLength) defaultLength = userList.length;
+  for (var x = 0; x < defaultLength; x++) {
+    var result = document.createElement("li");
+    var resultText = document.createTextNode(userList[x]);
+    result.appendChild(resultText);
+    physicalList.appendChild(result);
+  }
+}
 
 function  updateText()
 {
@@ -292,40 +308,13 @@ function  updateText()
 	var newList = [];
 	for(var x = 0; x < placeHolderQueryResult.length; x++)
 	{
-		//alert("checking querey result " + placeHolderQueryResult[x].name.substring(0, input.length) + " with " + input);
-		if(placeHolderQueryResult[x].name.substring(0, input.length) == input){
+		//alert("checking querey result " + placeHolderQueryResult[x].substring(0, input.length) + " with " + input);
+		if(placeHolderQueryResult[x].substring(0, input.length) == input){
 			
 			newList.push(placeHolderQueryResult[x]);
-			//alert("Added " + placeHolderQueryResult[x].name + " to the list");
 		}
 	}
-	update(newList);
-}
-
-
-
-function showUser(user)
-{
-	//alert(user.name);
-	var hold = document.getElementById("searchMenu").innerHTML;
-	document.getElementById("searchMenu").innerHTML = document.getElementById("otherUserMenu").innerHTML;
-	document.getElementById("otherUserMenu").innerHTML = hold;
-	document.getElementById("g").innerHTML = user.name;
-	document.getElementById("h").src = user.picture;
-	document.getElementById("f").addEventListener('click', newDiscussion(user), false);
-}
-
-function switchBackToUsers()
-{
-	var hold = document.getElementById("searchMenu").innerHTML;
-	document.getElementById("searchMenu").innerHTML = document.getElementById("otherUserMenu").innerHTML;
-	document.getElementById("otherUserMenu").innerHTML = hold;
-	update(placeHolderQueryResult);
-}
-
-function test2()
-{
-	alert("Mission Compree!");
+	update(newList)
 }
 
 /*function updateText() {
@@ -346,6 +335,3 @@ function test2()
   }
   update(newList);
 }*/
-
-window.onload=populateList;
-
