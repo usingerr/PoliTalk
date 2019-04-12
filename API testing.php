@@ -85,6 +85,15 @@
 				<input value="Go" type="submit" id="input_go">
 			</fieldset>
 		</form>
+		
+		<script>
+			var xhttp = new XMLHttpRequest();
+			
+			xhttp.open("POST", "/API/getUsernameById.php", false);
+			xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+			xhttp.send("id=2");
+			alert(xhttp.responseText);
+		</script>
 	</body>
 
 </html>
