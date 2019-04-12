@@ -140,7 +140,8 @@ var placeHolderQueryResult = [];
 
 function populateList(){
 var test = new OnlineUser("This is a Test");
-placeHolderQueryResult = [test, new OnlineUser("Donald Trump"), new OnlineUser("Donald Glover"), new OnlineUser("Hillary Clinton"), new OnlineUser("Michelle Obama"), new OnlineUser("Kirsten Gillibrand"), new OnlineUser("Beto O'Rourke"), new OnlineUser("John Hickenlooper"), new OnlineUser("Jay Inslee"), new OnlineUser("Bernie Sanders"), new OnlineUser("Amy Klobuchar"), new OnlineUser("Elizabeth Warren"), new OnlineUser("Cory Booker"), new OnlineUser("Kamala Harris"), new OnlineUser("Julian Castro"), new OnlineUser("Tulsi Gabbard"), new OnlineUser("John Delaney"), new OnlineUser("Wayne Messam"), new OnlineUser("Marianne Williamson"), new OnlineUser("Andrew Yang"), new OnlineUser("Pete Buttigieg"), new OnlineUser("Gonzalo Barrios"), new OnlineUser("Marco Rubio"), new OnlineUser("Ted Cruz"), new OnlineUser("George Bush"), new OnlineUser("Kanye West"), new OnlineUser("Dwayne Johnson"), new OnlineUser("Joanne Rowling")];
+placeHolderQueryResult = [new OnlineUser("Donald Glover"), new OnlineUser("Hillary Clinton"), new OnlineUser("Michelle Obama"), new OnlineUser("Kirsten Gillibrand"), new OnlineUser("Beto O'Rourke"), new OnlineUser("John Hickenlooper"), new OnlineUser("Jay Inslee"), new OnlineUser("Bernie Sanders"), new OnlineUser("Amy Klobuchar"), new OnlineUser("Elizabeth Warren"), new OnlineUser("Cory Booker"), new OnlineUser("Kamala Harris"), new OnlineUser("Julian Castro"), new OnlineUser("Tulsi Gabbard"), new OnlineUser("John Delaney"), new OnlineUser("Wayne Messam"), new OnlineUser("Marianne Williamson"), new OnlineUser("Andrew Yang"), new OnlineUser("Pete Buttigieg"), new OnlineUser("Gonzalo Barrios"), new OnlineUser("Marco Rubio"), new OnlineUser("Ted Cruz"), new OnlineUser("George Bush"), new OnlineUser("Kanye West"), new OnlineUser("Dwayne Johnson"), new OnlineUser("Joanne Rowling"), new OnlineUser("Donald Trump")];
+update(placeHolderQueryResult);
 }
 
 function update(userList)
@@ -152,7 +153,7 @@ function update(userList)
 	{
 		physicalList.removeChild(physicalList.childNodes[0]);
 	}
-	var defaultLength = 10;
+	var defaultLength = 20;
 	if(userList.length < defaultLength)
 		defaultLength = userList.length;
 	for(var x = 0; x < defaultLength; x++)
@@ -313,8 +314,32 @@ function  updateText()
 			newList.push(placeHolderQueryResult[x]);
 		}
 	}
-	update(newList)
+	update(newList);
 }
+
+
+
+function showUser(user)
+{
+	//alert(user.name);
+	var hold = document.getElementById("searchMenu").innerHTML;
+	document.getElementById("searchMenu").innerHTML = document.getElementById("otherUserMenu").innerHTML;
+	document.getElementById("otherUserMenu").innerHTML = hold;
+	document.getElementById("g").innerHTML = user.name;
+	document.getElementById("h").src = user.picture;
+	document.getElementById("f").addEventListener('click', function()
+	{newDiscussion(user)}
+	);
+}
+
+function switchBackToUsers()
+{
+	var hold = document.getElementById("searchMenu").innerHTML;
+	document.getElementById("searchMenu").innerHTML = document.getElementById("otherUserMenu").innerHTML;
+	document.getElementById("otherUserMenu").innerHTML = hold;
+	update(placeHolderQueryResult);
+}
+
 
 /*function updateText() {
   var input = document.getElementById("userSearch").value;
@@ -334,3 +359,30 @@ function  updateText()
   }
   update(newList);
 }*/
+
+function getUserCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i <ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+function setName()
+{
+	var name = getUserCookie("username");
+	document.getElementById("welcome").innerHTML = "Welcome " + name;
+	//alert(document.getElementById("welcome").innerHTML);
+}
+
+
+window.onload=populateList;
+window.onload=setName;
