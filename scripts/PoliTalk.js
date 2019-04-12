@@ -312,7 +312,9 @@ function showUser(user)
 	document.getElementById("otherUserMenu").innerHTML = hold;
 	document.getElementById("g").innerHTML = user.name;
 	document.getElementById("h").src = user.picture;
-	document.getElementById("f").addEventListener('click', newDiscussion(user), false);
+	document.getElementById("f").addEventListener('click', function()
+	{newDiscussion(user)}
+	);
 }
 
 function switchBackToUsers()
