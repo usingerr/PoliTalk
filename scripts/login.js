@@ -1,14 +1,20 @@
 function try_login()
 {
-	document.cookie = "username=Barak Obama";
+	
 	var xhttp = new XMLHttpRequest();
     xhttp.open("POST", "/API/login.php", false);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    xhttp.send("username=Barak Obama");
-	xhttp.send("password=goodPassword");
-    alert(xhttp.responseText);
-	window.location.replace("PolyTalkShell.html");
+	var user = document.getElementById("login-username").value;
+	var pass = document.getElementById("login-password").value;
+    xhttp.send("username=" + user + "&password=" + pass);
+    var response = xhttp.responseText;
 	
+	if(response == "False"){
+		document.getElementById("login-alert").style = "";
+	}else{
+		document.cookie = "username=" + user;
+		window.location.replace("PolyTalkShell.html");
+	}	
 }
 
 			
