@@ -67,6 +67,12 @@
 				<input value="Go" type="submit" id="input_go">
 			</fieldset>
 		</form>
+		<p>Get Debates</p>
+		<form method="post" action="API\getDebates.php" name="login_form" style="display: inline;">
+			<fieldset class="tblFooters">
+				<input value="Go" type="submit" id="input_go">
+			</fieldset>
+		</form>
 	</body>
 
 </html>
