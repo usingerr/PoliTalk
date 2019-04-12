@@ -44,11 +44,10 @@
 			$AccountExistQuery->close();
 			setcookie("UserID", $UserID, time()+$TTL, "/");
 			
-			//Update the players authentication token and authentication time in the database
+			//Update the user authentication token and authentication time in the database
 			$query = $connection->prepare("UPDATE `User` SET `AuthToken` = ?, `AuthCreated` = NOW() WHERE `idUser` = ?");
-			$query->bind_param("sd", $token, $PlayerID);
+			$query->bind_param("sd", $token, $UserID);
 			$query->execute();
-			
 			echo("True");
 		}else{
 			die("False");

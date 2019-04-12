@@ -15,7 +15,10 @@
   </head>
   <body>
     <header>
-      <div><img src="images/squawkcropped.jpg" /> PoliTalk</div>
+      <div>
+        <img src="images/squawkcropped.jpg" />
+        <h1>Politalk</h1>
+      </div>
     </header>
 
     <div>
@@ -39,7 +42,7 @@
 
       <section id="onlineUsers">
         <div id="searchMenu">
-          online users area
+          Online Users
           <ul id="userList">
             <li>Place Holder 01</li>
             <li>Place Holder 02</li>
@@ -96,16 +99,23 @@
 
         <div id="Articles" class="tabcontent">
           <h3>Articles</h3>
-          <button type="button" onclick="newArticle()" id="articleButton" class="userButton">
+          <button
+            type="button"
+            onclick="newArticle()"
+            id="articleButton"
+            class="userButton"
+          >
             New Article
           </button>
           <br />
           <br />
 
-          <div id="articleList" class="list-group scrollable">
+          <div id="articleList" class="list-group">
             <li>
-              <span><strong>Hey Guys, Obama Here</strong></span>
-              <ul>
+              <button class="collapsible">
+                <strong>Hey Guys, Obama Here</strong>
+              </button>
+              <ul class="content">
                 <li>Author: Barack Obama</li>
                 <li>Date: 12/12/2018</li>
                 <li>
@@ -152,8 +162,10 @@
               </ul>
             </li>
             <li>
-              <span><strong>Sad!</strong></span>
-              <ul>
+              <button class="collapsible">
+                <strong>Sad!</strong>
+              </button>
+              <ul class="content">
                 <li>Author: Donald Trump</li>
                 <li>Date: 12/13/2018</li>
                 <li>
@@ -200,8 +212,10 @@
               </ul>
             </li>
             <li>
-              <span><strong>Guess Who's Back?</strong></span>
-              <ul>
+              <button class="collapsible">
+                <strong>Guess Who's Back?</strong>
+              </button>
+              <ul class="content">
                 <li>Author: Abraham Lincoln</li>
                 <li>Date: 12/25/2018</li>
                 <li>
@@ -313,157 +327,93 @@
 
         <div id="Discussions" class="tabcontent">
           <h3>Discussions</h3>
-          <button type="button" onclick="newDiscussion()" id="discussionButton" class="userButton">
+          <button
+            type="button"
+            onclick="newDiscussion()"
+            id="discussionButton"
+            class="userButton"
+          >
             Start Discussion
           </button>
+          <br />
+          <br />
+
+
           <div id="discussionList" class="list-group">
             <li>
-              <span><strong>Chicken or Egg?</strong></span>
-              <ul>
-                <li>Author: Barack Obama</li>
-                <li>Date: 12/12/2018</li>
-                <li>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Curabitur nec dignissim ante. Nullam cursus turpis vitae
-                    facilisis gravida. Vestibulum felis purus, congue
-                    ullamcorper sodales eget, ullamcorper nec augue. Morbi
-                    finibus sapien vel ligula aliquam tempus. Cras lorem tellus,
-                    congue ac vehicula at, interdum luctus quam. Quisque
-                    lobortis pharetra facilisis. Etiam interdum faucibus nisl
-                    finibus semper. In sollicitudin pharetra felis, eu rhoncus
-                    nunc ultricies id. Proin a mi in erat finibus pellentesque.
-                    Fusce et mi varius nisi imperdiet vehicula. Sed placerat,
-                    velit quis ultricies efficitur, massa libero lacinia orci, a
-                    sollicitudin erat urna quis tortor. Aliquam pulvinar auctor
-                    nisl, non mollis felis fermentum et. In ut massa eu justo
-                    tristique lobortis. Aenean eu leo lobortis, efficitur augue
-                    a, condimentum ex. Curabitur viverra sapien vitae nulla
-                    faucibus viverra. Ut at enim venenatis, imperdiet enim et,
-                    fringilla purus. Duis enim libero, interdum et justo quis,
-                    rutrum egestas enim. Nulla a dolor ac purus lobortis
-                    ullamcorper. Class aptent taciti sociosqu ad litora torquent
-                    per conubia nostra, per inceptos himenaeos. Duis vitae
-                    facilisis eros. Phasellus posuere quam lacus, eu sodales
-                    magna fermentum eget. Aliquam gravida eu elit condimentum
-                    aliquet. Nullam suscipit sapien eu dui rhoncus ultrices.
-                    Mauris vitae dui eu erat sodales eleifend. Mauris imperdiet
-                    sollicitudin fringilla. Sed quis odio in lorem lacinia
-                    fermentum. Curabitur pellentesque consectetur tortor id
-                    faucibus. Integer fringilla ut enim ac aliquam. Morbi
-                    consectetur neque a urna ornare, sit amet maximus nibh
-                    tincidunt. Praesent tellus massa, placerat vitae ullamcorper
-                    sit amet, cursus mattis nisl. Ut iaculis elit sit amet mi
-                    pharetra, a placerat nisl mollis. Suspendisse id eros nec
-                    leo tempor dignissim. Duis euismod erat quis libero congue
-                    sollicitudin. Fusce in eros egestas, sollicitudin nisi sed,
-                    sodales justo. Donec auctor maximus ante sit amet commodo.
-                    Nam at elit erat. Interdum et malesuada fames ac ante ipsum
-                    primis in faucibus. Curabitur eget ornare odio, vitae
-                    pellentesque leo.
-                  </p>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <span><strong>Is a Hotdog a sandwich?</strong></span>
-              <ul>
-                <li>Author: Donald Trump</li>
-                <li>Date: 12/13/2018</li>
-                <li>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Curabitur nec dignissim ante. Nullam cursus turpis vitae
-                    facilisis gravida. Vestibulum felis purus, congue
-                    ullamcorper sodales eget, ullamcorper nec augue. Morbi
-                    finibus sapien vel ligula aliquam tempus. Cras lorem tellus,
-                    congue ac vehicula at, interdum luctus quam. Quisque
-                    lobortis pharetra facilisis. Etiam interdum faucibus nisl
-                    finibus semper. In sollicitudin pharetra felis, eu rhoncus
-                    nunc ultricies id. Proin a mi in erat finibus pellentesque.
-                    Fusce et mi varius nisi imperdiet vehicula. Sed placerat,
-                    velit quis ultricies efficitur, massa libero lacinia orci, a
-                    sollicitudin erat urna quis tortor. Aliquam pulvinar auctor
-                    nisl, non mollis felis fermentum et. In ut massa eu justo
-                    tristique lobortis. Aenean eu leo lobortis, efficitur augue
-                    a, condimentum ex. Curabitur viverra sapien vitae nulla
-                    faucibus viverra. Ut at enim venenatis, imperdiet enim et,
-                    fringilla purus. Duis enim libero, interdum et justo quis,
-                    rutrum egestas enim. Nulla a dolor ac purus lobortis
-                    ullamcorper. Class aptent taciti sociosqu ad litora torquent
-                    per conubia nostra, per inceptos himenaeos. Duis vitae
-                    facilisis eros. Phasellus posuere quam lacus, eu sodales
-                    magna fermentum eget. Aliquam gravida eu elit condimentum
-                    aliquet. Nullam suscipit sapien eu dui rhoncus ultrices.
-                    Mauris vitae dui eu erat sodales eleifend. Mauris imperdiet
-                    sollicitudin fringilla. Sed quis odio in lorem lacinia
-                    fermentum. Curabitur pellentesque consectetur tortor id
-                    faucibus. Integer fringilla ut enim ac aliquam. Morbi
-                    consectetur neque a urna ornare, sit amet maximus nibh
-                    tincidunt. Praesent tellus massa, placerat vitae ullamcorper
-                    sit amet, cursus mattis nisl. Ut iaculis elit sit amet mi
-                    pharetra, a placerat nisl mollis. Suspendisse id eros nec
-                    leo tempor dignissim. Duis euismod erat quis libero congue
-                    sollicitudin. Fusce in eros egestas, sollicitudin nisi sed,
-                    sodales justo. Donec auctor maximus ante sit amet commodo.
-                    Nam at elit erat. Interdum et malesuada fames ac ante ipsum
-                    primis in faucibus. Curabitur eget ornare odio, vitae
-                    pellentesque leo.
-                  </p>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <span><strong>Is Cereal a Soup?</strong></span>
-              <ul>
-                <li>Author: Abraham Lincoln</li>
-                <li>Date: 12/25/2018</li>
-                <br/>
-                <li>
-                  <p>
-                    Discuss.
-                  </p>
-                  <br/>
+              <button class="collapsible">
+                <strong>Chicken or Egg?</strong>
+              </button>
+              <div class="content">
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+              </div>
+              <button class="collapsible">
+                <strong>Is a Hotdog a sandwich?</strong>
+              </button>
+              <div class="content">
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+              </div>
+              <button class="collapsible">
+                <strong>For or Against?</strong>
+              </button>
+              <div class="content">
+                <ul>
+                  <li>Author: Abraham Lincoln</li>
+                  <li>Date: 12/25/2018</li>
+                  <br />
+                  <li>
+                    <p>
+                      Discuss.
+                    </p>
+                    <br />
 
-                  <div>
-                    <div class="message1">
+                    <div>
+                      <div class="message1">
                         <div class="user">Abraham Lincoln</div>
                         <div style="clear:both;"></div>
-                        <div class="content">I honestly think it is</div>
-                    </div>
-                    <div class="message2">
+                        <div class="contents">For</div>
+                      </div>
+                      <div class="message2">
                         <div class="user">user2309722</div>
                         <div style="clear:both;"></div>
-                        <div class="content">ur stupid</div>
+                        <div class="contents">Against</div>
+                      </div>
+                      <div class="message1">
+                        <div class="user">Abraham Lincoln</div>
+                        <div style="clear:both;"></div>
+                        <div class="contents">okay :(</div>
+                      </div>
                     </div>
-                    <div class="message1">
-                      <div class="user">Abraham Lincoln</div>
-                      <div style="clear:both;"></div>
-                      <div class="content">D:</div>
-                  </div>
-                </div>
-
-                </li>
-              </ul>
+                  </li>
+                </ul>
+              </div>
             </li>
           </div>
 
           <script type="text/javascript">
-            var allSpan = document.getElementsByTagName("span");
-            for (var x = 0; x < allSpan.length; x++) {
-              allSpan[x].onclick = function() {
-                if (this.parentNode) {
-                  var childList = this.parentNode.getElementsByTagName("LI");
-                  for (var y = 0; y < childList.length; y++) {
-                    var currentState = childList[y].style.display;
-                    if (currentState == "none") {
-                      childList[y].style.display = "block";
-                    } else {
-                      childList[y].style.display = "none";
-                    }
-                  }
+            var coll = document.getElementsByClassName("collapsible");
+            var i;
+
+            for (i = 0; i < coll.length; i++) {
+              coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                  content.style.display = "none";
+                } else {
+                  content.style.display = "block";
                 }
-              };
+              });
             }
           </script>
         </div>

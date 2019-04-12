@@ -45,24 +45,30 @@
 		END AUTHENTICATION SNIPPET
 	*/
 	
-	if ($_POST["For"] === "" || is_null($_POST["For"])){
-		die("False");
-	}
-	if ($_POST["Against"] === "" || is_null($_POST["Against"])){
-		die("False");
-	}
-	if ($_POST["Topic"] === "" || is_null($_POST["Topic"])){
-		die("False");
-	}
-	
-	$query = "SELECT MAX(idDebates) FROM `Debates`;";
-	$max_id_result = $connection->query($query);
-	$IDToUse = $max_id_result->fetch_row()[0]+1;
-	$max_id_result->free();
-	
-	$query = $connection->prepare("INSERT INTO `Debates` (`idDebates`, `Topic`, `For`, `Against`, `Date`) VALUES(?, ?, ?, ?, NOW())");
-	$query->bind_param("dsdd", $IDToUse, $_POST["Topic"], $_POST["For"], $_POST["Against"]);
+	$query = $connection->prepare("SELECT `Topic`, `For`, `Against`, `Date` FROM `mydb`.`Debates` WHERE `For` = ?");
+	$query->bind_param("d", $_COOKIE["UserID"]);
 	$query->execute();
+	$result = $query->get_result();
+	
+	$forArray = mysqli_fetch_all($result,MYSQLI_ASSOC);
+	
 	$query->close();
-	die("True");
+	
+	$query = $connection->prepare("SELECT `Topic`, `For`, `Against`, `Date` FROM `mydb`.`Debates` WHERE `Against` = ?");
+	$query->bind_param("d", $_COOKIE["UserID"]);
+	$query->execute();
+	$result = $query->get_result();
+	
+	$againstArray = mysqli_fetch_all($result,MYSQLI_ASSOC);
+	
+	$query->close();
+	
+	$finalResult = array(
+		"for" => $forArray,
+		"against" => $againstArray
+	);
+	echo json_encode($finalResult);
+	//var_dump($result->fetch_array());
+	//echo json_encode(mysqli_fetch_all($result,MYSQLI_ASSOC)); 
+	//echo json_encode(($result->fetch_array())); 
 ?>
