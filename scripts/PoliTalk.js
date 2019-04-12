@@ -256,7 +256,7 @@ function submitDiscussion() {
 	var didSubmit = xhttpPost.responseText;
 			if (didSubmit == "NOT LOGGED IN") {
 					alert("Must be logged in to submit discussion");
-			} else if (didSubmit == true) {
+			} else if (didSubmit == "True") {
 					alert("Discussion posted!");
 			} else {
 					alert("pls");
