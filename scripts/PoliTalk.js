@@ -350,5 +350,30 @@ function test2()
   update(newList);
 }*/
 
+function getUserCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i <ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+function setName()
+{
+	var name = getUserCookie("username");
+	document.getElementById("welcome").innerHTML = "Welcome " + name;
+	//alert(document.getElementById("welcome").innerHTML);
+}
+
+
 window.onload=populateList;
+window.onload=setName;
 
