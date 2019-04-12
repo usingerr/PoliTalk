@@ -1,3 +1,10 @@
+var xhttpDeb = new XMLHttpRequest();
+            
+            xhttpDeb.open("POST", "/API/getDebates.php", false);
+						xhttpDeb.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+						var doinks = xhttpDeb.responseText;
+
+
 function getCookie(cname) {
   var name = cname + "=";
   var decodedCookie = decodeURIComponent(document.cookie);
@@ -266,23 +273,15 @@ function append(parent, el) {
   return parent.appendChild(el);
 }
 
-/*const ul = document.getElementById("userList");
-const url = " "; //insert api url when ready
+const ul = document.getElementById("discussionList");
+const url = "/API/getDebates.php"; //insert api url when ready
 fetch(url)
-  .then(resp => resp.json())
-  .then(function(data) {
-    let users = data.results;
-    return users.map(function(user) {
-      let li = createNode("li"),
-        span = createNode("span");
-      span.innerHTML = `${User.name}`;
-      append(li, span);
-      append(ul, li);
-    });
-  })
-  .catch(function(error) {
-    console.log(error);
-  });*/
+.then(function(response) {
+	return response.json();
+})
+.then(function(myJson) {
+	console.log(JSON.stringify(myJson));
+});
 
 function update(userList) {
   for (var y = 0; y < userList.length; y++) {
