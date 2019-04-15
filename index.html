@@ -1,87 +1,128 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html
-  xmlns="http://www.w3.org/1999/xhtml"
-  xmlns:og="http://opengraphprotocol.org/schema/"
-  xmlns:fb="http://www.facebook.com/2008/fbml"
->
+<html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Bitnami: Open Source. Simplified</title>
-
-    <link
-      href="./bitnami.css"
-      media="screen"
-      rel="stylesheet"
-      type="text/css"
-    />
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script type="text/javascript" src="scripts/login.js"></script>
   </head>
-
   <body>
-    <div id="container" class="container-virtual-applicances">
-      <div id="dashboard-content" class="launch-page">
-        <div id="dashboard-slogan" class="launch-slogan">
-          <h1>Congratulations!</h1>
-          <br />
-          <table class="virtual-appliances-logo-block">
-            <tr>
-              <td>
-                <img src="img/lampstack.png" />
-              </td>
-              <td>
-                You are now running Bitnami
-                <a
-                  href="https://bitnami.com/stack/lampstack?utm_source=bitnami&utm_medium=cloudimage&utm_campaign=aws"
-                  >LAMP</a
-                >
-                7.1.25-0 in the Cloud.
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div id="dashboard-right-area">
-          <div class="dashboard-button-big launch-button launch-button-green">
-            <a id="bitnami-link" href="/applications.html"
-              >Access my applications</a
-            >
-          </div>
-          <div class="dashboard-button-big launch-button">
-            <a
-              href="https://docs.bitnami.com/general/faq/administration/access-phpmyadmin/?utm_source=bitnami&utm_medium=cloudimage&utm_campaign=aws"
-              >Access phpMyAdmin</a
-            >
-          </div>
-          <div class="dashboard-button-big launch-button">
-            <a
-              href="https://docs.bitnami.com/aws/infrastructure/lamp/?utm_source=bitnami&utm_medium=cloudimage&utm_campaign=aws"
-              >Bitnami Documentation</a
-            >
-          </div>
-          <div class="dashboard-button-big launch-button">
-            <a
-              href="https://community.bitnami.com?utm_source=bitnami&utm_medium=cloudimage&utm_campaign=aws"
-              >Bitnami Forums</a
-            >
-          </div>
-        </div>
-        <br />
-        <div class="clear"></div>
-        <table>
-          <tr>
-            <td>
-              <br />
+	<section>
+	This is the header.
+	</section>
+	<section>
+	    <div class="container">    
+        <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
+            <div class="panel panel-info" >
+                <div class="panel-heading">
+                    <div class="panel-title">Sign In</div>
+                </div>     
 
-              Please check
-              <a
-                href="https://docs.bitnami.com/aws/faq/get-started/find-credentials/"
-                >our documentation</a
-              >
-              to learn how to get your password.
-            </td>
-          </tr>
-        </table>
-      </div>
+                <div style="padding-top:30px" class="panel-body" >
 
-      <div class="clear"></div>
+                    <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12">Login Failed! Please try again</div>
+                        
+                    <form id="loginform" class="form-horizontal" role="form"> <!--method = "POST" action ="try_login.php">-->
+                                
+                        <div style="margin-bottom: 25px" class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="username or email">                                        
+                        </div>
+                            
+                        <div style="margin-bottom: 25px" class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                            <input id="login-password" type="password" class="form-control" name="password" placeholder="password">
+                        </div>
+                                
+                        <div class="input-group">
+                            <div class="checkbox">
+
+                            </div>
+                        </div>
+
+                        <div style="margin-top:10px" class="form-group">
+                            <!-- Button -->
+
+                            <div class="col-sm-12 controls">
+                              <input id="btn-login" class="btn btn-success"  value="Login" onClick = "try_login()"> <!--type = "submit"-->
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-md-12 control">
+                                <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
+                                    Don't have an account! 
+                                <a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show(); $('#signupalert').show();">
+                                    Sign Up Here
+                                </a>
+                                </div>
+                            </div>
+                        </div>    
+                    </form>     
+
+
+
+                </div>                     
+            </div>  
+        </div>
+
+        <div id="signupbox" style="display:none; margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="panel-title">Sign Up</div>
+                    <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" href="#" onclick="$('#signupbox').hide(); $('#loginbox').show()">Sign In</a></div>
+                </div>  
+                
+                <div class="panel-body" >
+                    <form id="signupform" class="form-horizontal" role="form" method = "POST" action ="try_register.php">
+                        
+                        <div id="signupalert" style="display:none" class="alert alert-danger">
+                            <p>Error: This username is taken. You will have to choose a different one</p>
+                            <span></span>
+                        </div>
+                            
+                        <div class="form-group">
+                            <label for="email" class="col-md-3 control-label">Username</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="usernm" placeholder="Username">
+                            </div>
+                        </div>
+                            
+                        <div class="form-group">
+                            <label for="firstname" style="display:none"; class="col-md-3 control-label">First Name</label>
+                            <div class="col-md-9">
+                                <input type="text" style="display:none"; class="form-control" name="usernm" placeholder="First Name">
+                            </div>
+                        </div>
+               
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="col-md-3 control-label">Password</label>
+                            <div class="col-md-9">
+                                <input type="password" class="form-control" name="passwd" placeholder="Password">
+                            </div>
+                        </div>
+                            
+                     
+
+                        <div class="form-group">
+                            <!-- Button -->                                        
+                            <div class="col-md-offset-3 col-md-9">
+                                <button id="btn-signup" type="button" class="btn btn-info" type = "submit"><i class="icon-hand-right"></i> &nbsp Sign Up</button>
+     
+                            </div>
+                        </div>
+                        
+                      
+                        
+                    </form>
+                 </div>
+            </div>
+         </div> 
     </div>
+	</section>
+	<section>
+	Maybe add a picture here
+	</section>
   </body>
-</html>
+ </html>

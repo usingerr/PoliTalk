@@ -1,3 +1,10 @@
+var xhttpDeb = new XMLHttpRequest();
+
+            xhttpDeb.open("POST", "/API/getDebates.php", false);
+						xhttpDeb.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+						var doinks = xhttpDeb.responseText;
+
+
 function getCookie(cname) {
   var name = cname + "=";
   var decodedCookie = decodeURIComponent(document.cookie);
@@ -115,10 +122,8 @@ function OnlineUser(n, path)
 
 function newOnlineUser(n,path, id)
 {
-	
+
 }
-
-
 
 function test(){
 var trump = new OnlineUser("Donald Trump", "images/Trump.png");
@@ -127,7 +132,7 @@ list.appendChild(trump.node);
 trump.node.addEventListener('click', function(){
 	showUser(trump)
   });
-} 
+}
 
 var stringResult = ["Donald Trump", "Donald Glover", "Hillary Clinton", "Michelle Obama", "Kirsten Gillibrand", "Beto O'Rourke", "John Hickenlooper", "Jay Inslee", "Bernie Sanders", "Amy Klobuchar", "Elizabeth Warren", "Cory Booker", "Kamala Harris", "Julian Castro", "Tulsi Gabbard", "John Delaney", "Wayne Messam", "Marianne Williamson", "Andrew Yang", "Pete Buttigieg", "Gonzalo Barrios", "Marco Rubio", "Ted Cruz", "George Bush", "Kanye West", "Dwayne Johnson", "Joanne Rowling"]
 
@@ -143,7 +148,7 @@ update(placeHolderQueryResult);
 function update(userList)
 {
 
-	
+
 	var physicalList = document.getElementById("userList");
 	while(physicalList.hasChildNodes())
 	{
@@ -158,8 +163,8 @@ function update(userList)
 		{	return function(){
 				showUser(userList[x]);
 			};
-				
-			
+
+
 			}(x))
 		);
 		//alert("Event listener added!");
@@ -260,6 +265,7 @@ function logOut()
 	location.reload();
 }
 
+var placeHolderQueryResult = [];
 
 function createNode(element) {
   return document.createElement(element);
@@ -269,24 +275,33 @@ function append(parent, el) {
   return parent.appendChild(el);
 }
 
-/*const ul = document.getElementById("userList");
-const url = " "; //insert api url when ready
+const ul = document.getElementById("discussionList");
+const url = "/API/getDebates.php"; //insert api url when ready
 fetch(url)
-  .then(resp => resp.json())
-  .then(function(data) {
-    let users = data.results;
-    return users.map(function(user) {
-      let li = createNode("li"),
-        span = createNode("span");
-      span.innerHTML = `${User.name}`;
-      append(li, span);
-      append(ul, li);
-    });
-  })
-  .catch(function(error) {
-    console.log(error);
-  });*/
+.then(function(response) {
+	return response.json();
+})
+.then(function(myJson) {
+	console.log(JSON.stringify(myJson));
+});
 
+function update(userList) {
+  for (var y = 0; y < userList.length; y++) {
+    //alert(userList[y]);
+  }
+  var physicalList = document.getElementById("userList");
+  while (physicalList.hasChildNodes()) {
+    physicalList.removeChild(physicalList.childNodes[0]);
+  }
+  var defaultLength = 10;
+  if (userList.length < defaultLength) defaultLength = userList.length;
+  for (var x = 0; x < defaultLength; x++) {
+    var result = document.createElement("li");
+    var resultText = document.createTextNode(userList[x]);
+    result.appendChild(resultText);
+    physicalList.appendChild(result);
+  }
+}
 
 function  updateText()
 {
@@ -294,11 +309,10 @@ function  updateText()
 	var newList = [];
 	for(var x = 0; x < placeHolderQueryResult.length; x++)
 	{
-		//alert("checking querey result " + placeHolderQueryResult[x].name.substring(0, input.length) + " with " + input);
-		if(placeHolderQueryResult[x].name.substring(0, input.length) == input){
-			
+		//alert("checking querey result " + placeHolderQueryResult[x].substring(0, input.length) + " with " + input);
+		if(placeHolderQueryResult[x].substring(0, input.length) == input){
+
 			newList.push(placeHolderQueryResult[x]);
-			//alert("Added " + placeHolderQueryResult[x].name + " to the list");
 		}
 	}
 	update(newList);
@@ -327,10 +341,6 @@ function switchBackToUsers()
 	update(placeHolderQueryResult);
 }
 
-function test2()
-{
-	alert("Mission Compree!");
-}
 
 /*function updateText() {
   var input = document.getElementById("userSearch").value;
@@ -382,4 +392,3 @@ function load()
 
 
 window.onload=load;
-
