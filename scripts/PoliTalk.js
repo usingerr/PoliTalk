@@ -238,14 +238,14 @@ function submitDiscussion() {
 	// user for
 	var userFor = document.getElementById('userFor').value;
 	var xhttpFor = new XMLHttpRequest();
-					xhttpFor.open("POST", "/API/getUsernameById.php", false);
+					xhttpFor.open("POST", "/API/getIdByUsername.php", false);
 					xhttpFor.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 					xhttpFor.send("username=" + userFor);
 			var userForID = xhttpFor.responseText;
 	// user against
 	var userAgainst = document.getElementById('userAgainst').value;
 	var xhttpAgainst = new XMLHttpRequest();
-					xhttpAgainst.open("POST", "/API/getUsernameById.php", false);
+					xhttpAgainst.open("POST", "/API/getIdByUsername.php", false);
 					xhttpAgainst.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 					xhttpAgainst.send("username=" + userAgainst);
 			var userAgainstID = xhttpAgainst.responseText;
