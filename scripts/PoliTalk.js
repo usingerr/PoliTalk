@@ -32,7 +32,8 @@ function getDBConnection() {
 }
 
 function openTab(evt, tabName) {
-	/*document.getElementById("middlestuff").value = "";*/
+	var poop = document.getElementById("middleStuff").childCount;
+	console.log(poop);
 	var i, tabcontent, tablinks;
 	tabcontent = document.getElementsByClassName("tabcontent");
 	for (i = 0; i < tabcontent.length; i++) {
@@ -391,7 +392,6 @@ function setName()
 	document.getElementById("welcome").innerHTML = "Welcome " + name;
 	//alert(document.getElementById("welcome").innerHTML);
 }
-
 
 window.onload=populateList;
 window.onload=setName;
