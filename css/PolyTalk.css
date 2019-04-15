@@ -44,29 +44,6 @@ section {
 	overflow: hidden;
 }
 
-.collapsible {
-  background-color: rgb(50, 38, 146);
-  color: white;
-  cursor: pointer;
-  padding: 18px;
-  width: 100%;
-  border: none;
-  text-align: center;
-  outline: none;
-  font-size: 15px;
-}
-
-.active, .collapsible:hover {
-  background-color: #555;
-}
-
-.content {
-  padding: 0 18px;
-  display: none;
-  overflow: hidden;
-  background-color: #f1f1f1;
-}
-
 div #heading img {
   vertical-align: center;
   float: left;
@@ -101,25 +78,33 @@ section#middleStuff {
 	overflow-x: hidden;
 	overflow-y: auto;
 }
+
 .profile {
     vertical-align: center;
     float: left;
     height: 30%;
-    width: auto;
+    width: 100%;
 }
 
 img.profile {
 	margin: auto;
-	display: block;
+  display: block;
+  height: 100%;
+  width: 100%;
+
 }
 
 #articleButton {
 	text-align: left;
 }
 
+#discussionButton {
+  text-align: left;
+}
+
 .userButton {
   background-color: #f1f1f1;
-  border-color: black;`
+  border-color: black;
   border-width: 2px;
   color: black;
   padding: 10px;
@@ -222,25 +207,6 @@ div #articleList {
   text-indent:10px;
 }
 
-div #articleList li {
-  list-style: none;
-}
-
-div #articleList li:hover {
-  list-style: none;
-  background-color: #ddd;
-  cursor: pointer;
-}
-
-div #articleList ul {
-  list-style: none;
-  max-height:300px;
-  margin:0;
-  overflow:auto;
-  padding:0;
-  text-indent:10px;
-}
-
 div #discussionList {
   max-height:600px;
   margin:0;
@@ -249,23 +215,27 @@ div #discussionList {
   text-indent:10px;
 }
 
-div #discussionList li {
-  list-style: none;
-}
-
-div #discussionList li:hover {
-  list-style: none;
-  background-color: #ddd;
+.collapsible {
+  background-color: blue;
+  color: white;
   cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: center;
+  outline: 5px black;
+  font-size: 15px;
 }
 
-div #discussionList ul {
-  list-style: none;
-  max-height:300px;
-  margin:0;
-  overflow:auto;
-  padding:0;
-  text-indent:10px;
+.active, .collapsible:hover {
+  background-color: #555;
+}
+
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
 }
 
 .message1 {

@@ -17,14 +17,22 @@
     <header>
       <div>
         <img src="images/squawkcropped.jpg" />
-        <h1 contenteditable><span style="color: red">P</span><span style="color: blue">o</span><span style="color: green">l</span><span style="color: #dfe216">i</span><span style="color: white">Talk</span></h1>
+        <h1>
+          <span style="color: red">P</span><span style="color: blue">o</span
+          ><span style="color: green">l</span
+          ><span style="color: #dfe216">i</span
+          ><span style="color: white">Talk</span>
+        </h1>
       </div>
     </header>
 
     <div>
       <section id="userMenu">
-        <h1 id = "welcome" class="heading">Welcome User</h1>
-        <img src="images/Obama.jpg" class="profile" /><button
+        <h1 id="welcome" class="heading">Welcome User</h1>
+        <div class="profile">
+        <img src="images/Obama.jpg" />
+        </div>
+        <button
           type="button"
           onclick="newArticle()"
           class="userButton"
@@ -111,156 +119,33 @@
           <br />
 
           <div id="articleList" class="list-group">
-            <li>
-              <button class="collapsible">
-                <strong>Hey Guys, Obama Here</strong>
-              </button>
-              <ul class="content">
-                <li>Author: Barack Obama</li>
-                <li>Date: 12/12/2018</li>
-                <li>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Curabitur nec dignissim ante. Nullam cursus turpis vitae
-                    facilisis gravida. Vestibulum felis purus, congue
-                    ullamcorper sodales eget, ullamcorper nec augue. Morbi
-                    finibus sapien vel ligula aliquam tempus. Cras lorem tellus,
-                    congue ac vehicula at, interdum luctus quam. Quisque
-                    lobortis pharetra facilisis. Etiam interdum faucibus nisl
-                    finibus semper. In sollicitudin pharetra felis, eu rhoncus
-                    nunc ultricies id. Proin a mi in erat finibus pellentesque.
-                    Fusce et mi varius nisi imperdiet vehicula. Sed placerat,
-                    velit quis ultricies efficitur, massa libero lacinia orci, a
-                    sollicitudin erat urna quis tortor. Aliquam pulvinar auctor
-                    nisl, non mollis felis fermentum et. In ut massa eu justo
-                    tristique lobortis. Aenean eu leo lobortis, efficitur augue
-                    a, condimentum ex. Curabitur viverra sapien vitae nulla
-                    faucibus viverra. Ut at enim venenatis, imperdiet enim et,
-                    fringilla purus. Duis enim libero, interdum et justo quis,
-                    rutrum egestas enim. Nulla a dolor ac purus lobortis
-                    ullamcorper. Class aptent taciti sociosqu ad litora torquent
-                    per conubia nostra, per inceptos himenaeos. Duis vitae
-                    facilisis eros. Phasellus posuere quam lacus, eu sodales
-                    magna fermentum eget. Aliquam gravida eu elit condimentum
-                    aliquet. Nullam suscipit sapien eu dui rhoncus ultrices.
-                    Mauris vitae dui eu erat sodales eleifend. Mauris imperdiet
-                    sollicitudin fringilla. Sed quis odio in lorem lacinia
-                    fermentum. Curabitur pellentesque consectetur tortor id
-                    faucibus. Integer fringilla ut enim ac aliquam. Morbi
-                    consectetur neque a urna ornare, sit amet maximus nibh
-                    tincidunt. Praesent tellus massa, placerat vitae ullamcorper
-                    sit amet, cursus mattis nisl. Ut iaculis elit sit amet mi
-                    pharetra, a placerat nisl mollis. Suspendisse id eros nec
-                    leo tempor dignissim. Duis euismod erat quis libero congue
-                    sollicitudin. Fusce in eros egestas, sollicitudin nisi sed,
-                    sodales justo. Donec auctor maximus ante sit amet commodo.
-                    Nam at elit erat. Interdum et malesuada fames ac ante ipsum
-                    primis in faucibus. Curabitur eget ornare odio, vitae
-                    pellentesque leo.
-                  </p>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <button class="collapsible">
-                <strong>Sad!</strong>
-              </button>
-              <ul class="content">
-                <li>Author: Donald Trump</li>
-                <li>Date: 12/13/2018</li>
-                <li>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Curabitur nec dignissim ante. Nullam cursus turpis vitae
-                    facilisis gravida. Vestibulum felis purus, congue
-                    ullamcorper sodales eget, ullamcorper nec augue. Morbi
-                    finibus sapien vel ligula aliquam tempus. Cras lorem tellus,
-                    congue ac vehicula at, interdum luctus quam. Quisque
-                    lobortis pharetra facilisis. Etiam interdum faucibus nisl
-                    finibus semper. In sollicitudin pharetra felis, eu rhoncus
-                    nunc ultricies id. Proin a mi in erat finibus pellentesque.
-                    Fusce et mi varius nisi imperdiet vehicula. Sed placerat,
-                    velit quis ultricies efficitur, massa libero lacinia orci, a
-                    sollicitudin erat urna quis tortor. Aliquam pulvinar auctor
-                    nisl, non mollis felis fermentum et. In ut massa eu justo
-                    tristique lobortis. Aenean eu leo lobortis, efficitur augue
-                    a, condimentum ex. Curabitur viverra sapien vitae nulla
-                    faucibus viverra. Ut at enim venenatis, imperdiet enim et,
-                    fringilla purus. Duis enim libero, interdum et justo quis,
-                    rutrum egestas enim. Nulla a dolor ac purus lobortis
-                    ullamcorper. Class aptent taciti sociosqu ad litora torquent
-                    per conubia nostra, per inceptos himenaeos. Duis vitae
-                    facilisis eros. Phasellus posuere quam lacus, eu sodales
-                    magna fermentum eget. Aliquam gravida eu elit condimentum
-                    aliquet. Nullam suscipit sapien eu dui rhoncus ultrices.
-                    Mauris vitae dui eu erat sodales eleifend. Mauris imperdiet
-                    sollicitudin fringilla. Sed quis odio in lorem lacinia
-                    fermentum. Curabitur pellentesque consectetur tortor id
-                    faucibus. Integer fringilla ut enim ac aliquam. Morbi
-                    consectetur neque a urna ornare, sit amet maximus nibh
-                    tincidunt. Praesent tellus massa, placerat vitae ullamcorper
-                    sit amet, cursus mattis nisl. Ut iaculis elit sit amet mi
-                    pharetra, a placerat nisl mollis. Suspendisse id eros nec
-                    leo tempor dignissim. Duis euismod erat quis libero congue
-                    sollicitudin. Fusce in eros egestas, sollicitudin nisi sed,
-                    sodales justo. Donec auctor maximus ante sit amet commodo.
-                    Nam at elit erat. Interdum et malesuada fames ac ante ipsum
-                    primis in faucibus. Curabitur eget ornare odio, vitae
-                    pellentesque leo.
-                  </p>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <button class="collapsible">
-                <strong>Guess Who's Back?</strong>
-              </button>
-              <ul class="content">
-                <li>Author: Abraham Lincoln</li>
-                <li>Date: 12/25/2018</li>
-                <li>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Curabitur nec dignissim ante. Nullam cursus turpis vitae
-                    facilisis gravida. Vestibulum felis purus, congue
-                    ullamcorper sodales eget, ullamcorper nec augue. Morbi
-                    finibus sapien vel ligula aliquam tempus. Cras lorem tellus,
-                    congue ac vehicula at, interdum luctus quam. Quisque
-                    lobortis pharetra facilisis. Etiam interdum faucibus nisl
-                    finibus semper. In sollicitudin pharetra felis, eu rhoncus
-                    nunc ultricies id. Proin a mi in erat finibus pellentesque.
-                    Fusce et mi varius nisi imperdiet vehicula. Sed placerat,
-                    velit quis ultricies efficitur, massa libero lacinia orci, a
-                    sollicitudin erat urna quis tortor. Aliquam pulvinar auctor
-                    nisl, non mollis felis fermentum et. In ut massa eu justo
-                    tristique lobortis. Aenean eu leo lobortis, efficitur augue
-                    a, condimentum ex. Curabitur viverra sapien vitae nulla
-                    faucibus viverra. Ut at enim venenatis, imperdiet enim et,
-                    fringilla purus. Duis enim libero, interdum et justo quis,
-                    rutrum egestas enim. Nulla a dolor ac purus lobortis
-                    ullamcorper. Class aptent taciti sociosqu ad litora torquent
-                    per conubia nostra, per inceptos himenaeos. Duis vitae
-                    facilisis eros. Phasellus posuere quam lacus, eu sodales
-                    magna fermentum eget. Aliquam gravida eu elit condimentum
-                    aliquet. Nullam suscipit sapien eu dui rhoncus ultrices.
-                    Mauris vitae dui eu erat sodales eleifend. Mauris imperdiet
-                    sollicitudin fringilla. Sed quis odio in lorem lacinia
-                    fermentum. Curabitur pellentesque consectetur tortor id
-                    faucibus. Integer fringilla ut enim ac aliquam. Morbi
-                    consectetur neque a urna ornare, sit amet maximus nibh
-                    tincidunt. Praesent tellus massa, placerat vitae ullamcorper
-                    sit amet, cursus mattis nisl. Ut iaculis elit sit amet mi
-                    pharetra, a placerat nisl mollis. Suspendisse id eros nec
-                    leo tempor dignissim. Duis euismod erat quis libero congue
-                    sollicitudin. Fusce in eros egestas, sollicitudin nisi sed,
-                    sodales justo. Donec auctor maximus ante sit amet commodo.
-                    Nam at elit erat. Interdum et malesuada fames ac ante ipsum
-                    primis in faucibus. Curabitur eget ornare odio, vitae
-                    pellentesque leo.
-                  </p>
-                </li>
-              </ul>
-            </li>
+            <button class="collapsible">Article 1</button>
+            <div class="content">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+            <button class="collapsible">Article 2</button>
+            <div class="content">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+            <button class="collapsible">Article 3</button>
+            <div class="content">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
           </div>
 
           <script type="text/javascript">
@@ -337,67 +222,52 @@
           </button>
           <br />
           <br />
-
-
           <div id="discussionList" class="list-group">
-            <li>
-              <button class="collapsible">
-                <strong>Chicken or Egg?</strong>
-              </button>
-              <div class="content">
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat.
-                </p>
-              </div>
-              <button class="collapsible">
-                <strong>Is a Hotdog a sandwich?</strong>
-              </button>
-              <div class="content">
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat.
-                </p>
-              </div>
-              <button class="collapsible">
-                <strong>For or Against?</strong>
-              </button>
-              <div class="content">
-                <ul>
-                  <li>Author: Abraham Lincoln</li>
-                  <li>Date: 12/25/2018</li>
-                  <br />
-                  <li>
-                    <p>
-                      Discuss.
-                    </p>
-                    <br />
+            <button class="collapsible">Discussion 1</button>
+            <div class="content">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+            <button class="collapsible">Discussion 2</button>
+            <div class="content">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+            <button class="collapsible">Discussion 3</button>
+            <div class="content">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </p>
 
-                    <div>
-                      <div class="message1">
-                        <div class="user">Abraham Lincoln</div>
-                        <div style="clear:both;"></div>
-                        <div class="contents">For</div>
-                      </div>
-                      <div class="message2">
-                        <div class="user">user2309722</div>
-                        <div style="clear:both;"></div>
-                        <div class="contents">Against</div>
-                      </div>
-                      <div class="message1">
-                        <div class="user">Abraham Lincoln</div>
-                        <div style="clear:both;"></div>
-                        <div class="contents">okay :(</div>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
+              <div>
+                <div class="message1">
+                  <div class="user">User 1</div>
+                  <div style="clear:both;"></div>
+                  <div class="contents">For</div>
+                </div>
+                <div class="message2">
+                  <div class="user">User 2</div>
+                  <div style="clear:both;"></div>
+                  <div class="contents">Against</div>
+                </div>
+                <div class="message1">
+                  <div class="user">User 1</div>
+                  <div style="clear:both;"></div>
+                  <div class="contents">:(</div>
+                </div>
               </div>
-            </li>
+            </div>
           </div>
 
           <script type="text/javascript">
