@@ -73,8 +73,8 @@ function getCookie(cname) {
 }
 
 function openTab(evt, tabName) {
-  var poop = document.getElementById("middleStuff").childCount;
-  console.log(poop);
+  //var checkit = document.getElementById("middleStuff").childCount;
+  //console.log(checkit);
   var i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("tabcontent");
   for (i = 0; i < tabcontent.length; i++) {
@@ -94,6 +94,13 @@ function newArticle() {
   var articleForm = document.getElementById("articleForm").innerHTML;
   articles.innerHTML = articleForm;
 }
+
+function cancelArticle() {
+  window.location.reload();
+  openTab(event, "Articles");
+}
+
+
 
 function addSource() {
   // number of source elements to append
@@ -144,6 +151,116 @@ function removeSource(buttonID) {
     }
     return true;
   }
+}
+
+function submitArticle() {
+  //get username stuff
+  var username = getCookie(username);
+  var userID = "<?php getIdByUsername(" + username + ")?>";
+  //get values from document elements
+  // title
+  var aTitle = document.getElementById("articleTitle").value;
+  // body
+  var body = document.getElementById("articleText").value;
+  // sources
+  var container = document.getElementById("sourceContainer");
+  var numSources = container.childCount / 3;
+  var sources = {};
+  for (i = 0; i < numSources; i++) {
+    sources[i] = document.getElementById("source" + i);
+  }
+  //open connection to database
+  var mysql = require("mysql");
+  var connection = getDBConnection();
+  //sanitize?
+  //submit to database
+  connection.connect(function(err) {
+    if (err) throw err;
+    console.log("Connected!");
+    var insertArticleSQL =
+      "INSERT INTO articles (Title, Body, Poster) VALUES ('" +
+      aTitle +
+      "', '" +
+      body +
+      "', " +
+      userID +
+      ")";
+    connection.query(insertArticleSQL, function(err, result) {
+      if (err) throw err;
+    });
+    connection.query(sql, function(err, result) {
+      if (err) throw err;
+      console.log("Result: " + result);
+      var articleID = result;
+    });
+    if (document.getElementById("source0").value != "") {
+      for (i = 0; i < sources.length; i++) {
+        var UvaRL = document.getElementById("source" + i).value;
+        insertSourceSQL =
+          "INSERT INTO source (idArticle, Url) VALUES (" +
+          articleID +
+          ", '" +
+          UvaRL +
+          "')";
+        connection.query(insertArticleSQL, function(err, result) {
+          if (err) throw err;
+        });
+      }
+    }
+  });
+  //close connection
+  connection.end(); //might crash everything
+  //confirmation message?
+}
+
+
+function newDiscussion() {
+  openTab(event, "Discussions");
+  var discussions = document.getElementById("Discussions");
+  var discussionForm = document.getElementById("discussionForm").innerHTML;
+  discussions.innerHTML = discussionForm;
+}
+
+function cancelDiscussion() {
+  location.reload();
+  openTab(event, "Discussions");
+}
+
+function submitDiscussion() {
+	//get username stuff
+	var username = getCookie("UserID");
+	//get values from document elements
+	// discussion title
+	var dTitle = document.getElementById('discussionTitle').value;
+	// user for
+	var userFor = document.getElementById('userFor').value;
+	var xhttpFor = new XMLHttpRequest();
+					xhttpFor.open("POST", "/API/getIdByUsername.php", false);
+					xhttpFor.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+					xhttpFor.send("username=" + userFor);
+			var userForID = xhttpFor.responseText;
+	// user against
+	var userAgainst = document.getElementById('userAgainst').value;
+	var xhttpAgainst = new XMLHttpRequest();
+					xhttpAgainst.open("POST", "/API/getIdByUsername.php", false);
+					xhttpAgainst.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+					xhttpAgainst.send("username=" + userAgainst);
+			var userAgainstID = xhttpAgainst.responseText;
+	//sanitize?
+	//submit to database
+	var xhttpPost = new XMLHttpRequest();
+					xhttpPost.open("POST", "/API/postDebate.php", false);
+					xhttpPost.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+					xhttpPost.send("Topic=" + dTitle + "&For=" + userForID + "&Against=" + userAgainstID);
+	var didSubmit = xhttpPost.responseText;
+			if (didSubmit == "NOT LOGGED IN") {
+					alert("Must be logged in to submit discussion");
+			} else if (didSubmit == "True") {
+					alert("Discussion posted!");
+			} else {
+					alert("pls");
+			}
+	//confirmation message?
 }
 
 function OnlineUser(n) {
@@ -226,109 +343,6 @@ function update(userList) {
   }
 }
 
-function submitArticle() {
-  //get username stuff
-  var username = getCookie(username);
-  var userID = "<?php getIdByUsername(" + username + ")?>";
-  //get values from document elements
-  // title
-  var aTitle = document.getElementById("articleTitle").value;
-  // body
-  var body = document.getElementById("articleText").value;
-  // sources
-  var container = document.getElementById("sourceContainer");
-  var numSources = container.childCount / 3;
-  var sources = {};
-  for (i = 0; i < numSources; i++) {
-    sources[i] = document.getElementById("source" + i);
-  }
-  //open connection to database
-  var mysql = require("mysql");
-  var connection = getDBConnection();
-  //sanitize?
-  //submit to database
-  connection.connect(function(err) {
-    if (err) throw err;
-    console.log("Connected!");
-    var insertArticleSQL =
-      "INSERT INTO articles (Title, Body, Poster) VALUES ('" +
-      aTitle +
-      "', '" +
-      body +
-      "', " +
-      userID +
-      ")";
-    connection.query(insertArticleSQL, function(err, result) {
-      if (err) throw err;
-    });
-    connection.query(sql, function(err, result) {
-      if (err) throw err;
-      console.log("Result: " + result);
-      var articleID = result;
-    });
-    if (document.getElementById("source0").value != "") {
-      for (i = 0; i < sources.length; i++) {
-        var UvaRL = document.getElementById("source" + i).value;
-        insertSourceSQL =
-          "INSERT INTO source (idArticle, Url) VALUES (" +
-          articleID +
-          ", '" +
-          UvaRL +
-          "')";
-        connection.query(insertArticleSQL, function(err, result) {
-          if (err) throw err;
-        });
-      }
-    }
-  });
-  //close connection
-  connection.end(); //might crash everything
-  //confirmation message?
-}
-
-function newDiscussion() {
-  openTab(event, "Discussions");
-  var discussions = document.getElementById("Discussions");
-  var discussionForm = document.getElementById("discussionForm").innerHTML;
-  discussions.innerHTML = discussionForm;
-}
-
-function submitDiscussion() {
-	//get username stuff
-	var username = getCookie("UserID");
-	//get values from document elements
-	// discussion title
-	var dTitle = document.getElementById('discussionTitle').value;
-	// user for
-	var userFor = document.getElementById('userFor').value;
-	var xhttpFor = new XMLHttpRequest();
-					xhttpFor.open("POST", "/API/getIdByUsername.php", false);
-					xhttpFor.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-					xhttpFor.send("username=" + userFor);
-			var userForID = xhttpFor.responseText;
-	// user against
-	var userAgainst = document.getElementById('userAgainst').value;
-	var xhttpAgainst = new XMLHttpRequest();
-					xhttpAgainst.open("POST", "/API/getIdByUsername.php", false);
-					xhttpAgainst.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-					xhttpAgainst.send("username=" + userAgainst);
-			var userAgainstID = xhttpAgainst.responseText;
-	//sanitize?
-	//submit to database
-	var xhttpPost = new XMLHttpRequest();
-					xhttpPost.open("POST", "/API/postDebate.php", false);
-					xhttpPost.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-					xhttpPost.send("Topic=" + dTitle + "&For=" + userForID + "&Against=" + userAgainstID);
-	var didSubmit = xhttpPost.responseText;
-			if (didSubmit == "NOT LOGGED IN") {
-					alert("Must be logged in to submit discussion");
-			} else if (didSubmit == "True") {
-					alert("Discussion posted!");
-			} else {
-					alert("pls");
-			}
-	//confirmation message?
-}
 
 function logOut() {
   //alert("log out button works");
@@ -409,25 +423,6 @@ function switchBackToUsers() {
   update(placeHolderQueryResult);
 }
 
-/*function updateText() {
-  var input = document.getElementById("userSearch").value;
-  var newList = [];
-  for (var x = 0; x < placeHolderQueryResult.length; x++) {
-    var str = placeHolderQueryResult[x].substring(0, input.length);
-    var result = str.search(new RegExp(input));
-    var test = new RegExp(input, "i");
-    console.log(test);
-    //alert("checking querey result " + str + " with " + input);
-    console.log(result);
-    console.log("ya");
-    if (test == str) {
-      console.log("nah");
-      newList.push(placeHolderQueryResult[x]);
-    }
-  }
-  update(newList);
-}*/
-
 function getUserCookie(cname) {
   var name = cname + "=";
   var decodedCookie = decodeURIComponent(document.cookie);
@@ -444,7 +439,39 @@ function getUserCookie(cname) {
   return "";
 }
 
-var xhttpDeb = new XMLHttpRequest();
+/*var xhttpDeb = new XMLHttpRequest();
 xhttpDeb.open("POST", "/API/getDebates.php", false);
 xhttpDeb.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-var testDeb = xhttpDeb.responseText;
+var testDeb = xhttpDeb.responseText;*/
+
+
+
+
+
+
+
+
+/*function populateFruitVariety() {
+   
+  $.getJSON('/getDebates.php', {finalResult:$('#finalResult').val()}, function(data) {
+
+      var select = $('#fruitVariety');
+      var options = select.prop('options');
+      $('option', select).remove();
+
+      $.each(data, function(index, array) {
+          options[options.length] = new Option(array['variety']);
+      });
+
+  });
+
+}
+
+$(document).ready(function() {
+
+populateFruitVariety();
+$('#fruitName').change(function() {
+  populateFruitVariety();
+});
+
+});*/

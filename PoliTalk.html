@@ -47,8 +47,7 @@
       <section id="onlineUsers">
         <div id="searchMenu">
           <h1 class="heading">Online Users</h1>
-          <ul id="userList">
-          </ul>
+          <ul id="userList"></ul>
           <input
             type="text"
             id="userSearch"
@@ -174,6 +173,13 @@
               >Remove Source</a
             ><br />
             <input type="submit" value="Submit Article" />
+            <button
+              type="button"
+              onclick="cancelArticle()"
+              id="cancelButton"
+            >
+              Cancel
+            </button>
           </form>
         </div>
 
@@ -294,6 +300,13 @@
             <br />
             <br />
             <input type="submit" value="Propose Discussion" />
+            <button
+            type="button"
+            onclick="cancelDiscussion()"
+            id="cancelButton"
+          >
+            Cancel
+          </button>
           </form>
         </div>
 
