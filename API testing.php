@@ -85,15 +85,27 @@
 				<input value="Go" type="submit" id="input_go">
 			</fieldset>
 		</form>
-		
-		<script>
-			var xhttp = new XMLHttpRequest();
-			
-			xhttp.open("POST", "/API/getUsernameById.php", false);
-			xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-			xhttp.send("id=2");
-			alert(xhttp.responseText);
-		</script>
+		<p>Post Article</p>
+		<form method="post" action="API\postArticle.php" name="login_form" style="display: inline;">
+			<fieldset>
+				<div class="item">
+					<label for="input_username">Title:</label>
+					<input type="text" name="Title" id="input_username" value="" size="24" class="textfield">
+					
+				</div>
+				<div class="item">
+					<label for="input_username">Body:</label>
+					<input type="text" name="Body" id="input_username" value="" size="24" class="textfield">
+				</div>
+				<div class="item">
+					<label for="input_username">Sources:</label>
+					<input type="text" name="Sources" id="input_username" value="" size="24" class="textfield">
+				</div>
+			</fieldset>
+			<fieldset class="tblFooters">
+				<input value="Go" type="submit" id="input_go">
+			</fieldset>
+		</form>
 	</body>
 
 </html>
