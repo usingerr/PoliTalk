@@ -5,16 +5,6 @@ function load() {
   setName();
 }
 
-function getDBConnection() {
-  var con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "Bindphprsphpvphpntythrphpphp73",
-    database: "fuck"
-  });
-  return con;
-}
-
 function populateList() {
   //alert("We got it");
   var test = new OnlineUser("This is a Test");
@@ -73,8 +63,6 @@ function getCookie(cname) {
 }
 
 function openTab(evt, tabName) {
-  var poop = document.getElementById("middleStuff").childCount;
-  console.log(poop);
   var i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("tabcontent");
   for (i = 0; i < tabcontent.length; i++) {
@@ -227,70 +215,66 @@ function update(userList) {
 }
 
 function submitArticle() {
-  //get username stuff
-  var username = getCookie(username);
-  var userID = "<?php getIdByUsername(" + username + ")?>";
-  //get values from document elements
-  // title
-  var aTitle = document.getElementById("articleTitle").value;
-  // body
-  var body = document.getElementById("articleText").value;
-  // sources
-  var container = document.getElementById("sourceContainer");
-  var numSources = container.childCount / 3;
-  var sources = {};
-  for (i = 0; i < numSources; i++) {
-    sources[i] = document.getElementById("source" + i);
-  }
-  //open connection to database
-  var mysql = require("mysql");
-  var connection = getDBConnection();
-  //sanitize?
-  //submit to database
-  connection.connect(function(err) {
-    if (err) throw err;
-    console.log("Connected!");
-    var insertArticleSQL =
-      "INSERT INTO articles (Title, Body, Poster) VALUES ('" +
-      aTitle +
-      "', '" +
-      body +
-      "', " +
-      userID +
-      ")";
-    connection.query(insertArticleSQL, function(err, result) {
-      if (err) throw err;
-    });
-    connection.query(sql, function(err, result) {
-      if (err) throw err;
-      console.log("Result: " + result);
-      var articleID = result;
-    });
-    if (document.getElementById("source0").value != "") {
-      for (i = 0; i < sources.length; i++) {
-        var UvaRL = document.getElementById("source" + i).value;
-        insertSourceSQL =
-          "INSERT INTO source (idArticle, Url) VALUES (" +
-          articleID +
-          ", '" +
-          UvaRL +
-          "')";
-        connection.query(insertArticleSQL, function(err, result) {
-          if (err) throw err;
-        });
-      }
-    }
-  });
-  //close connection
-  connection.end(); //might crash everything
-  //confirmation message?
+	//get username stuff
+	var username = getCookie(username);
+	/*
+	var xhttpUserID = new XMLHttpRequest();
+					xhttpUserID.open("POST", "/API/getIdByUsername.php", false);
+					xhttpUserID.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+					xhttpUserID.send("username=" + username);
+			var userID = xhttpUserID.responseText;
+	*/
+	//get values from document elements
+	// title
+	var aTitle = document.getElementById("articleTitle").value;
+	// body
+	var body = document.getElementById("articleText").value;
+	// sources
+	var container = document.getElementById("sourceContainer");
+	var numSources = container.childElementCount/2;
+	var sources = [];
+	var articleJSON = '{"title":"' + aTitle + '",' + 
+		'"body":"' + body + '",';
+	var sourceText = "";
+	if (!(document.getElementById("source0").value == "" && numSources == 1)) {
+		sourceText += '"sources":[';
+		for (var i = 0; i < numSources; i++) {
+			sources.push(document.getElementById("source" + i).value);
+			console.log("source " + i + ": " + sources[i]);
+		}
+
+		for (var k = 0; k < numSources; k++) {
+			sourceText += '{"sourceNumber":"';
+			sourceText += k + '"' + ',"sourceUrl":"' + sources[k] + '"}';
+			if (k != (numSources - 1)) {
+				sourceText += ',';
+			}
+		}
+		
+		sourceText += ']' + 
+		'}';
+		var totalText = articleJSON + sourceText;
+		console.log(totalText);
+		jObj = JSON.parse(totalText);
+		console.log(jObj);
+	}
+  
 }
 
-function newDiscussion() {
-  openTab(event, "Discussions");
-  var discussions = document.getElementById("Discussions");
-  var discussionForm = document.getElementById("discussionForm").innerHTML;
-  discussions.innerHTML = discussionForm;
+function newDiscussion(otherUser = "") {
+	openTab(event, "Discussions");
+	var discussions = document.getElementById("Discussions");
+	var discussionForm = document.getElementById("discussionForm").innerHTML;
+	discussions.innerHTML = discussionForm;
+	document.getElementById("userFor").value = otherUser;
+}
+
+function swap() {
+	var user1 = document.getElementById("userFor").value;
+	var user2 = document.getElementById("userAgainst").value;
+	
+	document.getElementById("userFor").value = user2;
+	document.getElementById("userAgainst").value = user1;
 }
 
 function submitDiscussion() {
