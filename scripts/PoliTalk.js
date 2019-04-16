@@ -1,5 +1,5 @@
 var xhttpDeb = new XMLHttpRequest();
-            
+
             xhttpDeb.open("POST", "/API/getDebates.php", false);
 						xhttpDeb.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 						var doinks = xhttpDeb.responseText;
@@ -124,7 +124,7 @@ function OnlineUser(n, path)
 
 function newOnlineUser(n,path, id)
 {
-	
+
 }
 
 function test(){
@@ -134,13 +134,14 @@ list.appendChild(trump.node);
 trump.node.addEventListener('click', function(){
 	showUser(trump)
   });
-} 
+}
 
 var stringResult = ["Donald Trump", "Donald Glover", "Hillary Clinton", "Michelle Obama", "Kirsten Gillibrand", "Beto O'Rourke", "John Hickenlooper", "Jay Inslee", "Bernie Sanders", "Amy Klobuchar", "Elizabeth Warren", "Cory Booker", "Kamala Harris", "Julian Castro", "Tulsi Gabbard", "John Delaney", "Wayne Messam", "Marianne Williamson", "Andrew Yang", "Pete Buttigieg", "Gonzalo Barrios", "Marco Rubio", "Ted Cruz", "George Bush", "Kanye West", "Dwayne Johnson", "Joanne Rowling"]
 
 var placeHolderQueryResult = [];
 
 function populateList(){
+	//alert("We got it");
 var test = new OnlineUser("This is a Test");
 placeHolderQueryResult = [new OnlineUser("Donald Glover"), new OnlineUser("Hillary Clinton"), new OnlineUser("Michelle Obama"), new OnlineUser("Kirsten Gillibrand"), new OnlineUser("Beto O'Rourke"), new OnlineUser("John Hickenlooper"), new OnlineUser("Jay Inslee"), new OnlineUser("Bernie Sanders"), new OnlineUser("Amy Klobuchar"), new OnlineUser("Elizabeth Warren"), new OnlineUser("Cory Booker"), new OnlineUser("Kamala Harris"), new OnlineUser("Julian Castro"), new OnlineUser("Tulsi Gabbard"), new OnlineUser("John Delaney"), new OnlineUser("Wayne Messam"), new OnlineUser("Marianne Williamson"), new OnlineUser("Andrew Yang"), new OnlineUser("Pete Buttigieg"), new OnlineUser("Gonzalo Barrios"), new OnlineUser("Marco Rubio"), new OnlineUser("Ted Cruz"), new OnlineUser("George Bush"), new OnlineUser("Kanye West"), new OnlineUser("Dwayne Johnson"), new OnlineUser("Joanne Rowling"), new OnlineUser("Donald Trump")];
 update(placeHolderQueryResult);
@@ -149,7 +150,7 @@ update(placeHolderQueryResult);
 function update(userList)
 {
 
-	
+
 	var physicalList = document.getElementById("userList");
 	while(physicalList.hasChildNodes())
 	{
@@ -164,8 +165,8 @@ function update(userList)
 		{	return function(){
 				showUser(userList[x]);
 			};
-				
-			
+
+
 			}(x))
 		);
 		//alert("Event listener added!");
@@ -320,7 +321,7 @@ function  updateText()
 	{
 		//alert("checking querey result " + placeHolderQueryResult[x].substring(0, input.length) + " with " + input);
 		if(placeHolderQueryResult[x].substring(0, input.length) == input){
-			
+
 			newList.push(placeHolderQueryResult[x]);
 		}
 	}
@@ -393,5 +394,11 @@ function setName()
 	//alert(document.getElementById("welcome").innerHTML);
 }
 
-window.onload=populateList;
-window.onload=setName;
+function load()
+{
+	populateList();
+	setName();
+}
+
+
+window.onload=load;
