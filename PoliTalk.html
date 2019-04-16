@@ -1,0 +1,307 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/PoliTalk.css" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="shortcut icon" type="image/png" href="images/favicon.ico" />
+    <script type="text/javascript" src="scripts/PoliTalk.js"></script>
+    <title>PoliTalk</title>
+  </head>
+  <body>
+    <header>
+      <div>
+        <img src="images/squawkcropped.jpg" />
+        <h1>
+          <span style="color: red">P</span><span style="color: blue">o</span
+          ><span style="color: green">l</span
+          ><span style="color: #dfe216">i</span
+          ><span style="color: white">Talk</span>
+        </h1>
+      </div>
+    </header>
+
+    <div>
+      <section id="userMenu">
+        <h1 id="welcome" class="heading">Welcome User</h1>
+        <div class="profile">
+          <img src="images/Obama.jpg" />
+        </div>
+        <button type="button" onclick="newArticle()" class="userButton">
+          New Article
+        </button>
+        <button type="button" onclick="newDiscussion()" class="userButton">
+          New Discussion
+        </button>
+        <br /><br />
+        <button type="button" onclick="logOut()" class="userButton">
+          Log Out
+        </button>
+      </section>
+
+      <section id="onlineUsers">
+        <div id="searchMenu">
+          <h1 class="heading">Online Users</h1>
+          <ul id="userList">
+          </ul>
+          <input
+            type="text"
+            id="userSearch"
+            placeholder="Search for users here"
+            oninput="updateText()"
+          />
+        </div>
+
+        <div id="otherUserMenu" style="display: none;">
+          <h1 id="g">Place Holder User Name</h1>
+          <img src="images/default_image.png" class="profile" id="h" />
+          <p>This is a placeholder for the user's bio</p>
+          <button type="button" class="userButton" id="f">
+            Start Discussion
+          </button>
+          <button
+            type="button"
+            onclick="switchBackToUsers()"
+            class="userButton"
+          >
+            Back to Online Users
+          </button>
+        </div>
+      </section>
+
+      <section id="middleStuff" content="width=device-width, initial-scale=.99">
+        <div class="tab">
+          <button
+            class="tablinks"
+            onclick="openTab(event, 'Articles')"
+            id="articleTab"
+          >
+            Articles
+          </button>
+          <button class="tablinks" onclick="openTab(event, 'Discussions')">
+            Discussions
+          </button>
+          <button class="tablinks" onclick="openTab(event, 'Trending')">
+            Trending
+          </button>
+        </div>
+
+        <div id="Articles" class="tabcontent">
+          <h3>Articles</h3>
+          <button
+            type="button"
+            onclick="newArticle()"
+            id="articleButton"
+            class="userButton"
+          >
+            New Article
+          </button>
+          <br />
+          <br />
+
+          <div id="articleList" class="list-group">
+            <button class="collapsible">Article 1</button>
+            <div class="content">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+            <button class="collapsible">Article 2</button>
+            <div class="content">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+            <button class="collapsible">Article 3</button>
+            <div class="content">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div id="articleForm" style="display: none;">
+          <h1>New Article</h1>
+          <br />
+          <form
+            method="post"
+            action="#"
+            onsubmit="submitArticle()"
+            id="articleForm"
+          >
+            <input
+              type="text"
+              id="articleTitle"
+              class="midInput"
+              name="articleTitle"
+              placeholder="Title"
+              required
+            />
+            <br /><br />
+            <textarea
+              id="articleText"
+              name="articleText"
+              placeholder="Article text here"
+              rows="30"
+              cols="40"
+              required
+            >
+            </textarea>
+            <br />
+            <div id="sourceContainer">
+              Source 1
+              <input type="text" id="source0" name="source0" value="" /><br />
+            </div>
+            <a href="#" id="addSourceButton" onclick="addSource()"
+              >Add source</a
+            >
+            <a href="#" id="removeLastSourceButton" onclick="removeSource()"
+              >Remove Source</a
+            ><br />
+            <input type="submit" value="Submit Article" />
+          </form>
+        </div>
+
+        <div id="Discussions" class="tabcontent">
+          <h3>Discussions</h3>
+          <button
+            type="button"
+            onclick="newDiscussion()"
+            id="discussionButton"
+            class="userButton"
+          >
+            Start Discussion
+          </button>
+          <br />
+          <br />
+          <div id="discussionList" class="list-group">
+            <button class="collapsible">Discussion 1</button>
+            <div class="content">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+            <button class="collapsible">Discussion 2</button>
+            <div class="content">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+            <button class="collapsible">Discussion 3</button>
+            <div class="content">
+              <h3>User 1</h3>
+              <br />
+              <p>
+                <strong>
+                  Here is my topic. Discuss!
+                </strong>
+              </p>
+              <br />
+              <div>
+                <div class="message1">
+                  <div class="user">User 1</div>
+                  <div style="clear:both;"></div>
+                  <div class="contents">For</div>
+                </div>
+                <div class="message2">
+                  <div class="user">User 2</div>
+                  <div style="clear:both;"></div>
+                  <div class="contents">Against</div>
+                </div>
+                <div class="message1">
+                  <div class="user">User 1</div>
+                  <div style="clear:both;"></div>
+                  <div class="contents">???</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <script type="text/javascript">
+            var coll = document.getElementsByClassName("collapsible");
+            var i;
+
+            for (i = 0; i < coll.length; i++) {
+              coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                  content.style.display = "none";
+                } else {
+                  content.style.display = "block";
+                }
+              });
+            }
+          </script>
+        </div>
+
+        <div id="discussionForm" style="display: none;">
+          <h1>New Discussion</h1>
+          <br />
+          <form
+            method="post"
+            action="#"
+            onsubmit="submitDiscussion()"
+            id="discussionForm"
+          >
+            <input
+              type="text"
+              id="discussionTitle"
+              name="discussionTitle"
+              class="midInput"
+              placeholder="Title"
+              required
+            />
+            <br />
+            <br />
+            <input
+              type="text"
+              id="userFor"
+              name="userFor"
+              class="midInput"
+              placeholder="User For?"
+              required
+            />
+            <input
+              type="text"
+              id="userAgainst"
+              name="userAgainst"
+              class="midInput"
+              placeholder="User Against?"
+              required
+            />
+            <br />
+            <br />
+            <input type="submit" value="Propose Discussion" />
+          </form>
+        </div>
+
+        <div id="Trending" class="tabcontent">
+          <h1 class="sectionHead">Trending</h1>
+          <p>This is where trending articles will load</p>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
