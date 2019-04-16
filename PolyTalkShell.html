@@ -30,13 +30,9 @@
       <section id="userMenu">
         <h1 id="welcome" class="heading">Welcome User</h1>
         <div class="profile">
-        <img src="images/Obama.jpg" />
+          <img src="images/Obama.jpg" />
         </div>
-        <button
-          type="button"
-          onclick="newArticle()"
-          class="userButton"
-        >
+        <button type="button" onclick="newArticle()" class="userButton">
           New Article
         </button>
         <button type="button" onclick="newDiscussion()" class="userButton">
@@ -147,25 +143,6 @@
               </p>
             </div>
           </div>
-
-          <script type="text/javascript">
-            var allSpan = document.getElementsByTagName("span");
-            for (var x = 0; x < allSpan.length; x++) {
-              allSpan[x].onclick = function() {
-                if (this.parentNode) {
-                  var childList = this.parentNode.getElementsByTagName("LI");
-                  for (var y = 0; y < childList.length; y++) {
-                    var currentState = childList[y].style.display;
-                    if (currentState == "none") {
-                      childList[y].style.display = "block";
-                    } else {
-                      childList[y].style.display = "none";
-                    }
-                  }
-                }
-              };
-            }
-          </script>
         </div>
 
         <div id="articleForm" style="display: none;">
@@ -244,13 +221,13 @@
             <button class="collapsible">Discussion 3</button>
             <div class="content">
               <h3>User 1</h3>
-              </br>
-              <p> 
+              <br />
+              <p>
                 <strong>
                   Here is my topic. Discuss!
                 </strong>
               </p>
-              </br>
+              <br />
               <div>
                 <div class="message1">
                   <div class="user">User 1</div>
