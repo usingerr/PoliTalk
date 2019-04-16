@@ -105,7 +105,7 @@ function removeSource(buttonID) {
 function OnlineUser(n)
 {
 	this.name = n;
-	this.picture = "images/default.png"
+	this.picture = "images/Obama.jpg";
 	this.node = document.createElement("li");
 	this.node.appendChild(document.createTextNode(n));
 	//this.node.addEventListener('click', showUser(this), false);
@@ -285,23 +285,6 @@ fetch(url)
 	console.log(JSON.stringify(myJson));
 });
 
-function update(userList) {
-  for (var y = 0; y < userList.length; y++) {
-    //alert(userList[y]);
-  }
-  var physicalList = document.getElementById("userList");
-  while (physicalList.hasChildNodes()) {
-    physicalList.removeChild(physicalList.childNodes[0]);
-  }
-  var defaultLength = 10;
-  if (userList.length < defaultLength) defaultLength = userList.length;
-  for (var x = 0; x < defaultLength; x++) {
-    var result = document.createElement("li");
-    var resultText = document.createTextNode(userList[x]);
-    result.appendChild(resultText);
-    physicalList.appendChild(result);
-  }
-}
 
 function  updateText()
 {
@@ -309,10 +292,11 @@ function  updateText()
 	var newList = [];
 	for(var x = 0; x < placeHolderQueryResult.length; x++)
 	{
-		//alert("checking querey result " + placeHolderQueryResult[x].substring(0, input.length) + " with " + input);
-		if(placeHolderQueryResult[x].substring(0, input.length) == input){
-
+		//alert("checking querey result " + placeHolderQueryResult[x].name.substring(0, input.length) + " with " + input);
+		if(placeHolderQueryResult[x].name.substring(0, input.length) == input){
+			
 			newList.push(placeHolderQueryResult[x]);
+			//alert("Added " + placeHolderQueryResult[x].name + " to the list");
 		}
 	}
 	update(newList);
@@ -388,6 +372,7 @@ function load()
 {
 	populateList();
 	setName();
+	test();
 }
 
 
