@@ -215,50 +215,45 @@ function update(userList) {
 }
 
 function submitArticle() {
-	//get username stuff
-	var username = getCookie(username);
-	/*
-	var xhttpUserID = new XMLHttpRequest();
-					xhttpUserID.open("POST", "/API/getIdByUsername.php", false);
-					xhttpUserID.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-					xhttpUserID.send("username=" + username);
-			var userID = xhttpUserID.responseText;
-	*/
 	//get values from document elements
 	// title
 	var aTitle = document.getElementById("articleTitle").value;
+	console.log("title: " + aTitle);
 	// body
 	var body = document.getElementById("articleText").value;
+	console.log("body: " + body);
 	// sources
 	var container = document.getElementById("sourceContainer");
 	var numSources = container.childElementCount/2;
 	var sources = [];
-	var articleJSON = '{"title":"' + aTitle + '",' + 
-		'"body":"' + body + '",';
-	var sourceText = "";
+	var sourceText = "[";
 	if (!(document.getElementById("source0").value == "" && numSources == 1)) {
-		sourceText += '"sources":[';
 		for (var i = 0; i < numSources; i++) {
-			sources.push(document.getElementById("source" + i).value);
-			console.log("source " + i + ": " + sources[i]);
-		}
-
-		for (var k = 0; k < numSources; k++) {
-			sourceText += '{"sourceNumber":"';
-			sourceText += k + '"' + ',"sourceUrl":"' + sources[k] + '"}';
-			if (k != (numSources - 1)) {
+			var source = document.getElementById("source" + i).value;
+			sourceText += '"' + source + '"';
+			//sources.push(document.getElementById("source" + i).value);
+			if (i != (numSources - 1)) {
 				sourceText += ',';
+			} else {
+				sourceText += ']';
 			}
 		}
+		console.log(sourceText);
 		
-		sourceText += ']' + 
-		'}';
-		var totalText = articleJSON + sourceText;
-		console.log(totalText);
-		jObj = JSON.parse(totalText);
-		console.log(jObj);
 	}
-  
+	// submit
+	var xhttpArticle = new XMLHttpRequest();
+					xhttpArticle.open("POST", "/API/getIdByUsername.php", false);
+					xhttpArticle.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+					xhttpArticle.send("Title=" + aTitle + "&Body=" + body + "&Sources=" + sourceText);
+		var didSubmit = xhttpArticle.responseText;
+	if (didSubmit == "True") {
+		alert("Article posted!");
+	} else if (didSubmit == "NOT LOGGED IN") {
+		alert("Must be logged in to submit article");
+	} else {
+		alert("pls");
+	}
 }
 
 function newDiscussion(otherUser = "") {
@@ -289,21 +284,20 @@ function submitDiscussion() {
 					xhttpFor.open("POST", "/API/getIdByUsername.php", false);
 					xhttpFor.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 					xhttpFor.send("username=" + userFor);
-			var userForID = xhttpFor.responseText;
+		var userForID = xhttpFor.responseText;
 	// user against
 	var userAgainst = document.getElementById('userAgainst').value;
 	var xhttpAgainst = new XMLHttpRequest();
 					xhttpAgainst.open("POST", "/API/getIdByUsername.php", false);
 					xhttpAgainst.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 					xhttpAgainst.send("username=" + userAgainst);
-			var userAgainstID = xhttpAgainst.responseText;
-	//sanitize?
+		var userAgainstID = xhttpAgainst.responseText;
 	//submit to database
 	var xhttpPost = new XMLHttpRequest();
 					xhttpPost.open("POST", "/API/postDebate.php", false);
 					xhttpPost.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 					xhttpPost.send("Topic=" + dTitle + "&For=" + userForID + "&Against=" + userAgainstID);
-	var didSubmit = xhttpPost.responseText;
+		var didSubmit = xhttpPost.responseText;
 			if (didSubmit == "NOT LOGGED IN") {
 					alert("Must be logged in to submit discussion");
 			} else if (didSubmit == "True") {
