@@ -294,51 +294,40 @@ function newDiscussion() {
 }
 
 function submitDiscussion() {
-  //get username stuff
-  var username = getCookie("UserID");
-  //get values from document elements
-  // discussion title
-  var dTitle = document.getElementById("discussionTitle").value;
-  // user for
-  var userFor = document.getElementById("userFor").value;
-  var xhttpFor = new XMLHttpRequest();
-  xhttpFor.open("POST", "/API/getUsernameById.php", false);
-  xhttpFor.setRequestHeader(
-    "Content-type",
-    "application/x-www-form-urlencoded"
-  );
-  xhttpFor.send("username=" + userFor);
-  var userForID = xhttpFor.responseText;
-  // user against
-  var userAgainst = document.getElementById("userAgainst").value;
-  var xhttpAgainst = new XMLHttpRequest();
-  xhttpAgainst.open("POST", "/API/getUsernameById.php", false);
-  xhttpAgainst.setRequestHeader(
-    "Content-type",
-    "application/x-www-form-urlencoded"
-  );
-  xhttpAgainst.send("username=" + userAgainst);
-  var userAgainstID = xhttpAgainst.responseText;
-  //sanitize?
-  //submit to database
-  var xhttpPost = new XMLHttpRequest();
-  xhttpPost.open("POST", "/API/postDebate.php", false);
-  xhttpPost.setRequestHeader(
-    "Content-type",
-    "application/x-www-form-urlencoded"
-  );
-  xhttpPost.send(
-    "Topic=" + dTitle + "&For=" + userForID + "&Against=" + userAgainstID
-  );
-  var didSubmit = xhttpPost.responseText;
-  if (didSubmit == "NOT LOGGED IN") {
-    alert("Must be logged in to submit discussion");
-  } else if (didSubmit == "True") {
-    alert("Discussion posted!");
-  } else {
-    alert("pls");
-  }
-  //confirmation message?
+	//get username stuff
+	var username = getCookie("UserID");
+	//get values from document elements
+	// discussion title
+	var dTitle = document.getElementById('discussionTitle').value;
+	// user for
+	var userFor = document.getElementById('userFor').value;
+	var xhttpFor = new XMLHttpRequest();
+					xhttpFor.open("POST", "/API/getIdByUsername.php", false);
+					xhttpFor.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+					xhttpFor.send("username=" + userFor);
+			var userForID = xhttpFor.responseText;
+	// user against
+	var userAgainst = document.getElementById('userAgainst').value;
+	var xhttpAgainst = new XMLHttpRequest();
+					xhttpAgainst.open("POST", "/API/getIdByUsername.php", false);
+					xhttpAgainst.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+					xhttpAgainst.send("username=" + userAgainst);
+			var userAgainstID = xhttpAgainst.responseText;
+	//sanitize?
+	//submit to database
+	var xhttpPost = new XMLHttpRequest();
+					xhttpPost.open("POST", "/API/postDebate.php", false);
+					xhttpPost.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+					xhttpPost.send("Topic=" + dTitle + "&For=" + userForID + "&Against=" + userAgainstID);
+	var didSubmit = xhttpPost.responseText;
+			if (didSubmit == "NOT LOGGED IN") {
+					alert("Must be logged in to submit discussion");
+			} else if (didSubmit == "True") {
+					alert("Discussion posted!");
+			} else {
+					alert("pls");
+			}
+	//confirmation message?
 }
 
 function logOut() {
