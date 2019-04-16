@@ -105,20 +105,21 @@ function removeSource(buttonID) {
 function OnlineUser(n)
 {
 	this.name = n;
-	this.picture = "images/Obama.jpg";
+	this.picture = "images/default_image.png";
 	this.node = document.createElement("li");
 	this.node.appendChild(document.createTextNode(n));
 	//this.node.addEventListener('click', showUser(this), false);
 }
 
-function OnlineUser(n, path)
+/*function OnlineUser(n, path)
 {
 	this.name = n;
 	this.picture = path;
 	this.node = document.createElement("li");
 	this.node.appendChild(document.createTextNode(n));
 	//this.node.addEventListener('click', showUser(this), false);
-}
+	alert("path received")
+}*/
 
 function newOnlineUser(n,path, id)
 {
@@ -126,11 +127,11 @@ function newOnlineUser(n,path, id)
 }
 
 function test(){
-var trump = new OnlineUser("Donald Trump", "images/Trump.png");
+var trump = new OnlineUser("Donald Trump");
 var list = document.getElementById("userList");
 list.appendChild(trump.node);
 trump.node.addEventListener('click', function(){
-	showUser(trump)
+	showUser(trump);
   });
 }
 
@@ -142,13 +143,20 @@ function populateList(){
 	//alert("We got it");
 var test = new OnlineUser("This is a Test");
 placeHolderQueryResult = [new OnlineUser("Donald Glover"), new OnlineUser("Hillary Clinton"), new OnlineUser("Michelle Obama"), new OnlineUser("Kirsten Gillibrand"), new OnlineUser("Beto O'Rourke"), new OnlineUser("John Hickenlooper"), new OnlineUser("Jay Inslee"), new OnlineUser("Bernie Sanders"), new OnlineUser("Amy Klobuchar"), new OnlineUser("Elizabeth Warren"), new OnlineUser("Cory Booker"), new OnlineUser("Kamala Harris"), new OnlineUser("Julian Castro"), new OnlineUser("Tulsi Gabbard"), new OnlineUser("John Delaney"), new OnlineUser("Wayne Messam"), new OnlineUser("Marianne Williamson"), new OnlineUser("Andrew Yang"), new OnlineUser("Pete Buttigieg"), new OnlineUser("Gonzalo Barrios"), new OnlineUser("Marco Rubio"), new OnlineUser("Ted Cruz"), new OnlineUser("George Bush"), new OnlineUser("Kanye West"), new OnlineUser("Dwayne Johnson"), new OnlineUser("Joanne Rowling"), new OnlineUser("Donald Trump")];
+//for(var y = 0; y < placeHolderQueryResult.length; y++)
+//{
+	//alert(placeHolderQueryResult[y].picture);
+//}
 update(placeHolderQueryResult);
 }
 
 function update(userList)
 {
 
-
+	//for(var y = 0; y < userList.length; y++)
+	//{
+		//alert(userList[y].picture);
+	//}
 	var physicalList = document.getElementById("userList");
 	while(physicalList.hasChildNodes())
 	{
@@ -159,6 +167,7 @@ function update(userList)
 		defaultLength = userList.length;
 	for(var x = 0; x < defaultLength; x++)
 	{
+		//alert(userList[x].picture);
 		userList[x].node.addEventListener('click', (function(x)
 		{	return function(){
 				showUser(userList[x]);
@@ -170,6 +179,19 @@ function update(userList)
 		//alert("Event listener added!");
 		physicalList.appendChild(userList[x].node);
   }
+  /*for(var x = 0; x < defaultLength; x++)
+	(function(x){
+		userList[x].node.addEventListener('click', (function(x)
+		{	return function(){
+				showUser(userList[x]);
+			};
+
+
+			})(x);
+		);
+		//alert("Event listener added!");
+		physicalList.appendChild(userList[x].node);
+	})(x);*/
 }
 
 function submitArticle() {
@@ -311,7 +333,9 @@ function showUser(user)
 	document.getElementById("searchMenu").innerHTML = document.getElementById("otherUserMenu").innerHTML;
 	document.getElementById("otherUserMenu").innerHTML = hold;
 	document.getElementById("g").innerHTML = user.name;
+	//alert(user.name);
 	document.getElementById("h").src = user.picture;
+	//alert(user.picture);
 	document.getElementById("f").addEventListener('click', function()
 	{newDiscussion(user)}
 	);
