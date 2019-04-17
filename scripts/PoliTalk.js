@@ -468,12 +468,12 @@ function populateArticles() {
       for (let i = 0; i < data.length; i++) {
         title = "Test #" + i;
         button = document.createElement("BUTTON");
-        button.innerHTML = data.title.value; //insert JSON
+        button.innerHTML = data.Title.value; //insert JSON
         button.className = "collapsible";
         div = document.createElement("DIV");
         div.className = "content";
         p = document.createElement("P");
-        p.innerHTML = data.body.value; //insert JSON
+        p.innerHTML = data.Body.value; //insert JSON
         div.appendChild(p);
         listArticles.appendChild(button);
         listArticles.appendChild(div);
