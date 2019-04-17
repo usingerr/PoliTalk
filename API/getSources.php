@@ -45,24 +45,37 @@
 		END AUTHENTICATION SNIPPET
 	*/
 	
-	if ($_POST["For"] === "" || $_POST["For"] == -1 || is_null($_POST["For"])){
-		die("False");
-	}
-	if ($_POST["Against"] === "" || $_POST["Against"] == -1 ||is_null($_POST["Against"])){
-		die("False");
-	}
-	if ($_POST["Topic"] === "" || is_null($_POST["Topic"])){
-		die("False");
-	}
-	
-	$query = "SELECT MAX(idDebates) FROM `Debates`;";
+	/*$query = "SELECT MAX(idArticle) FROM `Article`;";
 	$max_id_result = $connection->query($query);
 	$IDToUse = $max_id_result->fetch_row()[0]+1;
 	$max_id_result->free();
 	
-	$query = $connection->prepare("INSERT INTO `Debates` (`idDebates`, `Topic`, `For`, `Against`, `Date`) VALUES(?, ?, ?, ?, NOW())");
-	$query->bind_param("dsdd", $IDToUse, $_POST["Topic"], $_POST["For"], $_POST["Against"]);
+	$query = $connection->prepare("INSERT INTO `Article` (`idArticle`, `Title`, `Body`, `Poster`, `Date`) VALUES(?, ?, ?, ?, NOW())");
+	$query->bind_param("dssd", $IDToUse, $_POST["Title"], $_POST["Body"], $_COOKIE["UserID"]);
 	$query->execute();
 	$query->close();
-	die("True");
+	
+	$sourceData = json_decode($_POST["Sources"]);
+	foreach($sourceData as $source)
+	{
+		$query = $connection->prepare("INSERT INTO `mydb`.`Source` (`idArticle`, `Url`) VALUES (?, ?)");
+		$query->bind_param("ds", $IDToUse, $source);
+		$query->execute();
+		$query->close();
+		echo($source);
+	}*/
+	if ($_POST["ArticleID"] === "" || is_null($_POST["ArticleID"])){
+		die("False");
+	}
+	//$query = $connection->prepare("SELECT * FROM `Article` JOIN `mydb`.`Source` on `Article`.idArticle = `mydb`.`Source`.idArticle ORDER BY `Article`.idArticle DESC");
+	$query = $connection->prepare("SELECT Url FROM `mydb`.`Source` WHERE idArticle = ? ORDER BY idArticle DESC");
+	$query->bind_param("d", $_POST["ArticleID"]);
+	$query->execute();
+	$result = $query->get_result();
+	
+	$articleArr = mysqli_fetch_all($result,MYSQLI_ASSOC);
+	
+	$query->close();
+	
+	echo json_encode($articleArr);
 ?>
