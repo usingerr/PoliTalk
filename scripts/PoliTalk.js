@@ -5,16 +5,6 @@ function load() {
   setName();
 }
 
-function getDBConnection() {
-  var con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "Bindphprsphpvphpntythrphpphp73",
-    database: "fuck"
-  });
-  return con;
-}
-
 function populateList() {
   //alert("We got it");
   var test = new OnlineUser("This is a Test");
@@ -73,8 +63,6 @@ function getCookie(cname) {
 }
 
 function openTab(evt, tabName) {
-  var poop = document.getElementById("middleStuff").childCount;
-  console.log(poop);
   var i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("tabcontent");
   for (i = 0; i < tabcontent.length; i++) {
@@ -227,70 +215,61 @@ function update(userList) {
 }
 
 function submitArticle() {
-  //get username stuff
-  var username = getCookie(username);
-  var userID = "<?php getIdByUsername(" + username + ")?>";
-  //get values from document elements
-  // title
-  var aTitle = document.getElementById("articleTitle").value;
-  // body
-  var body = document.getElementById("articleText").value;
-  // sources
-  var container = document.getElementById("sourceContainer");
-  var numSources = container.childCount / 3;
-  var sources = {};
-  for (i = 0; i < numSources; i++) {
-    sources[i] = document.getElementById("source" + i);
-  }
-  //open connection to database
-  var mysql = require("mysql");
-  var connection = getDBConnection();
-  //sanitize?
-  //submit to database
-  connection.connect(function(err) {
-    if (err) throw err;
-    console.log("Connected!");
-    var insertArticleSQL =
-      "INSERT INTO articles (Title, Body, Poster) VALUES ('" +
-      aTitle +
-      "', '" +
-      body +
-      "', " +
-      userID +
-      ")";
-    connection.query(insertArticleSQL, function(err, result) {
-      if (err) throw err;
-    });
-    connection.query(sql, function(err, result) {
-      if (err) throw err;
-      console.log("Result: " + result);
-      var articleID = result;
-    });
-    if (document.getElementById("source0").value != "") {
-      for (i = 0; i < sources.length; i++) {
-        var UvaRL = document.getElementById("source" + i).value;
-        insertSourceSQL =
-          "INSERT INTO source (idArticle, Url) VALUES (" +
-          articleID +
-          ", '" +
-          UvaRL +
-          "')";
-        connection.query(insertArticleSQL, function(err, result) {
-          if (err) throw err;
-        });
-      }
-    }
-  });
-  //close connection
-  connection.end(); //might crash everything
-  //confirmation message?
+	//get values from document elements
+	// title
+	var aTitle = document.getElementById("articleTitle").value;
+	console.log("title: " + aTitle);
+	// body
+	var body = document.getElementById("articleText").value;
+	console.log("body: " + body);
+	// sources
+	var container = document.getElementById("sourceContainer");
+	var numSources = container.childElementCount/2;
+	var sources = [];
+	var sourceText = "[";
+	if (!(document.getElementById("source0").value == "" && numSources == 1)) {
+		for (var i = 0; i < numSources; i++) {
+			var source = document.getElementById("source" + i).value;
+			sourceText += '"' + source + '"';
+			//sources.push(document.getElementById("source" + i).value);
+			if (i != (numSources - 1)) {
+				sourceText += ',';
+			} else {
+				sourceText += ']';
+			}
+		}
+		console.log(sourceText);
+		
+	}
+	// submit
+	var xhttpArticle = new XMLHttpRequest();
+					xhttpArticle.open("POST", "/API/postArticle.php", false);
+					xhttpArticle.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+					xhttpArticle.send("Title=" + aTitle + "&Body=" + body + "&Sources=" + sourceText);
+		var didSubmit = xhttpArticle.responseText;
+	if (didSubmit == "True") {
+		alert("Article posted!");
+	} else if (didSubmit == "NOT LOGGED IN") {
+		alert("Must be logged in to submit article");
+	} else {
+		alert("pls");
+	}
 }
 
-function newDiscussion() {
-  openTab(event, "Discussions");
-  var discussions = document.getElementById("Discussions");
-  var discussionForm = document.getElementById("discussionForm").innerHTML;
-  discussions.innerHTML = discussionForm;
+function newDiscussion(otherUser = "") {
+	openTab(event, "Discussions");
+	var discussions = document.getElementById("Discussions");
+	var discussionForm = document.getElementById("discussionForm").innerHTML;
+	discussions.innerHTML = discussionForm;
+	document.getElementById("userFor").value = otherUser;
+}
+
+function swap() {
+	var user1 = document.getElementById("userFor").value;
+	var user2 = document.getElementById("userAgainst").value;
+	
+	document.getElementById("userFor").value = user2;
+	document.getElementById("userAgainst").value = user1;
 }
 
 function submitDiscussion() {
@@ -305,21 +284,20 @@ function submitDiscussion() {
 					xhttpFor.open("POST", "/API/getIdByUsername.php", false);
 					xhttpFor.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 					xhttpFor.send("username=" + userFor);
-			var userForID = xhttpFor.responseText;
+		var userForID = xhttpFor.responseText;
 	// user against
 	var userAgainst = document.getElementById('userAgainst').value;
 	var xhttpAgainst = new XMLHttpRequest();
 					xhttpAgainst.open("POST", "/API/getIdByUsername.php", false);
 					xhttpAgainst.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 					xhttpAgainst.send("username=" + userAgainst);
-			var userAgainstID = xhttpAgainst.responseText;
-	//sanitize?
+		var userAgainstID = xhttpAgainst.responseText;
 	//submit to database
 	var xhttpPost = new XMLHttpRequest();
 					xhttpPost.open("POST", "/API/postDebate.php", false);
 					xhttpPost.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 					xhttpPost.send("Topic=" + dTitle + "&For=" + userForID + "&Against=" + userAgainstID);
-	var didSubmit = xhttpPost.responseText;
+		var didSubmit = xhttpPost.responseText;
 			if (didSubmit == "NOT LOGGED IN") {
 					alert("Must be logged in to submit discussion");
 			} else if (didSubmit == "True") {
