@@ -10,16 +10,6 @@ function load() {
   makeCollapse();
 }
 
-function getDBConnection() {
-  var con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "Bindphprsphpvphpntythrphpphp73",
-    database: "fuck"
-  });
-  return con;
-}
-
 function populateList() {
   //alert("We got it");
   var test = new OnlineUser("This is a Test");
@@ -156,125 +146,15 @@ function removeSource(buttonID) {
   }
 }
 
-function submitArticle() {
-  //get username stuff
-  var username = getCookie(username);
-  var userID = "<?php getIdByUsername(" + username + ")?>";
-  //get values from document elements
-  // title
-  var aTitle = document.getElementById("articleTitle").value;
-  // body
-  var body = document.getElementById("articleText").value;
-  // sources
-  var container = document.getElementById("sourceContainer");
-  var numSources = container.childCount / 3;
-  var sources = {};
-  for (i = 0; i < numSources; i++) {
-    sources[i] = document.getElementById("source" + i);
-  }
-  //open connection to database
-  var mysql = require("mysql");
-  var connection = getDBConnection();
-  //sanitize?
-  //submit to database
-  connection.connect(function(err) {
-    if (err) throw err;
-    console.log("Connected!");
-    var insertArticleSQL =
-      "INSERT INTO articles (Title, Body, Poster) VALUES ('" +
-      aTitle +
-      "', '" +
-      body +
-      "', " +
-      userID +
-      ")";
-    connection.query(insertArticleSQL, function(err, result) {
-      if (err) throw err;
-    });
-    connection.query(sql, function(err, result) {
-      if (err) throw err;
-      console.log("Result: " + result);
-      var articleID = result;
-    });
-    if (document.getElementById("source0").value != "") {
-      for (i = 0; i < sources.length; i++) {
-        var UvaRL = document.getElementById("source" + i).value;
-        insertSourceSQL =
-          "INSERT INTO source (idArticle, Url) VALUES (" +
-          articleID +
-          ", '" +
-          UvaRL +
-          "')";
-        connection.query(insertArticleSQL, function(err, result) {
-          if (err) throw err;
-        });
-      }
-    }
-  });
-  //close connection
-  connection.end(); //might crash everything
-  //confirmation message?
-}
 
-function newDiscussion() {
-  openTab(event, "Discussions");
-  var discussions = document.getElementById("Discussions");
-  var discussionForm = document.getElementById("discussionForm").innerHTML;
-  discussions.innerHTML = discussionForm;
-}
+
+
 
 function cancelDiscussion() {
   location.reload();
   openTab(event, "Discussions");
 }
 
-function submitDiscussion() {
-  //get username stuff
-  var username = getCookie("UserID");
-  //get values from document elements
-  // discussion title
-  var dTitle = document.getElementById("discussionTitle").value;
-  // user for
-  var userFor = document.getElementById("userFor").value;
-  var xhttpFor = new XMLHttpRequest();
-  xhttpFor.open("POST", "/API/getIdByUsername.php", false);
-  xhttpFor.setRequestHeader(
-    "Content-type",
-    "application/x-www-form-urlencoded"
-  );
-  xhttpFor.send("username=" + userFor);
-  var userForID = xhttpFor.responseText;
-  // user against
-  var userAgainst = document.getElementById("userAgainst").value;
-  var xhttpAgainst = new XMLHttpRequest();
-  xhttpAgainst.open("POST", "/API/getIdByUsername.php", false);
-  xhttpAgainst.setRequestHeader(
-    "Content-type",
-    "application/x-www-form-urlencoded"
-  );
-  xhttpAgainst.send("username=" + userAgainst);
-  var userAgainstID = xhttpAgainst.responseText;
-  //sanitize?
-  //submit to database
-  var xhttpPost = new XMLHttpRequest();
-  xhttpPost.open("POST", "/API/postDebate.php", false);
-  xhttpPost.setRequestHeader(
-    "Content-type",
-    "application/x-www-form-urlencoded"
-  );
-  xhttpPost.send(
-    "Topic=" + dTitle + "&For=" + userForID + "&Against=" + userAgainstID
-  );
-  var didSubmit = xhttpPost.responseText;
-  if (didSubmit == "NOT LOGGED IN") {
-    alert("Must be logged in to submit discussion");
-  } else if (didSubmit == "True") {
-    alert("Discussion posted!");
-  } else {
-    alert("pls");
-  }
-  //confirmation message?
-}
 
 function OnlineUser(n) {
   this.name = n;
@@ -284,22 +164,31 @@ function OnlineUser(n) {
   //this.node.addEventListener('click', showUser(this), false);
 }
 
-function OnlineUser(n, path) {
-  this.name = n;
-  this.picture = path;
-  this.node = document.createElement("li");
-  this.node.appendChild(document.createTextNode(n));
-  //this.node.addEventListener('click', showUser(this), false);
+function OnlineUser(n)
+{
+	this.name = n;
+	this.picture = "images/default_image.png";
+	this.node = document.createElement("li");
+	this.node.appendChild(document.createTextNode(n));
+	//this.node.addEventListener('click', showUser(this), false);
 }
 
-function newOnlineUser(n, path, id) {}
+/*function OnlineUser(n, path)
+{
+	this.name = n;
+	this.picture = path;
+	this.node = document.createElement("li");
+	this.node.appendChild(document.createTextNode(n));
+	//this.node.addEventListener('click', showUser(this), false);
+	alert("path received")
+}*/
 
-function test() {
-  var trump = new OnlineUser("Donald Trump", "images/Trump.png");
-  var list = document.getElementById("userList");
-  list.appendChild(trump.node);
-  trump.node.addEventListener("click", function() {
-    showUser(trump);
+function test(){
+var trump = new OnlineUser("Donald Trump");
+var list = document.getElementById("userList");
+list.appendChild(trump.node);
+trump.node.addEventListener('click', function(){
+	showUser(trump);
   });
 }
 
@@ -335,25 +224,142 @@ var stringResult = [
 
 var placeHolderQueryResult = [];
 
-function update(userList) {
-  var physicalList = document.getElementById("userList");
-  while (physicalList.hasChildNodes()) {
-    physicalList.removeChild(physicalList.childNodes[0]);
+function update(userList)
+{
+
+	//for(var y = 0; y < userList.length; y++)
+	//{
+		//alert(userList[y].picture);
+	//}
+	var physicalList = document.getElementById("userList");
+	while(physicalList.hasChildNodes())
+	{
+		physicalList.removeChild(physicalList.childNodes[0]);
+	}
+	var defaultLength = 20;
+	if(userList.length < defaultLength)
+		defaultLength = userList.length;
+	for(var x = 0; x < defaultLength; x++)
+	{
+		//alert(userList[x].picture);
+		userList[x].node.addEventListener('click', (function(x)
+		{	return function(){
+				showUser(userList[x]);
+			};
+
+
+			}(x))
+		);
+		//alert("Event listener added!");
+		physicalList.appendChild(userList[x].node);
   }
-  var defaultLength = 20;
-  if (userList.length < defaultLength) defaultLength = userList.length;
-  for (var x = 0; x < defaultLength; x++) {
-    userList[x].node.addEventListener(
-      "click",
-      (function(x) {
-        return function() {
-          showUser(userList[x]);
-        };
-      })(x)
-    );
-    //alert("Event listener added!");
-    physicalList.appendChild(userList[x].node);
-  }
+  /*for(var x = 0; x < defaultLength; x++)
+	(function(x){
+		userList[x].node.addEventListener('click', (function(x)
+		{	return function(){
+				showUser(userList[x]);
+			};
+
+
+			})(x);
+		);
+		//alert("Event listener added!");
+		physicalList.appendChild(userList[x].node);
+	})(x);*/
+}
+
+function submitArticle() {
+	//get values from document elements
+	// title
+	var aTitle = document.getElementById("articleTitle").value;
+	console.log("title: " + aTitle);
+	// body
+	var body = document.getElementById("articleText").value;
+	console.log("body: " + body);
+	// sources
+	var container = document.getElementById("sourceContainer");
+	var numSources = container.childElementCount/2;
+	var sources = [];
+	var sourceText = "[";
+	if (!(document.getElementById("source0").value == "" && numSources == 1)) {
+		for (var i = 0; i < numSources; i++) {
+			var source = document.getElementById("source" + i).value;
+			sourceText += '"' + source + '"';
+			//sources.push(document.getElementById("source" + i).value);
+			if (i != (numSources - 1)) {
+				sourceText += ',';
+			} else {
+				sourceText += ']';
+			}
+		}
+		console.log(sourceText);
+		
+	}
+	// submit
+	var xhttpArticle = new XMLHttpRequest();
+					xhttpArticle.open("POST", "/API/postArticle.php", false);
+					xhttpArticle.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+					xhttpArticle.send("Title=" + aTitle + "&Body=" + body + "&Sources=" + sourceText);
+		var didSubmit = xhttpArticle.responseText;
+	if (didSubmit == "True") {
+		alert("Article posted!");
+	} else if (didSubmit == "NOT LOGGED IN") {
+		alert("Must be logged in to submit article");
+	} else {
+		alert("pls");
+	}
+}
+
+function newDiscussion(otherUser = "") {
+	openTab(event, "Discussions");
+	var discussions = document.getElementById("Discussions");
+	var discussionForm = document.getElementById("discussionForm").innerHTML;
+	discussions.innerHTML = discussionForm;
+	document.getElementById("userFor").value = otherUser;
+}
+
+function swap() {
+	var user1 = document.getElementById("userFor").value;
+	var user2 = document.getElementById("userAgainst").value;
+	
+	document.getElementById("userFor").value = user2;
+	document.getElementById("userAgainst").value = user1;
+}
+
+function submitDiscussion() {
+	//get username stuff
+	var username = getCookie("UserID");
+	//get values from document elements
+	// discussion title
+	var dTitle = document.getElementById('discussionTitle').value;
+	// user for
+	var userFor = document.getElementById('userFor').value;
+	var xhttpFor = new XMLHttpRequest();
+					xhttpFor.open("POST", "/API/getIdByUsername.php", false);
+					xhttpFor.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+					xhttpFor.send("username=" + userFor);
+		var userForID = xhttpFor.responseText;
+	// user against
+	var userAgainst = document.getElementById('userAgainst').value;
+	var xhttpAgainst = new XMLHttpRequest();
+					xhttpAgainst.open("POST", "/API/getIdByUsername.php", false);
+					xhttpAgainst.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+					xhttpAgainst.send("username=" + userAgainst);
+		var userAgainstID = xhttpAgainst.responseText;
+	//submit to database
+	var xhttpPost = new XMLHttpRequest();
+					xhttpPost.open("POST", "/API/postDebate.php", false);
+					xhttpPost.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+					xhttpPost.send("Topic=" + dTitle + "&For=" + userForID + "&Against=" + userAgainstID);
+		var didSubmit = xhttpPost.responseText;
+			if (didSubmit == "NOT LOGGED IN") {
+					alert("Must be logged in to submit discussion");
+			} else if (didSubmit == "True") {
+					alert("Discussion posted!");
+			} else {
+					alert("pls");
+			}
+	//confirmation message?
 }
 
 function logOut() {
@@ -382,48 +388,38 @@ fetch(url)
     console.log(JSON.stringify(myJson));
   });*/
 
-function update(userList) {
-  for (var y = 0; y < userList.length; y++) {
-    //alert(userList[y]);
-  }
-  var physicalList = document.getElementById("userList");
-  while (physicalList.hasChildNodes()) {
-    physicalList.removeChild(physicalList.childNodes[0]);
-  }
-  var defaultLength = 10;
-  if (userList.length < defaultLength) defaultLength = userList.length;
-  for (var x = 0; x < defaultLength; x++) {
-    var result = document.createElement("li");
-    var resultText = document.createTextNode(userList[x]);
-    result.appendChild(resultText);
-    physicalList.appendChild(result);
-  }
+
+function  updateText()
+{
+	var input = document.getElementById("userSearch").value;
+	var newList = [];
+	for(var x = 0; x < placeHolderQueryResult.length; x++)
+	{
+		//alert("checking querey result " + placeHolderQueryResult[x].name.substring(0, input.length) + " with " + input);
+		if(placeHolderQueryResult[x].name.substring(0, input.length) == input){
+			
+			newList.push(placeHolderQueryResult[x]);
+			//alert("Added " + placeHolderQueryResult[x].name + " to the list");
+		}
+	}
+	update(newList);
 }
 
-function updateText() {
-  var input = document.getElementById("userSearch").value;
-  var newList = [];
-  for (var x = 0; x < placeHolderQueryResult.length; x++) {
-    //alert("checking querey result " + placeHolderQueryResult[x].substring(0, input.length) + " with " + input);
-    if (placeHolderQueryResult[x].substring(0, input.length) == input) {
-      newList.push(placeHolderQueryResult[x]);
-    }
-  }
-  update(newList);
-}
 
-function showUser(user) {
-  //alert(user.name);
-  var hold = document.getElementById("searchMenu").innerHTML;
-  document.getElementById("searchMenu").innerHTML = document.getElementById(
-    "otherUserMenu"
-  ).innerHTML;
-  document.getElementById("otherUserMenu").innerHTML = hold;
-  document.getElementById("g").innerHTML = user.name;
-  document.getElementById("h").src = user.picture;
-  document.getElementById("f").addEventListener("click", function() {
-    newDiscussion(user);
-  });
+
+function showUser(user)
+{
+	//alert(user.name);
+	var hold = document.getElementById("searchMenu").innerHTML;
+	document.getElementById("searchMenu").innerHTML = document.getElementById("otherUserMenu").innerHTML;
+	document.getElementById("otherUserMenu").innerHTML = hold;
+	document.getElementById("g").innerHTML = user.name;
+	//alert(user.name);
+	document.getElementById("h").src = user.picture;
+	//alert(user.picture);
+	document.getElementById("f").addEventListener('click', function()
+	{newDiscussion(user)}
+	);
 }
 
 function switchBackToUsers() {

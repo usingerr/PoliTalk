@@ -16,7 +16,7 @@
   <body>
     <header>
       <div>
-        <img src="images/squawkcropped.jpg" />
+        <img src="images/squawkcropped.jpg" id="squawk" />
         <h1>
           <span style="color: red">P</span><span style="color: blue">o</span
           ><span style="color: green">l</span
@@ -267,6 +267,13 @@
               placeholder="User Against?"
               required
             />
+			<br />
+			<br />
+			<button
+            type="button"
+            onclick="swap()"
+            class="userButton"
+          >Swap Users</button>
             <br />
             <br />
             <input type="submit" value="Propose Discussion" />
@@ -281,7 +288,7 @@
         </div>
 
         <div id="Trending" class="tabcontent">
-          <h1 class="sectionHead">Trending</h1>
+          <h1>Trending</h1>
           <p>This is where trending articles will load</p>
         </div>
       </section>
