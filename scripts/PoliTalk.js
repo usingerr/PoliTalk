@@ -3,6 +3,9 @@ window.onload = load;
 function load() {
   populateList();
   setName();
+  populateArticles();
+  populateDebates();
+  makeCollapse();
 }
 
 function getDBConnection() {
@@ -439,39 +442,131 @@ function getUserCookie(cname) {
   return "";
 }
 
-/*var xhttpDeb = new XMLHttpRequest();
-xhttpDeb.open("POST", "/API/getDebates.php", false);
-xhttpDeb.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-var testDeb = xhttpDeb.responseText;*/
+function populateArticles() {
 
 
+let listArticles = document.getElementById('articleList');
+listArticles.length = 0;
 
+const urlArt = '/API/getArticles.php';
 
+const request = new XMLHttpRequest();
+request.open('POST', urlArt, true);
 
+request.onload = function() {
+  if (request.status === 200) {
+    const data = JSON.parse(request.responseText);
+    let button;
+    let div;
+    let p;
+    for (let i = 0; i < data.length; i++) {
+      button = document.createElement('button');
+      button.className = "collapsible";
+      div = document.createElement('div');
+      div.className = "content";
+      p = document.createElement('p');
 
-
-
-/*function populateFruitVariety() {
-   
-  $.getJSON('/getDebates.php', {finalResult:$('#finalResult').val()}, function(data) {
-
-      var select = $('#fruitVariety');
-      var options = select.prop('options');
-      $('option', select).remove();
-
-      $.each(data, function(index, array) {
-          options[options.length] = new Option(array['variety']);
-      });
-
-  });
-
+      div.add(p);
+      listArticles.add(button);
+      listArticles.add(div);
+    }
+   } else {
+    // Reached the server, but it returned an error
+  }   
 }
 
-$(document).ready(function() {
+request.onerror = function() {
+  console.error('An error occurred fetching the JSON from ' + urlArt);
+};
 
-populateFruitVariety();
-$('#fruitName').change(function() {
-  populateFruitVariety();
-});
+request.send();
+}
 
-});*/
+function populateDiscussions() {
+
+
+  let listDiscussions = document.getElementById('discussionList');
+  listDiscussions.length = 0;
+  
+  const urlArt = '/API/getArticles.php';
+  
+  const request = new XMLHttpRequest();
+  request.open('POST', urlArt, true);
+  
+  request.onload = function() {
+    if (request.status === 200) {
+      const data = JSON.parse(request.responseText);
+      let button;
+      let div;
+      let p;
+      for (let i = 0; i < data.length; i++) {
+        button = document.createElement('button');
+        button.className = "collapsible";
+        div = document.createElement('div');
+        div.className = "content";
+        p = document.createElement('p');
+  
+        div.add(p);
+        listDiscussions.add(button);
+        listDiscussions.add(div);
+      }
+     } else {
+      // Reached the server, but it returned an error
+    }   
+  }
+  
+  request.onerror = function() {
+    console.error('An error occurred fetching the JSON from ' + urlArt);
+  };
+  
+  request.send();
+  }
+
+
+  function testAdd() {
+
+    
+let listArticles = document.getElementById('articleList');
+listArticles.length = 0;
+
+      let button;
+      let div;
+      let p;
+      let title;
+      let body = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut";
+      for (let i = 0; i < 10; i++) {
+        title = "Test #" + i;
+        button = document.createElement('BUTTON');
+        button.innerHTML = title;
+        button.className = "collapsible";
+        div = document.createElement('DIV');
+        div.className = "content";
+        p = document.createElement('P');
+        p.innerHTML = body;
+  
+        listArticles.appendChild(button);
+        div.appendChild(p);
+        listArticles.appendChild(div);
+
+        makeCollapse();
+
+      }
+      
+function makeCollapse(){
+        var coll = document.getElementsByClassName("collapsible");
+            var j;
+
+            for (j = 0; j < coll.length; j++) {
+              coll[j].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                  content.style.display = "none";
+                } else {
+                  content.style.display = "block";
+                }
+              });
+            }
+
+      }
+  }
