@@ -8,7 +8,7 @@
 	 //pass anything needed
  
  
-	 header("Location: PolyTalkShell.html");
+	 header("Location: PoliTalk.html");
  }
  else{
 	 //pass to show error
