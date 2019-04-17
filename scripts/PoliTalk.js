@@ -473,7 +473,7 @@ function populateArticles() {
         div = document.createElement("DIV");
         div.className = "content";
         p = document.createElement("P");
-        p.innerHTML = data.Body[i].value; //insert JSON
+        p.innerHTML = data[i].Body.value; //insert JSON
         div.appendChild(p);
         listArticles.appendChild(button);
         listArticles.appendChild(div);
