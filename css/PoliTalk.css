@@ -200,11 +200,11 @@ textarea {
 }
 
 div #articleList {
-	max-height:600px;
-	margin:0;
-	overflow:auto;
-	padding:0;
-	text-indent:10px;
+  height: auto;
+  margin:0;
+  overflow:auto;
+  padding:0;
+  text-indent:10px;
 }
 
 div #discussionList {
@@ -232,10 +232,11 @@ div #discussionList {
 }
 
 .content {
-	padding: 0 18px;
-	display: none;
-	overflow: hidden;
-	background-color: #f1f1f1;
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+  height: auto;
 }
 
 .message1 {

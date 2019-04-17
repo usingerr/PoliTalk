@@ -47,8 +47,7 @@
       <section id="onlineUsers">
         <div id="searchMenu">
           <h1 class="heading">Online Users</h1>
-          <ul id="userList">
-          </ul>
+          <ul id="userList"></ul>
           <input
             type="text"
             id="userSearch"
@@ -105,33 +104,7 @@
           <br />
 
           <div id="articleList" class="list-group">
-            <button class="collapsible">Article 1</button>
-            <div class="content">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
-              </p>
-            </div>
-            <button class="collapsible">Article 2</button>
-            <div class="content">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
-              </p>
-            </div>
-            <button class="collapsible">Article 3</button>
-            <div class="content">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
-              </p>
-            </div>
+            
           </div>
         </div>
 
@@ -174,6 +147,9 @@
               >Remove Source</a
             ><br />
             <input type="submit" value="Submit Article" />
+            <button type="button" onclick="cancelArticle()" id="cancelButton">
+              Cancel
+            </button>
           </form>
         </div>
 
@@ -299,7 +275,15 @@
             class="userButton"
           >Swap Users</button>
             <br />
-            <input type="submit" value="Propose Discussion" class="userButton"/>
+            <br />
+            <input type="submit" value="Propose Discussion" />
+            <button
+              type="button"
+              onclick="cancelDiscussion()"
+              id="cancelButton"
+            >
+              Cancel
+            </button>
           </form>
         </div>
 

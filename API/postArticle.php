@@ -45,24 +45,33 @@
 		END AUTHENTICATION SNIPPET
 	*/
 	
-	if ($_POST["For"] === "" || $_POST["For"] == -1 || is_null($_POST["For"])){
+	if ($_POST["Title"] === "" || is_null($_POST["Title"])){
 		die("False");
 	}
-	if ($_POST["Against"] === "" || $_POST["Against"] == -1 ||is_null($_POST["Against"])){
+	if ($_POST["Body"] === "" || is_null($_POST["Body"])){
 		die("False");
 	}
-	if ($_POST["Topic"] === "" || is_null($_POST["Topic"])){
+	if ($_POST["Sources"] === "" || is_null($_POST["Sources"])){
 		die("False");
 	}
 	
-	$query = "SELECT MAX(idDebates) FROM `Debates`;";
+	$query = "SELECT MAX(idArticle) FROM `Article`;";
 	$max_id_result = $connection->query($query);
 	$IDToUse = $max_id_result->fetch_row()[0]+1;
 	$max_id_result->free();
 	
-	$query = $connection->prepare("INSERT INTO `Debates` (`idDebates`, `Topic`, `For`, `Against`, `Date`) VALUES(?, ?, ?, ?, NOW())");
-	$query->bind_param("dsdd", $IDToUse, $_POST["Topic"], $_POST["For"], $_POST["Against"]);
+	$query = $connection->prepare("INSERT INTO `Article` (`idArticle`, `Title`, `Body`, `Poster`, `Date`) VALUES(?, ?, ?, ?, NOW())");
+	$query->bind_param("dssd", $IDToUse, $_POST["Title"], $_POST["Body"], $_COOKIE["UserID"]);
 	$query->execute();
 	$query->close();
-	die("True");
+	
+	$sourceData = json_decode($_POST["Sources"]);
+	foreach($sourceData as $source)
+	{
+		$query = $connection->prepare("INSERT INTO `mydb`.`Source` (`idArticle`, `Url`) VALUES (?, ?)");
+		$query->bind_param("ds", $IDToUse, $source);
+		$query->execute();
+		$query->close();
+	}
+	echo("True");
 ?>

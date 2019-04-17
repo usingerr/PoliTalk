@@ -1,8 +1,13 @@
 window.onload = load;
 
 function load() {
+  //alert("In Load");
   populateList();
   setName();
+  //testAdd();
+  populateArticles();
+  //populateDebates();
+  makeCollapse();
 }
 
 function populateList() {
@@ -63,6 +68,8 @@ function getCookie(cname) {
 }
 
 function openTab(evt, tabName) {
+  //var checkit = document.getElementById("middleStuff").childCount;
+  //console.log(checkit);
   var i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("tabcontent");
   for (i = 0; i < tabcontent.length; i++) {
@@ -81,6 +88,11 @@ function newArticle() {
   var articles = document.getElementById("Articles");
   var articleForm = document.getElementById("articleForm").innerHTML;
   articles.innerHTML = articleForm;
+}
+
+function cancelArticle() {
+  window.location.reload();
+  openTab(event, "Articles");
 }
 
 function addSource() {
@@ -134,6 +146,23 @@ function removeSource(buttonID) {
   }
 }
 
+
+
+
+
+function cancelDiscussion() {
+  location.reload();
+  openTab(event, "Discussions");
+}
+
+
+function OnlineUser(n) {
+  this.name = n;
+  this.picture = "images/default.png";
+  this.node = document.createElement("li");
+  this.node.appendChild(document.createTextNode(n));
+  //this.node.addEventListener('click', showUser(this), false);
+}
 
 function OnlineUser(n)
 {
@@ -402,25 +431,6 @@ function switchBackToUsers() {
   update(placeHolderQueryResult);
 }
 
-/*function updateText() {
-  var input = document.getElementById("userSearch").value;
-  var newList = [];
-  for (var x = 0; x < placeHolderQueryResult.length; x++) {
-    var str = placeHolderQueryResult[x].substring(0, input.length);
-    var result = str.search(new RegExp(input));
-    var test = new RegExp(input, "i");
-    console.log(test);
-    //alert("checking querey result " + str + " with " + input);
-    console.log(result);
-    console.log("ya");
-    if (test == str) {
-      console.log("nah");
-      newList.push(placeHolderQueryResult[x]);
-    }
-  }
-  update(newList);
-}*/
-
 function getUserCookie(cname) {
   var name = cname + "=";
   var decodedCookie = decodeURIComponent(document.cookie);
@@ -437,19 +447,115 @@ function getUserCookie(cname) {
   return "";
 }
 
-function setName()
-{
-	var name = getUserCookie("username");
-	document.getElementById("welcome").innerHTML = "Welcome " + name;
-	//alert(document.getElementById("welcome").innerHTML);
+function populateArticles() {
+  let listArticles = document.getElementById("articleList");
+  listArticles.length = 0;
+
+  const urlArt = "/API/getArticles.php";
+
+  const request = new XMLHttpRequest();
+  request.open("POST", urlArt, true);
+
+  request.onload = function() {
+    if (request.status === 200) {
+      const data = JSON.parse(request.responseText);
+      alert(data);
+      let button;
+      let div;
+      let p;
+      let title;
+      let body;
+      for (let i = 0; i < data.length; i++) {
+        title = "Test #" + i;
+        button = document.createElement("BUTTON");
+        button.innerHTML = data.title.value; //insert JSON
+        button.className = "collapsible";
+        div = document.createElement("DIV");
+        div.className = "content";
+        p = document.createElement("P");
+        p.innerHTML = data.body.value; //insert JSON
+        div.appendChild(p);
+        listArticles.appendChild(button);
+        listArticles.appendChild(div);
+        makeCollapse();
+      }
+    } else {
+      // Reached the server, but it returned an error
+    }
+  };
+
+  request.onerror = function() {
+    console.error("An error occurred fetching the JSON from " + urlArt);
+  };
+
+  request.send();
 }
 
-function load()
-{
-	populateList();
-	setName();
-	test();
+function populateDiscussions() {
+  let listDiscussions = document.getElementById("discussionList");
+  listDiscussions.length = 0;
+
+  const urlArt = "\API\getArticles.php";
+
+  const request = new XMLHttpRequest();
+  request.open("POST", urlArt, true);
+
+  request.onload = function() {
+    if (request.status === 200) {
+    } else {
+      // Reached the server, but it returned an error
+    }
+  };
+
+  request.onerror = function() {
+    console.error("An error occurred fetching the JSON from " + urlArt);
+  };
+
+  request.send();
 }
 
+/*function testAdd() {
 
-window.onload=load;
+
+    
+let listArticles = document.getElementById('articleList');
+listArticles.length = 0;
+
+      let button;
+      let div;
+      let p;
+      let title;
+      let body = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut";
+      for (let i = 0; i < 10; i++) {
+        title = "Test #" + i;
+        button = document.createElement('BUTTON');
+        button.innerHTML = title; //JSON
+        button.className = "collapsible";
+        div = document.createElement('DIV');
+        div.className = "content";
+        p = document.createElement('P');
+        p.innerHTML = body + " " + i; //JSON
+        div.appendChild(p);
+        listArticles.appendChild(button);
+        listArticles.appendChild(div);
+        console.log("Article " + i + " " + listArticles.innerHTML);
+        makeCollapse();
+
+      }
+    }*/
+
+function makeCollapse() {
+  var coll = document.getElementsByClassName("collapsible");
+  var j;
+  for (j = 0; j < coll.length; j++) {
+    coll[j].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.display === "block") {
+        content.style.display = "none";
+      } else {
+        content.style.display = "block";
+      }
+    });
+  }
+}

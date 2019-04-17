@@ -85,6 +85,45 @@
 				<input value="Go" type="submit" id="input_go">
 			</fieldset>
 		</form>
+		<p>Post Article</p>
+		<form method="post" action="API\postArticle.php" name="login_form" style="display: inline;">
+			<fieldset>
+				<div class="item">
+					<label for="input_username">Title:</label>
+					<input type="text" name="Title" id="input_username" value="" size="24" class="textfield">
+					
+				</div>
+				<div class="item">
+					<label for="input_username">Body:</label>
+					<input type="text" name="Body" id="input_username" value="" size="24" class="textfield">
+				</div>
+				<div class="item">
+					<label for="input_username">Sources:</label>
+					<input type="text" name="Sources" id="input_username" value="" size="24" class="textfield">
+				</div>
+			</fieldset>
+			<fieldset class="tblFooters">
+				<input value="Go" type="submit" id="input_go">
+			</fieldset>
+		</form>
+		<p>Get Articles</p>
+		<form method="post" action="API\getArticles.php" name="login_form" style="display: inline;">
+			<fieldset class="tblFooters">
+				<input value="Go" type="submit" id="input_go">
+			</fieldset>
+		</form>
+		<p>Get Sources</p>
+		<form method="post" action="API\getSources.php" name="login_form" style="display: inline;">
+			<fieldset>
+				<div class="item">
+					<label for="input_username">ID:</label>
+					<input type="text" name="ArticleID" id="input_username" value="" size="24" class="textfield">
+				</div>
+			</fieldset>
+			<fieldset class="tblFooters">
+				<input value="Go" type="submit" id="input_go">
+			</fieldset>
+		</form>
 	</body>
 
 </html>
