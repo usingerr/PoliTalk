@@ -134,30 +134,32 @@ function removeSource(buttonID) {
   }
 }
 
-function OnlineUser(n) {
-  this.name = n;
-  this.picture = "images/default.png";
-  this.node = document.createElement("li");
-  this.node.appendChild(document.createTextNode(n));
-  //this.node.addEventListener('click', showUser(this), false);
+
+function OnlineUser(n)
+{
+	this.name = n;
+	this.picture = "images/default_image.png";
+	this.node = document.createElement("li");
+	this.node.appendChild(document.createTextNode(n));
+	//this.node.addEventListener('click', showUser(this), false);
 }
 
-function OnlineUser(n, path) {
-  this.name = n;
-  this.picture = path;
-  this.node = document.createElement("li");
-  this.node.appendChild(document.createTextNode(n));
-  //this.node.addEventListener('click', showUser(this), false);
-}
+/*function OnlineUser(n, path)
+{
+	this.name = n;
+	this.picture = path;
+	this.node = document.createElement("li");
+	this.node.appendChild(document.createTextNode(n));
+	//this.node.addEventListener('click', showUser(this), false);
+	alert("path received")
+}*/
 
-function newOnlineUser(n, path, id) {}
-
-function test() {
-  var trump = new OnlineUser("Donald Trump", "images/Trump.png");
-  var list = document.getElementById("userList");
-  list.appendChild(trump.node);
-  trump.node.addEventListener("click", function() {
-    showUser(trump);
+function test(){
+var trump = new OnlineUser("Donald Trump");
+var list = document.getElementById("userList");
+list.appendChild(trump.node);
+trump.node.addEventListener('click', function(){
+	showUser(trump);
   });
 }
 
@@ -193,25 +195,48 @@ var stringResult = [
 
 var placeHolderQueryResult = [];
 
-function update(userList) {
-  var physicalList = document.getElementById("userList");
-  while (physicalList.hasChildNodes()) {
-    physicalList.removeChild(physicalList.childNodes[0]);
+function update(userList)
+{
+
+	//for(var y = 0; y < userList.length; y++)
+	//{
+		//alert(userList[y].picture);
+	//}
+	var physicalList = document.getElementById("userList");
+	while(physicalList.hasChildNodes())
+	{
+		physicalList.removeChild(physicalList.childNodes[0]);
+	}
+	var defaultLength = 20;
+	if(userList.length < defaultLength)
+		defaultLength = userList.length;
+	for(var x = 0; x < defaultLength; x++)
+	{
+		//alert(userList[x].picture);
+		userList[x].node.addEventListener('click', (function(x)
+		{	return function(){
+				showUser(userList[x]);
+			};
+
+
+			}(x))
+		);
+		//alert("Event listener added!");
+		physicalList.appendChild(userList[x].node);
   }
-  var defaultLength = 20;
-  if (userList.length < defaultLength) defaultLength = userList.length;
-  for (var x = 0; x < defaultLength; x++) {
-    userList[x].node.addEventListener(
-      "click",
-      (function(x) {
-        return function() {
-          showUser(userList[x]);
-        };
-      })(x)
-    );
-    //alert("Event listener added!");
-    physicalList.appendChild(userList[x].node);
-  }
+  /*for(var x = 0; x < defaultLength; x++)
+	(function(x){
+		userList[x].node.addEventListener('click', (function(x)
+		{	return function(){
+				showUser(userList[x]);
+			};
+
+
+			})(x);
+		);
+		//alert("Event listener added!");
+		physicalList.appendChild(userList[x].node);
+	})(x);*/
 }
 
 function submitArticle() {
@@ -334,48 +359,38 @@ fetch(url)
     console.log(JSON.stringify(myJson));
   });*/
 
-function update(userList) {
-  for (var y = 0; y < userList.length; y++) {
-    //alert(userList[y]);
-  }
-  var physicalList = document.getElementById("userList");
-  while (physicalList.hasChildNodes()) {
-    physicalList.removeChild(physicalList.childNodes[0]);
-  }
-  var defaultLength = 10;
-  if (userList.length < defaultLength) defaultLength = userList.length;
-  for (var x = 0; x < defaultLength; x++) {
-    var result = document.createElement("li");
-    var resultText = document.createTextNode(userList[x]);
-    result.appendChild(resultText);
-    physicalList.appendChild(result);
-  }
+
+function  updateText()
+{
+	var input = document.getElementById("userSearch").value;
+	var newList = [];
+	for(var x = 0; x < placeHolderQueryResult.length; x++)
+	{
+		//alert("checking querey result " + placeHolderQueryResult[x].name.substring(0, input.length) + " with " + input);
+		if(placeHolderQueryResult[x].name.substring(0, input.length) == input){
+			
+			newList.push(placeHolderQueryResult[x]);
+			//alert("Added " + placeHolderQueryResult[x].name + " to the list");
+		}
+	}
+	update(newList);
 }
 
-function updateText() {
-  var input = document.getElementById("userSearch").value;
-  var newList = [];
-  for (var x = 0; x < placeHolderQueryResult.length; x++) {
-    //alert("checking querey result " + placeHolderQueryResult[x].substring(0, input.length) + " with " + input);
-    if (placeHolderQueryResult[x].substring(0, input.length) == input) {
-      newList.push(placeHolderQueryResult[x]);
-    }
-  }
-  update(newList);
-}
 
-function showUser(user) {
-  //alert(user.name);
-  var hold = document.getElementById("searchMenu").innerHTML;
-  document.getElementById("searchMenu").innerHTML = document.getElementById(
-    "otherUserMenu"
-  ).innerHTML;
-  document.getElementById("otherUserMenu").innerHTML = hold;
-  document.getElementById("g").innerHTML = user.name;
-  document.getElementById("h").src = user.picture;
-  document.getElementById("f").addEventListener("click", function() {
-    newDiscussion(user);
-  });
+
+function showUser(user)
+{
+	//alert(user.name);
+	var hold = document.getElementById("searchMenu").innerHTML;
+	document.getElementById("searchMenu").innerHTML = document.getElementById("otherUserMenu").innerHTML;
+	document.getElementById("otherUserMenu").innerHTML = hold;
+	document.getElementById("g").innerHTML = user.name;
+	//alert(user.name);
+	document.getElementById("h").src = user.picture;
+	//alert(user.picture);
+	document.getElementById("f").addEventListener('click', function()
+	{newDiscussion(user)}
+	);
 }
 
 function switchBackToUsers() {
@@ -422,7 +437,19 @@ function getUserCookie(cname) {
   return "";
 }
 
-var xhttpDeb = new XMLHttpRequest();
-xhttpDeb.open("POST", "/API/getDebates.php", false);
-xhttpDeb.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-var testDeb = xhttpDeb.responseText;
+function setName()
+{
+	var name = getUserCookie("username");
+	document.getElementById("welcome").innerHTML = "Welcome " + name;
+	//alert(document.getElementById("welcome").innerHTML);
+}
+
+function load()
+{
+	populateList();
+	setName();
+	test();
+}
+
+
+window.onload=load;
