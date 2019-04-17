@@ -243,7 +243,7 @@ function submitArticle() {
 	}
 	// submit
 	var xhttpArticle = new XMLHttpRequest();
-					xhttpArticle.open("POST", "/API/getIdByUsername.php", false);
+					xhttpArticle.open("POST", "/API/postArticle.php", false);
 					xhttpArticle.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 					xhttpArticle.send("Title=" + aTitle + "&Body=" + body + "&Sources=" + sourceText);
 		var didSubmit = xhttpArticle.responseText;
