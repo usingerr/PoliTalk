@@ -45,17 +45,7 @@
 		END AUTHENTICATION SNIPPET
 	*/
 	
-	if ($_POST["Title"] === "" || is_null($_POST["Title"])){
-		die("False");
-	}
-	if ($_POST["Body"] === "" || is_null($_POST["Body"])){
-		die("False");
-	}
-	if ($_POST["Sources"] === "" || is_null($_POST["Sources"])){
-		die("False");
-	}
-	
-	$query = "SELECT MAX(idArticle) FROM `Article`;";
+	/*$query = "SELECT MAX(idArticle) FROM `Article`;";
 	$max_id_result = $connection->query($query);
 	$IDToUse = $max_id_result->fetch_row()[0]+1;
 	$max_id_result->free();
@@ -72,6 +62,20 @@
 		$query->bind_param("ds", $IDToUse, $source);
 		$query->execute();
 		$query->close();
+		echo($source);
+	}*/
+	if ($_POST["ArticleID"] === "" || is_null($_POST["ArticleID"])){
+		die("False");
 	}
-	echo("True");
+	//$query = $connection->prepare("SELECT * FROM `Article` JOIN `mydb`.`Source` on `Article`.idArticle = `mydb`.`Source`.idArticle ORDER BY `Article`.idArticle DESC");
+	$query = $connection->prepare("SELECT Url FROM `mydb`.`Source` WHERE idArticle = ? ORDER BY idArticle DESC");
+	$query->bind_param("d", $_POST["ArticleID"]);
+	$query->execute();
+	$result = $query->get_result();
+	
+	$articleArr = mysqli_fetch_all($result,MYSQLI_ASSOC);
+	
+	$query->close();
+	
+	echo json_encode($articleArr);
 ?>
