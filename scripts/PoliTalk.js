@@ -7,7 +7,6 @@ function load() {
   //testAdd();
   populateArticles();
   //populateDebates();
-  makeCollapse();
 }
 
 function populateList() {
@@ -459,7 +458,6 @@ function populateArticles() {
   request.onload = function() {
     if (request.status === 200) {
       const data = JSON.parse(request.responseText);
-      alert(data);
       let button;
       let div;
       let p;
@@ -477,6 +475,7 @@ function populateArticles() {
         div.appendChild(p);
         listArticles.appendChild(button);
         listArticles.appendChild(div);
+        makeCollapse();
       }
     } else {
       // Reached the server, but it returned an error
