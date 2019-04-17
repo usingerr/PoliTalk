@@ -105,8 +105,6 @@ function cancelArticle() {
   openTab(event, "Articles");
 }
 
-
-
 function addSource() {
   // number of source elements to append
   var childCount =
@@ -218,7 +216,6 @@ function submitArticle() {
   //confirmation message?
 }
 
-
 function newDiscussion() {
   openTab(event, "Discussions");
   var discussions = document.getElementById("Discussions");
@@ -232,40 +229,51 @@ function cancelDiscussion() {
 }
 
 function submitDiscussion() {
-	//get username stuff
-	var username = getCookie("UserID");
-	//get values from document elements
-	// discussion title
-	var dTitle = document.getElementById('discussionTitle').value;
-	// user for
-	var userFor = document.getElementById('userFor').value;
-	var xhttpFor = new XMLHttpRequest();
-					xhttpFor.open("POST", "/API/getIdByUsername.php", false);
-					xhttpFor.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-					xhttpFor.send("username=" + userFor);
-			var userForID = xhttpFor.responseText;
-	// user against
-	var userAgainst = document.getElementById('userAgainst').value;
-	var xhttpAgainst = new XMLHttpRequest();
-					xhttpAgainst.open("POST", "/API/getIdByUsername.php", false);
-					xhttpAgainst.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-					xhttpAgainst.send("username=" + userAgainst);
-			var userAgainstID = xhttpAgainst.responseText;
-	//sanitize?
-	//submit to database
-	var xhttpPost = new XMLHttpRequest();
-					xhttpPost.open("POST", "/API/postDebate.php", false);
-					xhttpPost.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-					xhttpPost.send("Topic=" + dTitle + "&For=" + userForID + "&Against=" + userAgainstID);
-	var didSubmit = xhttpPost.responseText;
-			if (didSubmit == "NOT LOGGED IN") {
-					alert("Must be logged in to submit discussion");
-			} else if (didSubmit == "True") {
-					alert("Discussion posted!");
-			} else {
-					alert("pls");
-			}
-	//confirmation message?
+  //get username stuff
+  var username = getCookie("UserID");
+  //get values from document elements
+  // discussion title
+  var dTitle = document.getElementById("discussionTitle").value;
+  // user for
+  var userFor = document.getElementById("userFor").value;
+  var xhttpFor = new XMLHttpRequest();
+  xhttpFor.open("POST", "/API/getIdByUsername.php", false);
+  xhttpFor.setRequestHeader(
+    "Content-type",
+    "application/x-www-form-urlencoded"
+  );
+  xhttpFor.send("username=" + userFor);
+  var userForID = xhttpFor.responseText;
+  // user against
+  var userAgainst = document.getElementById("userAgainst").value;
+  var xhttpAgainst = new XMLHttpRequest();
+  xhttpAgainst.open("POST", "/API/getIdByUsername.php", false);
+  xhttpAgainst.setRequestHeader(
+    "Content-type",
+    "application/x-www-form-urlencoded"
+  );
+  xhttpAgainst.send("username=" + userAgainst);
+  var userAgainstID = xhttpAgainst.responseText;
+  //sanitize?
+  //submit to database
+  var xhttpPost = new XMLHttpRequest();
+  xhttpPost.open("POST", "/API/postDebate.php", false);
+  xhttpPost.setRequestHeader(
+    "Content-type",
+    "application/x-www-form-urlencoded"
+  );
+  xhttpPost.send(
+    "Topic=" + dTitle + "&For=" + userForID + "&Against=" + userAgainstID
+  );
+  var didSubmit = xhttpPost.responseText;
+  if (didSubmit == "NOT LOGGED IN") {
+    alert("Must be logged in to submit discussion");
+  } else if (didSubmit == "True") {
+    alert("Discussion posted!");
+  } else {
+    alert("pls");
+  }
+  //confirmation message?
 }
 
 function OnlineUser(n) {
@@ -347,7 +355,6 @@ function update(userList) {
     physicalList.appendChild(userList[x].node);
   }
 }
-
 
 function logOut() {
   //alert("log out button works");
@@ -445,79 +452,70 @@ function getUserCookie(cname) {
 }
 
 function populateArticles() {
+  let listArticles = document.getElementById("articleList");
+  listArticles.length = 0;
 
+  const urlArt = "/API/getArticles.php";
 
-let listArticles = document.getElementById('articleList');
-listArticles.length = 0;
+  const request = new XMLHttpRequest();
+  request.open("POST", urlArt, true);
 
-const urlArt = '/API/getArticles.php';
-
-const request = new XMLHttpRequest();
-request.open('POST', urlArt, true);
-
-request.onload = function() {
-  if (request.status === 200) {
-    const data = JSON.parse(request.responseText);
-    let button;
-    let div;
-    let p;
-    let title;
-    let body;
-    for (let i = 0; i < data.length; i++) {
-      title = "Test #" + i;
-      button = document.createElement('BUTTON');
-      button.innerHTML = title; //insert JSON
-      button.className = "collapsible";
-      div = document.createElement('DIV');
-      div.className = "content";
-      p = document.createElement('P');
-      p.innerHTML = body + " " + i; //insert JSON
-      div.appendChild(p);
-      listArticles.appendChild(button);
-      listArticles.appendChild(div);
-      makeCollapse();
+  request.onload = function() {
+    if (request.status === 200) {
+      const data = JSON.parse(request.responseText);
+      let button;
+      let div;
+      let p;
+      let title;
+      let body;
+      for (let i = 0; i < data.length; i++) {
+        title = "Test #" + i;
+        button = document.createElement("BUTTON");
+        button.innerHTML = title; //insert JSON
+        button.className = "collapsible";
+        div = document.createElement("DIV");
+        div.className = "content";
+        p = document.createElement("P");
+        p.innerHTML = body + " " + i; //insert JSON
+        div.appendChild(p);
+        listArticles.appendChild(button);
+        listArticles.appendChild(div);
+        makeCollapse();
+      }
+    } else {
+      // Reached the server, but it returned an error
     }
-   } 
-   else {
-    // Reached the server, but it returned an error
-  }   
-}
+  };
 
-request.onerror = function() {
-  console.error('An error occurred fetching the JSON from ' + urlArt);
-};
+  request.onerror = function() {
+    console.error("An error occurred fetching the JSON from " + urlArt);
+  };
 
-request.send();
+  request.send();
 }
 
 function populateDiscussions() {
-
-
-  let listDiscussions = document.getElementById('discussionList');
+  let listDiscussions = document.getElementById("discussionList");
   listDiscussions.length = 0;
-  
-  const urlArt = '/API/getArticles.php';
-  
+
+  const urlArt = "/API/getArticles.php";
+
   const request = new XMLHttpRequest();
-  request.open('POST', urlArt, true);
-  
+  request.open("POST", urlArt, true);
+
   request.onload = function() {
     if (request.status === 200) {
-
-      }
-      
-    else {
+    } else {
       // Reached the server, but it returned an error
-    }   
-  }
-  
-  request.onerror = function() {
-    console.error('An error occurred fetching the JSON from ' + urlArt);
+    }
   };
-  
-  request.send();
-  }
 
+  request.onerror = function() {
+    console.error("An error occurred fetching the JSON from " + urlArt);
+  };
+
+  request.send();
+}
 
 /*function testAdd() {
 
@@ -548,21 +546,19 @@ listArticles.length = 0;
 
       }
     }*/
-      
-function makeCollapse(){
-        var coll = document.getElementsByClassName("collapsible");
-            var j;
-            for (j = 0; j < coll.length; j++) {
-              coll[j].addEventListener("click", function() {
-                this.classList.toggle("active");
-                var content = this.nextElementSibling;
-                if (content.style.display === "block") {
-                  content.style.display = "none";
-                } else {
-                  content.style.display = "block";
-                }
-              });
-            }
 
+function makeCollapse() {
+  var coll = document.getElementsByClassName("collapsible");
+  var j;
+  for (j = 0; j < coll.length; j++) {
+    coll[j].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.display === "block") {
+        content.style.display = "none";
+      } else {
+        content.style.display = "block";
       }
-  
+    });
+  }
+}
