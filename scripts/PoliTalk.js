@@ -475,8 +475,8 @@ function populateArticles() {
         div.appendChild(p);
         listArticles.appendChild(button);
         listArticles.appendChild(div);
-        makeCollapse();
       }
+      makeCollapse();
     } else {
       // Reached the server, but it returned an error
     }
