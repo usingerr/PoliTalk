@@ -13,7 +13,7 @@ function try_login()
 		document.getElementById("login-alert").style = "";
 	}else{
 		document.cookie = "username=" + user;
-		window.location.replace("PolyTalkShell.html");
+		window.location.replace("PoliTalk.html");
 	}	
 }
 
