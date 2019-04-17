@@ -1,10 +1,12 @@
 window.onload = load;
 
 function load() {
+  alert("In Load");
   populateList();
   setName();
-  populateArticles();
-  populateDebates();
+  testAdd();
+  //populateArticles();
+  //populateDebates();
   makeCollapse();
 }
 
@@ -19,7 +21,7 @@ function getDBConnection() {
 }
 
 function populateList() {
-  //alert("We got it");
+  alert("We got it");
   var test = new OnlineUser("This is a Test");
   placeHolderQueryResult = [
     new OnlineUser("Donald Glover"),
@@ -459,18 +461,24 @@ request.onload = function() {
     let button;
     let div;
     let p;
+    let title;
+    let body;
     for (let i = 0; i < data.length; i++) {
-      button = document.createElement('button');
+      title = "Test #" + i;
+      button = document.createElement('BUTTON');
+      button.innerHTML = title; //insert JSON
       button.className = "collapsible";
-      div = document.createElement('div');
+      div = document.createElement('DIV');
       div.className = "content";
-      p = document.createElement('p');
-
-      div.add(p);
-      listArticles.add(button);
-      listArticles.add(div);
+      p = document.createElement('P');
+      p.innerHTML = body + " " + i; //insert JSON
+      div.appendChild(p);
+      listArticles.appendChild(button);
+      listArticles.appendChild(div);
+      makeCollapse();
     }
-   } else {
+   } 
+   else {
     // Reached the server, but it returned an error
   }   
 }
@@ -495,22 +503,10 @@ function populateDiscussions() {
   
   request.onload = function() {
     if (request.status === 200) {
-      const data = JSON.parse(request.responseText);
-      let button;
-      let div;
-      let p;
-      for (let i = 0; i < data.length; i++) {
-        button = document.createElement('button');
-        button.className = "collapsible";
-        div = document.createElement('div');
-        div.className = "content";
-        p = document.createElement('p');
-  
-        div.add(p);
-        listDiscussions.add(button);
-        listDiscussions.add(div);
+
       }
-     } else {
+      
+    else {
       // Reached the server, but it returned an error
     }   
   }
@@ -523,7 +519,8 @@ function populateDiscussions() {
   }
 
 
-  function testAdd() {
+/*function testAdd() {
+
 
     
 let listArticles = document.getElementById('articleList');
@@ -537,25 +534,24 @@ listArticles.length = 0;
       for (let i = 0; i < 10; i++) {
         title = "Test #" + i;
         button = document.createElement('BUTTON');
-        button.innerHTML = title;
+        button.innerHTML = title; //JSON
         button.className = "collapsible";
         div = document.createElement('DIV');
         div.className = "content";
         p = document.createElement('P');
-        p.innerHTML = body;
-  
-        listArticles.appendChild(button);
+        p.innerHTML = body + " " + i; //JSON
         div.appendChild(p);
+        listArticles.appendChild(button);
         listArticles.appendChild(div);
-
+        console.log("Article " + i + " " + listArticles.innerHTML);
         makeCollapse();
 
       }
+    }*/
       
 function makeCollapse(){
         var coll = document.getElementsByClassName("collapsible");
             var j;
-
             for (j = 0; j < coll.length; j++) {
               coll[j].addEventListener("click", function() {
                 this.classList.toggle("active");
@@ -569,4 +565,4 @@ function makeCollapse(){
             }
 
       }
-  }
+  

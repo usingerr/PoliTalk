@@ -200,7 +200,7 @@ textarea {
 }
 
 div #articleList {
-  max-height:600px;
+  height: auto;
   margin:0;
   overflow:auto;
   padding:0;
@@ -236,6 +236,7 @@ div #discussionList {
   display: none;
   overflow: hidden;
   background-color: #f1f1f1;
+  height: auto;
 }
 
 .message1 {
