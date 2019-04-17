@@ -1,11 +1,11 @@
 window.onload = load;
 
 function load() {
-  alert("In Load");
+  //alert("In Load");
   populateList();
   setName();
-  testAdd();
-  //populateArticles();
+  //testAdd();
+  populateArticles();
   //populateDebates();
   makeCollapse();
 }
@@ -21,7 +21,7 @@ function getDBConnection() {
 }
 
 function populateList() {
-  alert("We got it");
+  //alert("We got it");
   var test = new OnlineUser("This is a Test");
   placeHolderQueryResult = [
     new OnlineUser("Donald Glover"),
@@ -463,6 +463,7 @@ function populateArticles() {
   request.onload = function() {
     if (request.status === 200) {
       const data = JSON.parse(request.responseText);
+      alert(data);
       let button;
       let div;
       let p;
@@ -471,12 +472,12 @@ function populateArticles() {
       for (let i = 0; i < data.length; i++) {
         title = "Test #" + i;
         button = document.createElement("BUTTON");
-        button.innerHTML = title; //insert JSON
+        button.innerHTML = data.title.value; //insert JSON
         button.className = "collapsible";
         div = document.createElement("DIV");
         div.className = "content";
         p = document.createElement("P");
-        p.innerHTML = body + " " + i; //insert JSON
+        p.innerHTML = data.body.value; //insert JSON
         div.appendChild(p);
         listArticles.appendChild(button);
         listArticles.appendChild(div);
@@ -498,7 +499,7 @@ function populateDiscussions() {
   let listDiscussions = document.getElementById("discussionList");
   listDiscussions.length = 0;
 
-  const urlArt = "/API/getArticles.php";
+  const urlArt = "\API\getArticles.php";
 
   const request = new XMLHttpRequest();
   request.open("POST", urlArt, true);
